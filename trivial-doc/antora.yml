@@ -1,0 +1,21 @@
+name: trivial-doc
+version: dev
+prerelease: '.0.1'
+title: Projet Trivial Pursuite
+asciidoc:
+  attributes:
+    source-language: asciidoc@
+    xrefstyle: short@
+    listing-caption: Example@
+    example-caption: false
+    version-node-major: '14'
+    version-node: '14.17.1'
+    version-npm: '6.14.18'
+    url-node-releases: https://nodejs.org/en/about/releases/
+    url-chat: https://antora.zulipchat.com
+    url-repo: https://gitlab.com/antora/antora
+    url-asciidoc: https://docs.asciidoctor.org/asciidoc/latest
+    plantuml-server-url: http://www.plantuml.com/plantuml
+nav:
+- modules/ROOT/nav.adoc
+- modules/developement/nav.adoc

@@ -1,0 +1,10 @@
+@startuml
+
+actor Joueur as j
+usecase "Mise en place" as uc1
+usecase "Jouer un tour" as uc2
+
+j "[2..6]" -- "[0..1]" uc1
+j "[2..6]" -- "[0..1]" uc2
+
+@enduml

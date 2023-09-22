@@ -1,0 +1,227 @@
+[cols="30s,70n",options="header", frame=sides]
+|===
+| Item | Description
+
+| # 
+| 2
+
+| Cas d'utilisation	
+| Tour de jeu
+
+| Description
+| Les joueurs jouent leurs tours alternativement, plusieurs fois dans une partie. Pendant ce tour ils peuvent effectuer plusieurs actions : former une combinaison de cartes, attaquer, déplacer des armées.
+
+| Niveau
+| Stratégique
+
+| Portée
+| Système
+
+| Priorité
+| Haute
+
+| Échéance
+| 1e version
+
+| Acteurs principaux
+a| 
+. Les joueurs
+. L'arbitre
+
+| Acteurs de soutien
+| Aucun pour l'instant.
+
+| Parties prenantes et intérêts
+| Aucun pour l’instant.
+
+| Pré-conditions
+a|
+ - Aucun tour d'un autre joueur n'est entamé.
+ - Le paquet de cartes est disponible.
+ - Le joueur n’est pas éliminé.
+ - La partie est en cours.
+
+| Post-conditions
+| Aucune
+
+| Condition finale de réussite
+a| 
+  - Le joueur a reçu sa carte territoire-armée s'il a gagné un combat.
+  Context User inv:
+  pre: i = self.hand.size
+  post: implies(self.wonFight)-> self.hand.size == i+1
+  - Le joueur a terminé son tour.
+  Context Game inv:
+  self.step = 5
+  - Les conditions finales de réussite des combats sont réunies.
+  cf use case 3
+
+| Condition finale d'échec
+a|
+ - Le joueur n'a pas reçu sa carte territoire-armée alors qu'il a gagné un combat.
+
+[source,ocl]
+----
+  Context User inv:
+  pre: i = self.hand.size
+  post: implies(self.wonFight)-> self.hand.size == self.hand.size
+----
+
+ - Le joueur n'a que des territoires vides.
+
+[source, ocl]
+----
+ Context User inv:
+ self.territories->forAll(t : Territory \| t.units = 0)
+----
+ - Le joueur a plus de cinq cartes en main.
+
+[source,ocl]
+----
+  Context User inv:
+  self.size(cards) >5
+----
+
+ - Le tour du joueur n'est pas terminé.
+
+[source,ocl]
+----
+  Context Game inv:
+  self.step != 5
+----
+  
+| Garanties minimales
+a|
+  - L'ordre des joueurs reste le même
+  - Deux joueurs ne jouent pas leur tour en même temps
+  - Le jeu passe au tour du joueur suivant
+
+| Événement déclencheur
+| Le joueur précédent termine son tour, ou alors le joueur est le premier à commencer la partie.
+
+| Scénario nominal
+a| 
+1. Le joueur reçoit ses renforts en relation avec le nombre de territoires conquis par le joueur. S'il le souhaite il peut proposer une combinaison de 3 cartes pour remporter des armées supplémentaires.
+2. Le joueur place tous ses renforts sur le plateau parmi ses territoires.
+3. Le joueur effectue autant d'attaque qu'il le souhaite [.big]##(Use Case 3)##, il peut ne pas attaquer pendant sont tour également.
+4. Si le joueur a gagné au moins un combat, il pioche une seule carte territoire-armée.
+5. Le joueur sélectionne chaque paire de territoires (départ et arrivée) avec lesquels il souhaite faire un échange d'unités ainsi que le nombre d'unités qu'il souhaite déplacer (en prenant soin d'en laisser au moins une dans le territoire de départ).
+7. Le prochain joueur joue [.big]##(Use Case 2)##.
+
+| Extensions
+a|
+* Point 1/
+** a - Le nombre de renforts est défini par l'arbitre en fonction de l'état du plateau à ce moment-là. Le nombre de renforts obtenus par le joueur dépend du nombre de territoires (voire continent(s)) possédés par ce même joueur : +
+   Ce nombre se définit de la façon suivante : pour x territoires possédés par le joueur, celui-ci reçoit n renforts pour x = 3 * n + a, a pouvant valoir 0 (si n est un multiple de 3). +
+   Si n est inférieur à 3, le joueur recevra tout de même 3 renforts à placer. +
+   Si le joueur a conquis complètement un ou plusieurs continents, il peut recevoir des renforts supplémentaires comme indiqué dans le premier tableau suivant. 
+** b - Le joueur peut proposer une combinaison de cartes, avant d'attaquer, pour recevoir des armées supplémentaires comme indiqué dans le deuxième tableau suivant. +
+** c - Si le joueur pose une combinaison de cartes parmi celles ci-dessus, il reçoit des armées supplémentaires en rapport avec i, i étant la ième combinaison proposée dans la partie. +
+   On retrace ce nombre d'armées supplémentaires en fonction de i dans le troisième tableau ci-dessous. +
+** d - Si parmi les 3 cartes territoires-armées impliquées dans la combinaison posée par le joueur, il apparaît au moins un territoire occupé par ce même joueur, celui-ci remporte 2 armées supplémentaires par territoire correpondant. +
+
+| Fréquence
+|  Un tour dure environ 3 minutes.
+
+| Hypothèses
+| NA
+
+| Exigences particulières
+| Aucune
+
+| Questions ouvertes
+a|
+1. Comment l’arbitre sait le nombre de renforts que le joueur doit obtenir ?
+2. Comment l’arbitre sait si le joueur a achevé sa mission ?
+
+
+|===
+
+[cols="5, 2", options="header"]
+|===
+| Continent
+| Nombre de renforts supplémentaires
+
+| Océanie
+| 2
+
+| Amérique du Sud
+| 2
+
+| Afrique
+| 3
+
+| Europe
+| 5
+
+| Amérique du Nord
+| 5
+
+| Asie
+| 7
+|===
+ 
+
+[cols="5, 2", options="header"]
+|===
+| Combinaison de cartes possible
+| Nombre d'armées supplémentaires
+
+| 3 fantassins
+| 3
+
+| 3 cavaliers
+| 5
+
+| 3 canons
+| 8
+
+| 1 canon, 1 cavalier, 1 fantassin
+| 10
+|===
+
+
+[cols="2, 2", options="header"]
+|===
+| ième combinaison proposée dans la partie
+| Nombre d'armées supplémentaires
+
+| 1ère
+| 4 
+
+| 2ème
+| 6
+
+| 3ème
+| 8
+
+| 4ème
+| 10
+
+| 5ème
+| 12
+
+| 6ème
+| 15
+
+| 7ème
+| 20
+
+| 8ème
+| 25
+
+| (i+1)ème
+| (nombre d'armées distribuées précédent) + 5
+|===
+
+
+* Point 3/
+** a - Une attaque peut être effectuée avec des armées issus de territoires différents uniquement dans le cas où le pays d'origine attaquant ne possède plus qu'une armée et que le joueur possède un autre pays (que celui d'origine) adjacent au pays attaqué. +
+** b - Le joueur doit laisser au moins une armée sur chacun de ses territoires attaquants tant qu'il n'a pas perdu ses attaques. +
+* Point 4/
+** a - Si il n’y a plus de cartes dans la pioche, l’arbitre intervient pour ramasser les cartes mises de côté et les mélange afin d’en faire une nouvelle pioche. +
+* Point 5/
+** a - Le joueur doit laisser au moins une armée dans chaque territoire qu'il occupe.
+
+
+

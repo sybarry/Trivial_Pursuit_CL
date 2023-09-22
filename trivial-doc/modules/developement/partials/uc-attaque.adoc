@@ -1,0 +1,123 @@
+[cols="30s,70n",options="header", frame=sides]
+|===
+| Item | Description
+
+| #
+| 3
+
+| Cas d'utilisation
+| Attaque
+
+| Description
+| Le joueur est en train de jouer son tour, il décide d'attaquer un territoire ennemi.
+
+| Niveau
+| Stratégique
+
+| Portée
+| Système
+
+| Priorité
+| Haute
+
+| Échéance
+| 1e version
+
+| Acteurs principaux
+a|
+. Les joueurs
+. L'arbitre
+
+| Acteurs de soutien
+| Aucun pour l'instant.
+
+| Parties prenantes et intérêts
+| Aucune@ pour l'instant.
+
+| Pré-conditions
+a|
+ - Le joueur a plus d'un fantassin sur son territoire.
+ - Le territoire attaqué est un territoire ennemi.
+ - Les territoires sont voisins.
+ 
+| Post-conditions
+| Aucune
+
+| Condition finale de réussite
+a|
+  - Un des deux joueurs est gagnant ou le joueur attaquant bat en retraite.
+  
+  Context User::attack(t1 : territory, t2 territory, units int)
+  pre: 
+  post: t1.owner.wonWight or t2.owner.wonFight
+  
+  - Les armées défenseuses sont toutes mortes si l'attaque est gagnée par l'attaquant.
+  
+  Context User::attack(t1 : territory, t2 territory, units int)
+  pre: unitst2 = t2.units and soldiersBefore = t2.owner.soldiersOnMap 
+  post: t1.owner.wonFight implies t2.owner.soldiersOnMap == soldiersBefore - unitst2
+  
+  - Les armées attaquantes sont replacées sur leur case s'il a perdu ou abandonné.
+  
+  Context User::attack(t1 : territory, t2 territory, units int)
+  pre: 
+  post: t1.owner.wonWight or t2.owner.wonFight
+  
+  - Les armées attaquantes sont placées sur la case du défenseur s'il a gagné.
+  
+  Context User::attack(t1 : territory, t2 territory, units int)
+  pre: 
+  post: t1.owner.wonFight implies t2.owner == t1.owner
+
+| Condition finale d'échec
+a|
+  - Aucun joueur n'est désigné gagnant du combat.
+  
+  Context User::attack(t1 : territory, t2 territory, units int)
+  pre: 
+  post: not(t1.owner.wonWight) or not(t2.owner.wonFight)
+  
+  - Il y a des armées de deux joueurs différents sur le même territoire.
+  
+  Context Territory::attack(t1 : territory, t2 territory, units int)
+  pre: t1.owner.asList
+  post: t1.owner.size() == 2
+  
+  
+| Garanties minimales
+a|
+- Le tour du joueur est toujours en cours.
+
+| Événement déclencheur
+| Le joueur souhaite attaquer.
+
+| Scénario nominal
+a| 
+1. Le joueur choisit le nombre d'armées qui seront impliquées dans l'attaque dans un nombre limité à 3.
+2. Le joueur défenseur dont le territoire est attaqué choisit le nombre d'armées qui serviront à défendre le territoire pendant l'attaque dans une limite de 2 armées.
+3. L'arbitre effectue autant de jets de dé que d'armées attaquantes.
+4. L'arbitre effectue autant de jets de dé que d'armées défenseuses.
+5. On compare les meilleurs scores des dés attaquants et défenseurs.
+6. L'attaque est terminée et on enlève du plateau les armées tombées pour la patrie.
+
+| Extensions
+a|
+* Point 1/
+** a - Le joueur doit laisser au moins une armée sur le territoire d'origine de l'attaque.
+** b - Il ne peut y avoir qu'un seul territoire d'origine impliqué dans une attaque. Si ce territoire ne possède plus qu'une seule armée, le joueur attaquant peut décider d'attaquer avec un autre territoire d'origine si celui-ci est également adjacent au territoire attaqué.
+* Point 5/
+** a - On compare le dé le plus fort de l'attaquant au dé le plus fort du défenseur et le deuxième dé (s'il y a) le plus fort de l'attaquant au deuxième dé (s'il y a) du défenseur. Chaque fois que le dé du défenseur est supérieur ou égal à celui de l'attaquant, l'attaquant perd une armée ; dans le cas contraire, c'est le défenseur qui en perd une.
+** b - Le combat continue jusqu'à l'élimination d'une des deux forces impliquées dans l'attaque, ou alors jusqu'à ce que que l'attaquant abandonne le combat.
+* Point 6/
+** a - En cas d'attaque victorieuse, les troupes attaquantes engagées occupent le territoire attaqué, et le joueur attaquant peut déplacer autant de troupes supplémentaires qu'il le désire du territoire attaquant au territoire attaqué, à la condition d'en laisser au moins une sur chacun de ses territoires ; il n'omettra pas de piocher une carte.
+
+| Fréquence
+| Le joueur peut effectuer autant d’attaques qu'il le souhaite par tour de jeu.
+
+| Hypothèses
+| Aucune
+
+| Exigences particulières
+| Aucune
+
+|===

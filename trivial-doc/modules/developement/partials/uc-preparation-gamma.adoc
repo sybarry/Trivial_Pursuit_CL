@@ -1,0 +1,486 @@
+== Use Case Template
+
+Version 1.20
+
+
+== Use Case 1: Initialisation du jeu
+
+=== Description
+
+De deux à six joueurs se retrouvent pour jouer à Risk.
+L’arbitre prépare et distribue les différentes cartes aux joueurs. L’arbitre définit un ordre de jeu pour les joueurs.
+
+==== Niveau
+
+Stratégique
+
+==== Portée
+
+Système
+
+==== Priorité
+Haute
+
+==== Échéance
+
+1e version
+
+=== Acteurs principaux
+
+1. Les joueurs
+2. L'arbitre
+
+=== Acteurs de soutien
+
+Aucun pour l’instant.
+
+=== Parties prenantes et intérêts
+
+Aucun pour l’instant.
+
+=== Pré-conditions
+
+ - L'arbitre et les joueurs peuvent communiquer entre eux.
+ - Le paquet de cartes est complet et disponible.
+ - Le nombre de joueurs est défini, entre deux et six.
+
+=== Post-conditions
+
+==== Condition finale de réussite
+
+ - Chaque joueur dispose de ses territoires, d'armées placées sur ses territoires et de sa carte de mission.
+ 
+ context User inv:
+ (self.carteMission) != null and (self.territories)->notEmpty 
+ and  self.territories->forAll(t : Territory | t.units >= 1)
+ 
+ - Les cartes territoires-armées forment une pioche prête.
+ 
+ context Pioche inv:
+ (self.cards)->notEmpty and self.count(cards)=42
+
+==== Condition finale d’échec
+
+ - Les joueurs n’ont pas reçu leurs territoires.
+ 
+ context User inv:
+ (self.territories)->isEmpty
+ 
+ - Les joueurs n’ont pas placé leurs armées.
+ 
+ context User inv:
+ (self.soldiersAvailable) != 0
+ 
+ - Le joueurs n’ont pas de mission.
+ 
+ context User inv:
+ self.cardMission = null
+ 
+ - Un territoire est vide.
+ 
+ context Territory inv:
+ self.units = 0
+
+==== Garanties minimales
+
+  - Aucun joueur n'est déconnecté du serveur
+  - Pas de retour au lobby
+
+=== Événement déclencheur
+
+Les joueurs se retrouvent et souhaitent conquérir le monde.
+
+=== Scénario nominal
+
+1. On définit le nombre de joueur.
+2. L'arbitre distribue les cartes pays et des armées à tous les joueurs équitablement.
+3. Les joueurs posent une armée sur chacun de leurs pays (attribués par leurs cartes).
+4. L'arbitre donne une mission aléatoire à chaque joueur.
+5. Les joueurs placent le reste de leurs armées sur leurs territoires qu'ils occupent actuellement.
+6. L'arbitre récupère toutes les cartes pays et les mélange pour en former la pioche.
+7. Le joueur désigné par l'arbitre commence.
+
+=== Extensions
+
+* Point 1/
+** a - Le nombre de joueur est inclus entre 2 et 6.
+* Point 2/
+** a - Toutes les cartes sont distribuées même si le nombre de cartes n'est pas divisible par le nombre de joueurs. +
+** b - Le nombre d'armées possédées par les joueurs dépend du nombre de joueurs total comme suit : +
+
+[cols="5, 2", options="header"]
+|===
+| Nombre de joueurs
+| Nombre d'armées distribuées à chacun
+
+| 2
+| 40
+
+| 3
+| 35
+
+| 4
+| 30
+
+| 5
+| 25
+
+| 6
+| 20
+|===
+
+=== Fréquence
+
+Une partie dure environ 2 heures.
+
+== Hypothèses
+
+Tous les joueurs peuvent communiquer entre eux et avec l'arbitre.
+
+=== Exigences particulières
+
+Aucune
+
+=== Questions ouvertes
+
+1. Comment l’arbitre choisit l’ordre des joueurs?
+2. Comment définir le nombre de joueurs avant l'initialisation de la partie ?
+
+
+== Use Case 2: Tour de jeu
+
+=== Description
+
+Les joueurs jouent leurs tours alternativement, plusieurs fois dans une partie. Pendant ce tour ils peuvent effectuer plusieurs actions : former une combinaison de cartes, attaquer, déplacer des armées.
+
+==== Niveau
+
+Stratégique
+
+==== Portée
+
+Système
+
+==== Priorité
+
+Haute
+
+==== Échéance
+
+1e version
+
+=== Acteurs principaux
+
+1. Les joueurs
+2. L’arbitre
+
+=== Acteurs de soutien
+
+Aucun pour l’instant.
+
+=== Parties prenantes et intérêts
+
+Aucun pour l’instant.
+
+=== Pré-conditions
+
+ - Aucun tour d'un autre joueur n'est entamé.
+ - Le paquet de cartes est disponible.
+ - Le joueur n’est pas éliminé.
+ - La partie est en cours.
+
+=== Post-conditions
+
+==== Condition finale de réussite
+
+  - Le joueur a reçu sa carte territoire-armée s'il a gagné un combat.
+  
+  Context User inv:
+  pre: i = self.hand.size
+  post: implies(self.wonFight)-> self.hand.size == i+1
+   
+  - Le joueur a terminé son tour.
+  
+  Context Game inv:
+  self.step = 5
+  
+  - Les conditions finales de réussite des combats sont réunies.
+  
+  cf use case 3
+
+==== Condition finale d’échec
+
+ - Le joueur n’a pas reçu sa carte territoire-armée alors qu'il a gagné un combat.
+ 
+  Context User inv:
+  pre: i = self.hand.size
+  post: implies(self.wonFight)-> self.hand.size == self.hand.size
+ 
+ - Le joueur n'a que des territoires vides.
+ 
+ Context User inv:
+ self.territories->forAll(t : Territory | t.units = 0)
+ 
+ - Le joueur a plus de cinq cartes en main.
+ 
+  Context User inv:
+  self.size(cards) >5
+ 
+ - Le tour du joueur n'est pas terminé.
+  
+  Context Game inv:
+  self.step != 5
+  
+==== Garanties minimales
+
+  - L'ordre des joueurs reste le même
+  - Deux joueurs ne jouent pas leur tour en même temps
+  - Le jeu passe au tour du joueur suivant
+
+=== Événement déclencheur
+
+Le joueur précédent termine son tour, ou alors le joueur est le premier à commencer la partie.
+
+=== Scénario nominal
+
+1. Le joueur reçoit ses renforts en relation avec le nombre de territoires conquis par le joueur. S'il le souhaite il peut proposer une combinaison de 3 cartes pour remporter des armées supplémentaires.
+2. Le joueur place tous ses renforts sur le plateau parmi ses territoires.
+3. Le joueur effectue autant d'attaque qu'il le souhaite [.big]##(Use Case 3)##, il peut ne pas attaquer pendant sont tour également.
+4. Si le joueur a gagné au moins un combat, il pioche une seule carte territoire-armée.
+5. Le joueur sélectionne chaque paire de territoires (départ et arrivée) avec lesquels il souhaite faire un échange d'unités ainsi que le nombre d'unités qu'il souhaite déplacer (en prenant soin d'en laisser au moins une dans le territoire de départ).
+7. Le prochain joueur joue [.big]##(Use Case 2)##.
+
+=== Extensions
+
+* Point 1/
+** a - Le nombre de renforts est défini par l'arbitre en fonction de l'état du plateau à ce moment-là. Le nombre de renforts obtenus par le joueur dépend du nombre de territoires (voire continent(s)) possédés par ce même joueur : +
+   Ce nombre se définit de la façon suivante : pour x territoires possédés par le joueur, celui-ci reçoit n renforts pour x = 3 * n + a, a pouvant valoir 0 (si n est un multiple de 3). +
+   Si n est inférieur à 3, le joueur recevra tout de même 3 renforts à placer. +
+   Si le joueur a conquis complètement un ou plusieurs continents, il peut recevoir des renforts supplémentaires comme indiqué dans le premier tableau suivant. 
+** b - Le joueur peut proposer une combinaison de cartes, avant d'attaquer, pour recevoir des armées supplémentaires comme indiqué dans le deuxième tableau suivant. +
+** c - Si le joueur pose une combinaison de cartes parmi celles ci-dessus, il reçoit des armées supplémentaires en rapport avec i, i étant la ième combinaison proposée dans la partie. +
+   On retrace ce nombre d'armées supplémentaires en fonction de i dans le troisième tableau ci-dessous. +
+** d - Si parmi les 3 cartes territoires-armées impliquées dans la combinaison posée par le joueur, il apparaît au moins un territoire occupé par ce même joueur, celui-ci remporte 2 armées supplémentaires par territoire correpondant. +
+
+[cols="5, 2", options="header"]
+|===
+| Continent
+| Nombre de renforts supplémentaires
+
+| Océanie
+| 2
+
+| Amérique du Sud
+| 2
+
+| Afrique
+| 3
+
+| Europe
+| 5
+
+| Amérique du Nord
+| 5
+
+| Asie
+| 7
+|===
+ 
+
+[cols="5, 2", options="header"]
+|===
+| Combinaison de cartes possible
+| Nombre d'armées supplémentaires
+
+| 3 fantassins
+| 3
+
+| 3 cavaliers
+| 5
+
+| 3 canons
+| 8
+
+| 1 canon, 1 cavalier, 1 fantassin
+| 10
+|===
+
+
+[cols="2, 2", options="header"]
+|===
+| ième combinaison proposée dans la partie
+| Nombre d'armées supplémentaires
+
+| 1ère
+| 4 
+
+| 2ème
+| 6
+
+| 3ème
+| 8
+
+| 4ème
+| 10
+
+| 5ème
+| 12
+
+| 6ème
+| 15
+
+| 7ème
+| 20
+
+| 8ème
+| 25
+
+| (i+1)ème
+| (nombre d'armées distribuées précédent) + 5
+|===
+
+
+* Point 3/
+** a - Une attaque peut être effectuée avec des armées issus de territoires différents uniquement dans le cas où le pays d'origine attaquant ne possède plus qu'une armée et que le joueur possède un autre pays (que celui d'origine) adjacent au pays attaqué. +
+** b - Le joueur doit laisser au moins une armée sur chacun de ses territoires attaquants tant qu'il n'a pas perdu ses attaques. +
+* Point 4/
+** a - Si il n’y a plus de cartes dans la pioche, l’arbitre intervient pour ramasser les cartes mises de côté et les mélange afin d’en faire une nouvelle pioche. +
+* Point 5/
+** a - Le joueur doit laisser au moins une armée dans chaque territoire qu'il occupe.
+
+=== Fréquence
+
+Un tour dure environ 3 minutes.
+
+== Hypothèses
+
+=== Exigences particulières
+
+Aucune
+
+=== Questions ouvertes
+
+1. Comment l’arbitre sait le nombre de renforts que le joueur doit obtenir ?
+2. Comment l’arbitre sait si le joueur a achevé sa mission ?
+
+
+== Use Case 3: Attaque
+=== Description
+
+Le joueur est en train de jouer son tour, il décide d’attaquer un territoire ennemi.
+
+==== Niveau
+
+Stratégique
+
+==== Portée
+
+Système
+
+==== Priorité
+
+Haute
+
+==== Échéance
+
+1e version
+
+=== Acteurs principaux
+
+1. Les joueurs
+2. L’arbitre
+
+=== Acteurs de soutien
+
+Aucun pour l’instant.
+
+=== Parties prenantes et intérêts
+
+Aucun pour l’instant.
+
+=== Pré-conditions
+
+ - Le joueur a plus d’un fantassin sur son territoire.
+ - Le territoire attaqué est un territoire ennemi.
+ - Les territoires sont voisins.
+ 
+=== Post-conditions
+
+==== Condition finale de réussite
+
+  - Un des deux joueurs est gagnant ou le joueur attaquant bat en retraite.
+  
+  Context User::attack(t1 : territory, t2 territory, units int)
+  pre: 
+  post: t1.owner.wonWight or t2.owner.wonFight
+  
+  - Les armées défenseuses sont toutes mortes si l'attaque est gagnée par l'attaquant.
+  
+  Context User::attack(t1 : territory, t2 territory, units int)
+  pre: unitst2 = t2.units and soldiersBefore = t2.owner.soldiersOnMap 
+  post: t1.owner.wonFight implies t2.owner.soldiersOnMap == soldiersBefore - unitst2
+  
+  - Les armées attaquantes sont replacées sur leur case s'il a perdu ou abandonné.
+  
+  Context User::attack(t1 : territory, t2 territory, units int)
+  pre: 
+  post: t1.owner.wonWight or t2.owner.wonFight
+  
+  - Les armées attaquantes sont placées sur la case du défenseur s'il a gagné.
+  
+  Context User::attack(t1 : territory, t2 territory, units int)
+  pre: 
+  post: t1.owner.wonFight implies t2.owner == t1.owner
+
+==== Condition finale d’échec
+
+  - Aucun joueur n'est désigné gagnant du combat.
+  
+  Context User::attack(t1 : territory, t2 territory, units int)
+  pre: 
+  post: not(t1.owner.wonWight) or not(t2.owner.wonFight)
+  
+  - Il y a des armées de deux joueurs différents sur le même territoire.
+  
+  Context Territory::attack(t1 : territory, t2 territory, units int)
+  pre: t1.owner.asList
+  post: t1.owner.size() == 2
+  
+  
+==== Garanties minimales
+
+  - Le tour du joueur est toujours en cours.
+
+=== Événement déclencheur
+
+Le joueur souhaite attaquer.
+
+=== Scénario nominal
+
+1. Le joueur choisit le nombre d'armées qui seront impliquées dans l'attaque dans un nombre limité à 3.
+2. Le joueur défenseur dont le territoire est attaqué choisit le nombre d'armées qui serviront à défendre le territoire pendant l'attaque dans une limite de 2 armées.
+3. L'arbitre effectue autant de jets de dé que d'armées attaquantes.
+4. L'arbitre effectue autant de jets de dé que d'armées défenseuses.
+5. On compare les meilleurs scores des dés attaquants et défenseurs.
+6. L'attaque est terminée et on enlève du plateau les armées tombées pour la patrie.
+
+=== Extensions
+
+* Point 1/
+** a - Le joueur doit laisser au moins une armée sur le territoire d'origine de l'attaque.
+** b - Il ne peut y avoir qu'un seul territoire d'origine impliqué dans une attaque. Si ce territoire ne possède plus qu'une seule armée, le joueur attaquant peut décider d'attaquer avec un autre territoire d'origine si celui-ci est également adjacent au territoire attaqué.
+* Point 5/
+** a - On compare le dé le plus fort de l'attaquant au dé le plus fort du défenseur et le deuxième dé (s'il y a) le plus fort de l'attaquant au deuxième dé (s'il y a) du défenseur. Chaque fois que le dé du défenseur est supérieur ou égal à celui de l'attaquant, l'attaquant perd une armée ; dans le cas contraire, c'est le défenseur qui en perd une.
+** b - Le combat continue jusqu'à l'élimination d'une des deux forces impliquées dans l'attaque, ou alors jusqu'à ce que que l'attaquant abandonne le combat.
+* Point 6/
+** a - En cas d'attaque victorieuse, les troupes attaquantes engagées occupent le territoire attaqué, et le joueur attaquant peut déplacer autant de troupes supplémentaires qu'il le désire du territoire attaquant au territoire attaqué, à la condition d'en laisser au moins une sur chacun de ses territoires ; il n'omettra pas de piocher une carte.
+
+=== Fréquence
+
+Le joueur peut effectuer autant d’attaques qu'il le souhaite par tour de jeu.
+
+== Hypothèses
+
+=== Exigences particulières
+
+Aucune

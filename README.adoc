@@ -1,0 +1,8 @@
+= Projet Risk
+
+Projet exemple, solution partielle. 
+
+
+== Resources additionnelles
+
+- https://www.regledujeu.fr/risk-regle-du-jeu/[Risk: Règle du jeu]

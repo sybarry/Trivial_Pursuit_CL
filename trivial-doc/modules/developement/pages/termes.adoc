@@ -1,0 +1,88 @@
+= Termes
+
+[.small]
+[width="100%",cols="30%,30%,40%",]
+|===
+|*Terme*
+|*Description courte*
+|*Signification*
+
+
+| Arbitre
+| Chargé de diriger le jeu.
+| Il correspond au serveur dans notre conception. L'arbitre établit l'initialisation du jeu en distribuant les différentes cartes (territoire-armées et mission) et le bon nombre d'armées aux joueurs, il distribue également les renforts en début de chaque tour et gère la pioche. Il est également chargé de lancer les dés lors d'une attaque et de désigner le gagnant du perdant. Il est donc nécessaire au bon déroulement du jeu.
+
+| Armée ou Troupe
+| Désigne un pion.
+| Les armées ou troupes se divisent en 3 catégories : fantassin, canon ou cavalier. Elles sont utiles pour la défense ou l'attaque d'un territoire d'un joueur.
+
+| Attaque ou Combat
+| Action d'attaquer un autre joueur.
+| Lors d'une attaque, un joueur décide de prendre un territoire d'un autre joueur en engageant alors plusieurs armées attaquantes face à plusieurs armées défenseuses.
+
+| Carte de mission
+| Carte unique possédée par un joueur
+| Une seule carte de mission est distribuée en début de tour pour chaque joueur. Il représente un objectif à atteindre pour le joueur. En cas de succès il remporte la partie.
+
+| Carte territoire-armées ou Carte pays
+| Désigne une carte dans la pioche ou la main d'un joueur
+| Une carte est liée à un type d'armée et à un territoire. Un joueur ne peut posséder que 5 cartes maximum dans sa main. Le reste des cartes compose la pioche.
+
+| Combinaison de cartes
+| Composition de trois cartes
+| Un joueur peut décider de poser une formation de trois cartes (trois cartes identiques ou trois différentes) lors de son tour afin d'obtenir des armées supplémentaires. Le nombre de composition effectué lors de la partie entre également en compte dans le nombre d'armées supplémentaires distribuées tout comme les territoire des cartes composant la combinaison.
+
+| Continent
+| Union de plusieurs territoires
+| Le plateau se compose de 6 continents. Chaque continent possède plusieurs territoires. Si un joueur en possède un ou plusieurs entièrement il peut recevoir des armées supplémentaires.
+
+| Dé
+| Dé de 6 faces
+| Les dés sont utilisés lors d'une attaque. Ils peuvent être attaquants (au nombre de 3 maximum) ou défenseur (2 maximum). Le nombre de dés choisis lors d'une attaque désigne le nombre d'armées engagées. Ce sont la comparaison des points lors des lancers de dés qui désigneront le gagnant du perdant et donc désigneront le nombre d'armées mortes engagées au combat.
+
+| Défaite
+| Condition de fin de jeu pour un joueur
+| Si un joueur ne possède plus de territoires, il est éliminé de la partie. Si la partie ne possède plus que 2 joueurs, alors la partie et fini et l'autre joueur remporte la victoire.
+
+| Déplacement d'armées
+| Action de déplacer des armées
+| Un joueur peut décider de déplacer des armées entre deux de ses territoires adjacents lors de son tour, et le nombre de fois qu'il le souhaite. Il ne faut pas qu'un déplacement dépende d'un autre et chaque territoire doit au moins posséder une armée après les déplacements. Un joueur peut aussi déplacer autant d'armées qu'il le souhaite après une attaque victorieuse vers le territoire conquis.
+
+| Jeu
+| Partie de jeu Risk
+| Le jeu désigne l'ensemble des étapes de l'initialisation du jeu jusqu'à la victoire d'un joueur qui représente alors la fin du jeu.
+
+| Joueur
+| Personne engagée dans la partie
+| Un joueur affronte d'autres joueurs dans le but de remporter la partie. Il doit participer à plusieurs tours de jeu afin d'atteindre son objectif.
+
+| Main
+| Ensemble de cartes
+| La main d'un joueur se compose de maximum 5 cartes territoire-armées. Elles sont utiles pour la formation de combinaisons de cartes. Une carte territoire-armées est ajoutée à la main du joueur dont l'attaque a été victorieuse.
+
+| Pioche
+| Ensemble de cartes qui ne sont pas dans la main des joueurs
+| La pioche est composée de toutes les autres cartes territoire-armées qui ne sont pas dans les mains des autres joueurs. Une carte est piochée chaque fois qu'une attaque a été victorieuse. S'il n'y a plus de cartes dans la pioche, on la reforme en mélangeant les cartes qui ont déjà été posées lors des combinaisons de cartes.
+
+| Plateau
+| Plateau unique Risk pour tous les joueurs
+| Le plateau est composé de tous les éléments du jeu soit : les territoires où sont posées les armées, la pioche, les dés, les cartes missions et mains des joueurs.
+
+| Renfort
+| Type d'armée
+| Les renforts sont des armées, ils sont distribués à chaque début de tour d'un joueur. Le joueur doit alors les placer avant de se lancer dans une attaque.
+
+| Territoire ennemi/voisin 
+| Zone du plateau possédée par un joueur
+| Le plateau est composé de 42 territoires uniques. Chaque territoire est lié à un continent. Il existe au moins une armée posée sur chacun des territoires du plateau. Lors d'une attaque, les territoires peuvent être désignés comme attaquants ou défenseurs.
+
+| Tour
+| Ensemble d'étapes que peut effectuer un joueur
+| Lors d'un tour, un joueur reçoit des renforts, peut poser une combinaison de cartes, attaquer et déplacer des armées. Un tour possède un début et une fin et ne peut pas être interrompu par un autre joueur. Lorsque le joueur finit son tour, c'est alors au prochain joueur de jouer, et donc de commencer son tour.
+ 
+| Victoire
+| Condition de fin du jeu
+| Si un joueur a accompli sa mission, il remporte la victoire et termine alors la partie.
+
+
+|===

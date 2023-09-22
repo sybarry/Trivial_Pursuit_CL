@@ -1,0 +1,108 @@
+
+[cols="30s,70n",options="header", frame=sides]
+|===
+| Item | Description
+
+| # 
+| 1
+
+| Cas d'utilisation	
+| Préparation
+
+| Alias
+| Initialisation, Mise en place
+
+| Objectif contextuel
+| Installer le plateau, avec les armées, les jetons et les cartes mission pour commencer la partie
+
+| Portée	
+| Le jeu
+
+| Niveau
+| Summary
+
+| Condition de succès
+| Le plateau, les cartes, les jetons et pions sont en place.
+Les rôles des joueurs sont attribués.
+
+| Condition d'échec
+| Les joueurs n'arrivent pas à se mettre d'accord pour attribuer les rôles.
+Les cartes, jetons, pions et le plateau ne sont pas distribués.
+
+| Acteurs principaux:
+| Les joueurs
+
+| Acteurs secondaires
+| 
+
+| Événement déclencheur
+| Le début du jeu.
+
+
+| Priorité
+| Haute
+
+| Fréquence
+| Une fois par partie.
+
+| Pré-conditions 
+| Il y a entre deux et six joueurs disponibles.
+
+| Post-conditions
+a| 
+- Le plateau est prêt
+- Tous les joueurs ont une mission
+- Un des joueurs est le _Général_
+
+
+| Scénario nominal
+a|
+. Chaque joueur choisit une couleur et prend toutes les armées de la couleur correspondante
+. Les joueurs élisent un _Général_
+. Le Général distribue une carte mission à chaque joueur
+. Chaque joueur s'empare des unités d'armée selon le nombre total de joueurs. 35 unités pour 3 joueurs, 30 pour 4, 25 pour 5 et 20 pour 6.
+. Le Général prend la pile de cartes Risk, en retire les cartes _Joker_, mélange les cartes et les distribue une à une aux joueurs, 
+  en commençant par le joueur placé à sa gauche.
+. Les joueurs placent une armée sur chacun des territoires qu’ils ont reçus
+. Lorsque tous les territoires sont occupés, chaque joueur, à commencer par celui qui est à gauche du Général, 
+  pose une deuxième armée sur l’un de *ses* territoires au choix
+. Quand toutes les armées sont placées, les joueurs remettent les cartes Risk au Général, qui y introduit les cartes _Joker_, les mélange et les repose la pile, face cachée, près du plateau
+
+
+| Extensions	
+a| . <#> : <condition> : <action or use-case>
+. <#> : <condition> : <action or use-case>"
+
+| Alternatives	
+a| . S’il y a moins de 6 joueurs, le Général doit préalablement retirer toutes les cartes mission concernant les couleurs non attribuées.
+
+| Cas d'utilisation supérieur
+| Aucun
+
+| Cas d'utilisation subordonnés 
+| Aucun
+// _optional, depending on tools, links to sub.use cases_
+
+|Performance Target	|the amount of time this use case should take
+
+| Problèmes ouverts	
+a|
+- La règle pour 2 joueurs n'est traitée
+- Les variantes ne sont pas considérées
+
+| Échéancier	
+| Version 1.0.0
+
+| Contraintes
+|
+
+|Annexes
+| Aucun
+
+|===
+
+
+
+
+
+

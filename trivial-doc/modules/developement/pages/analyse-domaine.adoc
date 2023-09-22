@@ -1,0 +1,482 @@
+:project-name: Trivial Pursuite
+= Analyse du domaine
+
+== Introduction 
+
+L'objectif de ce chapitre est de présenter le résultat de l'analyse du domaine du jeu *{project-name}*, sous la forme d'un _modèle du domaine_.
+
+
+Le modèle de domaine est un système d'abstractions qui décrit des aspects sélectionnés d'une sphère de connaissance, d'influence ou d'activité (un domaine[3]). Le modèle peut ensuite être utilisé pour résoudre des problèmes liés à ce domaine. Le modèle de domaine est une représentation des concepts significatifs du monde réel pertinents pour le domaine qui doivent être modélisés dans le logiciel. Les concepts comprennent les données impliquées dans l'entreprise et les règles que l'entreprise utilise en relation avec ces données. Un modèle de domaine exploite le langage naturel du domaine.
+
+Un modèle de domaine utilise généralement le vocabulaire du domaine, ce qui permet de communiquer une représentation du modèle aux parties prenantes non techniques. Il ne doit pas faire référence à des implémentations techniques telles que des bases de données ou des composants logiciels en cours de conception.
+
+.Cas d'utilisation
+[plantuml]
+....
+include::example$uc-analyse.puml[]
+....
+
+== Analyse préliminaire
+
+=== Plateau, Continents et Territoires
+
+Un plateau est composé de 6 continents: Amérique du Nord, Amérique du Sud, Afrique, Asie, Europe et Océanie.
+Chaque continent est formé par un nombre fixe de territoires, entre 4 et 12, selon le tableau suivant:
+
+|===
+| Contienent | Nombre de territoires
+
+| Amérique du Nord
+| 9
+
+| Amérique du Sud
+| 4
+
+| Afrique
+| 6
+
+| Asie
+| 12
+
+| Europe 
+| 7
+
+| Océanie
+| 4
+
+|===
+
+
+.Plateau, Continents et Territoires
+[plantuml, cd-plateau-continent]
+....
+class Plateau
+class Continent {
+    nom : String
+    couleur : Couleur
+}
+class Territoire {
+    nom : String
+}
+
+Plateau *- "continents [6]" Continent : \t\t\t\t\t\t
+Continent *- "territoires [4..12]" Territoire : \t\t\t\t\t\t
+....
+
+
+
+
+== Invariants
+
+- Après le début de la partie, un territoire doit toujours avoir au moins une armée.
+
+// TODO
+
+
+== Modèle du domaine
+
+[NOTE]
+====
+Décrivez ici les classes conceptuelles du domaine, ainsi que leurs attributs et associations.
+====
+
+.Classes conceptuelles
+[plantuml]
+....
+include::example$cd-analyse.puml[]
+....
+
+== Cas d'utilisation
+
+=== Préparation
+
+include::partial$uc-preparation.adoc[]
+
+=== Tour de jeu
+
+include::partial$uc-tour.adoc[]
+
+
+=== Attaquer
+
+include::partial$uc-attaque.adoc[]
+
+
+== Activités
+
+=== Choix d'une couleur
+
+=== Election du _Général_
+
+=== Distribution des missions
+
+=== Distribution des armées
+
+.Tableau 
+[cols="40h,20,20,20"]
+|===
+| Nombre de joueurs
+| 2
+| 3
+| 4
+| 5
+| 6
+
+| Nombre d'armées à placer
+| x
+| x
+| x
+| x
+| x
+
+|===
+
+=== Distribution des cartes Risk
+
+=== Placement des armées
+
+=== Renforcement des territoires
+
+=== Constitution de la pile de cartes
+
+
+=== Créer la planète Artemina
+
+1) Placer 1 exemplaire des 10 cartes Lieu devant la créature
+en 2 rangées de chacune 5 cartes, par ordre croissant,
+2) Placer le pion Balise à côté de la carte Plage.
+
+post-condition:: .
+
+.Mon diagramme de classes
+[plantuml, od-creer-planete-artemia-apres, svg]
+....
+hide circle
+skinparam monochrome true
+
+object A
+....
+
+=== Créer la pioche Traque
+
+Mélanger et placer face cachée les cartes Traque à proximité de la Créature.
+
+=== Créer la pioche Survie
+
+Mélanger et placer face cachée les cartes Survie à proximité des Traqués.
+
+=== Préparer la main de la Créature
+
+. La créature place le plateau au centre de la table sur la face de son choix,
+. La créature place le pion Secours et le pion Assimilation sur le chiffre de leur piste respective correspondant au nombre de joueurs,
+. La créature pioche 3 cartes Traque et prend les 3 jetons Traque (Créature, Cible et Artemia).
+
+=== Préparer la main des Traqués
+
+. Chaque traqué prend 3 pions Volonté, les pions Volonté restants sont retirés du jeu,
+. Chaque traqué prend un set de 5 cartes Lieu numérotées de 1 à 5, les cartes inutilisées sont retirées du jeu,
+. Chaque traqué pioche 1 carte Survie.
+
+=== Former la réserve
+
+Former la réserve Lieux avec les cartes Lieu numérotées de 6 à 10.
+Placer près du plateau le nombre d’exemplaires de chaque carte Lieu
+correspondant au nombre de Traqués (voir le tableau "Traqués"),
+face visible, les cartes inutilisées sont retirées du jeu.
+
+.Tableau Traqués/Cartes lieu
+[cols="40h,20,20,20"]
+|===
+| Nombre de Traqués
+| 1
+| 2-3
+| 4-6
+
+| Nombre de cartes lieu (6-10)
+| 1
+| 2
+| 3
+
+|===
+
+=== Résister
+
+Lorsqu'un Traqué Résiste, il choisit 1 des cas suivants :
+- perdre 1 pion Volonté pour choisir et reprendre en main 2 cartes Lieu de sa défausse,
+- perdre 2 pions Volonté pour choisir et reprendre en main 4 cartes Lieu de sa défausse.
+Si par cette action un Traqué perd son dernier pion Volonté, il doit résoudre Lâcher prise.
+
+=== Résister (avec plus 1 pion volonté)
+
+.Trinity avant de résister
+[plantuml, trinity-resiste-avant, png]
+....
+skinparam monochrome true
+object  trinity  {
+    name = "Trinity"
+}
+
+object Antre
+object Plage
+
+trinity -- "main" Antre
+trinity -- "main" Plage
+....
+
+.Trinity après avoir résisté
+[plantuml, trinity-resiste-apres, png]
+....
+skinparam monochrome true
+object  trinity  {
+    name = "Trinity"
+}
+....
+
+pre-conditon:: le joueur a plus d'un pion de volonté
+post-condition:: Le joueur perd 1 pion volonté ET
+le joueur récupère jusqu'à 2 cartes de la défausse
+
+=== Résister (avec 1 pion volonté)
+
+pre-condition:: le joueur n'a qu'un seul pion de volonté
+post-condition::
+le joueur lache prise
+
+=== Lâcher prise
+
+.Trinity avant de lâcher prise
+[plantuml, trinity-lache-prise, png]
+....
+skinparam monochrome true
+
+object Partie {
+    positionCreature = 2
+}
+object  trinity  {
+    name = "Trinity"
+    pionVolonté = 1
+}
+
+object Antre
+object Plage
+object "L'abris" as Abris
+object Rover
+object Rivière
+object Jungle
+
+trinity -- "main" Antre
+trinity -- "main" Plage
+trinity -- "défausse" Rover
+trinity -- "défausse" Abris
+trinity -- "défausse" Rivière
+trinity -- "défausse" Jungle
+....
+
+.Trinity après avoir lâché prise
+[plantuml, trinity-a-lache-prise, png]
+....
+skinparam monochrome true
+object partie {
+}
+
+object plateau {
+    positionPionSecours = 1
+    positionPionAssimilation = 3
+}
+
+object  trinity  {
+    name = "Trinity"
+    pionVolonté = 3
+}
+
+object Antre
+object Plage
+object "L'abris" as Abris
+object Rover
+object Rivière
+object Jungle
+
+trinity -- "main" Antre
+trinity -- "main" Plage
+trinity -- "main" Rover
+trinity -- "main" Abris
+trinity -- "main" Rivière
+trinity -- "main" Jungle
+
+partie -> plateau
+partie -> "traqué" trinity : \t\t
+....
+pre-condition:: Le joueur n'a plus de jeton (?)
+
+post-conditions:: Le pion Assimlilation avance d'une position ET
+toutes les cartes de la défausse passent à la main ET
+le joueur récupère 3 points de volonté
+
+=== Avancer le pion Secours
+
+=== Avancer le pion Assimilation
+
+.Exemple d'avancement d'un pion secours (avant)
+[plantuml, od-avancer-pion-secours-avant, svg]
+....
+hide circle
+skinparam monochrome true
+
+object "Pion Secours" as secours
+object ":Case Traque" as traque7 {
+    position = 7
+}
+object ":Case Traque" as traque6 {
+    position = 6
+}
+secours -[hidden] traque6 : \t\t\t
+secours --> traque7
+....
+
+.Exemple d'avancement d'un pion secours (après)
+[plantuml, od-avancer-pion-secours-apres, svg]
+....
+hide circle
+skinparam monochrome true
+
+object "Pion Secours" as secours
+object ":Case Traque" as traque7 {
+    position = 7
+}
+object ":Case Traque" as traque6 {
+    position = 6
+}
+secours -[#blue]> traque6 : \t\t\t
+secours -[hidden]-> traque7
+....
+
+.Exemple d'avancement d'un pion assimilation (avant)
+[plantuml, od-avancer-pion-assimilation-avant, svg]
+....
+hide circle
+skinparam monochrome true
+
+object "Pion Assimilation" as secours
+object ":Case Créature" as creature7 {
+    position = 7
+}
+object ":Case Créature" as creature6 {
+    position = 6
+}
+secours -[hidden] creature6 : \t\t\t
+secours --> creature7
+....
+
+.Exemple d'avancement d'un pion assimilation (après)
+[plantuml, od-avancer-pion-assimilation-apres, svg]
+....
+hide circle
+skinparam monochrome true
+
+object "Pion Assimilation" as assimilation
+object ":Case Créature" as creature7 {
+    position = 7
+}
+object ":Case Créature" as creature6 {
+    position = 6
+}
+assimilation -[#red]> creature6 : \t\t\t
+assimilation -[hidden]-> creature7
+....
+
+
+
+
+
+
+.Jetons
+[plantuml, cd-jetons, svg]
+....
+hide circle
+skinparam monochrome true
+
+class Jeton
+Jeton <|-- Créature
+Jeton <|-- Cible
+Jeton <|-- Artemia
+....
+
+.Pions
+[plantuml, cd-pions, svg]
+....
+hide circle
+skinparam monochrome true
+
+Pion <|-- Balise
+Pion <|-- Secours
+Pion <|-- Assimilation
+Pion <|-- Volonté
+....
+
+.Plateau
+[plantuml, cd-plateau, svg]
+....
+hide circle
+skinparam monochrome true
+
+class Plateau
+class Case
+class "Case Créature" as creature
+class "Case Traqué" as traque
+
+Case <|-- creature
+Case <|-- traque
+
+traque   "piste [18]" --* Plateau
+creature  "piste [12]" --* Plateau
+....
+
+
+.Cartes Lieu
+[plantuml, cd-cartes-lieu, svg]
+....
+hide circle
+skinparam monochrome true
+class Lieu {
+    effet()
+}
+
+class Antre {
+
+}
+
+Lieu <|-- Antre
+Lieu <|-- Jungle
+Lieu <|-- Rivière
+Lieu <|-- Plage
+Lieu <|-- Rover
+Lieu <|-- Marais
+Lieu <|-- Abris
+Lieu <|-- Epave
+Lieu <|-- Source
+Lieu <|-- Artefact
+....
+
+=== Opérations
+
+.Antre::effet()
+[source,ocl]
+----
+CarteAntre::effet()
+pre:
+la carte est sur la table ET
+il n'y a pas de jeton créature sur la carte antre du plateau
+
+post:
+le joueur reprend en main les cartes de la défausse OU
+le joueur copie le pouvoir de la carte avec le jeton créature
+----
+
+- Jungle::effet()
+- Rivière::effet()
+- Plage::effet()
+- Rover::effet()
+- Marais::effet()
+- Abris::effet()
+
+

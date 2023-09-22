@@ -1,0 +1,56 @@
+@startuml
+enum "Type Unité" as utite {
+    Fantassin
+    Cavalier
+    Canon
+}
+
+enum Couleur {
+    Rouge
+    Jaune
+    Rose
+    Noir
+    Bleu
+    Vert
+}
+
+class Partie {}
+class Plateau {}
+class Joueur {}
+class Carte {}
+class Continent {
+    nom : String
+    couleur : Couleur
+}
+class "Dée de attaque" as attaque
+class "Dée de défense" as defense
+class "Armée" as armee {
+    couleur : Couleur
+}
+class "Carte Territoire" as carteT
+class "Carte Mission" as carteM {
+    description : String
+}
+class Territoire {
+    nom : String
+}
+class "Unité" as unite {
+    type : Type Unité
+}
+Partie -- "joueurs \n [2..6]" Joueur
+Partie *- "[1]" Plateau
+Partie -- carteT
+Partie -- carteM
+carteT "[1]" -- "[1]" Territoire
+Territoire -- "adjacent [*]" Territoire
+Territoire -- "propriétaire" Joueur
+Plateau *- "[6]" Continent
+Continent *- "[4..12]" Territoire
+Plateau -- "[2]" attaque
+Plateau -- "[3]" defense
+unite "[*]" -- "placement\n[0..1]" Territoire
+unite -- armee
+
+Carte <|-- carteT
+Carte <|-- carteM
+@enduml
