@@ -1,5 +1,5 @@
 # The Docker image that will be used to build your app
-image: docker-registry.univ-nantes.fr/sunye-g/docker-antora
+image: docker-registry.univ-nantes.fr/bousse-e/docker-antora-assembler
 # Functions that should be executed before the build script is run
 before_script:
   #- bundle install
