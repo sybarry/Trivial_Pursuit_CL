@@ -5,7 +5,7 @@ before_script:
   #- bundle install
 pages:
   script:
-    - antora antora-playbook.yml     
+    - antora --stacktrace generate antora-playbook.yml     
     - mkdir -p public
     - rsync -r build/site/ public
   artifacts:
