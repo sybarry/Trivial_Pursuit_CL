@@ -10,8 +10,8 @@ asciidoc:
   - asciidoctor-plantuml
 content:
   sources:
-  - url: ./
-    branches: HEAD, main
+  - url: https://gitlab.univ-nantes.fr/naomod/sd/trivial-pursuit.git
+    branches:  main
     start_path: trivial-doc
 ui:
   bundle:

@@ -1,4 +1,4 @@
-.Developpement
+.Développement
 * xref:analyse-domaine.adoc[]
 * xref:exigences.adoc[]
 * xref:architecture.adoc[]
