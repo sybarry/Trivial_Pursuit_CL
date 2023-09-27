@@ -17,3 +17,4 @@ ui:
   bundle:
     url: https://gitlab.univ-nantes.fr/sunye-g/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
     snapshot: true
+  supplemental_files: "./antora-custom-theme/supplemental-ui"

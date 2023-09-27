@@ -1,0 +1,3 @@
+[submodule "antora-custom-theme"]
+	path = antora-custom-theme
+	url = git@gitlab.univ-nantes.fr:bousse-e/antora-custom-theme.git
