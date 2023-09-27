@@ -1,10 +1,27 @@
 = Projet Trivial Pursuit
 Gerson Sunyé<gerson.sunye@univ-nantes.fr>
 
-«{nbsp}Conception de logiciels{nbsp}»
+== Unités d'enseignement
+
+* UE XMS1IU300 "Génie logiciel", composée de{nbsp}:
+** XMS1IE302 https://naomod.univ-nantes.io/sd/slides/[Conception de logiciels]
+** XMS1IE301 https://naomod.univ-nantes.io/testing/course-m1alma/organisation/2023-2024/[Test logiciel]
 
 
-Ce document a été créé grâce à au générateur de documentation https://antora.org/[Antora].
+Ce document a été créé grâce au générateur de documentation https://antora.org/[Antora].
 
 Les sources de ce document sont disponibles sur https://gitlab.univ-nantes.fr/naomod/sd/projet-2023[GitLab].
 Elles ont été écrites en https://asciidoc.org/[Asciidoc] et les diagrammes ont été conçus en https://plantuml.com/[PlantUML].
+
+== Travail à réaliser
+
+Tous d'abord, vous devrez lire et analyser les documents suivants{nbsp}:
+
+. xref:developement:analyse-domaine.adoc[]
+. xref:developement:exigences.adoc[]
+. xref:developement:architecture.adoc[]
+
+Ensuite, vous devrez lire et compléter les documents suivants{nbsp}:
+
+. xref:developement:composants.adoc[]
+. xref:developement:conception.adoc[]
