@@ -1,74 +1,89 @@
-:project-name: Trivial Pursuite
+:project: Trivial Pursuit
+:source-highlighter: rouge
+:rouge-css: style
+:icons: font
+
 = Analyse du domaine
 
-== Introduction 
+== Introduction
 
-L'objectif de ce chapitre est de présenter le résultat de l'analyse du domaine du jeu *{project-name}*, sous la forme d'un _modèle du domaine_.
+L'objectif de ce chapitre est de présenter le résultat de l'analyse du domaine du jeu *{project}*, sous la forme d'un _modèle du domaine_.
 
+Le modèle du domaine est un système d'abstractions qui décrit des aspects sélectionnés d'un domaine{nbsp}:
+une sphère de connaissances, d'influences ou d'activités. 
 
-Le modèle de domaine est un système d'abstractions qui décrit des aspects sélectionnés d'une sphère de connaissance, d'influence ou d'activité (un domaine[3]). Le modèle peut ensuite être utilisé pour résoudre des problèmes liés à ce domaine. Le modèle de domaine est une représentation des concepts significatifs du monde réel pertinents pour le domaine qui doivent être modélisés dans le logiciel. Les concepts comprennent les données impliquées dans l'entreprise et les règles que l'entreprise utilise en relation avec ces données. Un modèle de domaine exploite le langage naturel du domaine.
+Ce modèle sera utilisé pour résoudre des problèmes liés à ce domaine. 
+Le modèle de domaine est donc une représentation des concepts significatifs du monde réel,
+qui sont pertinents pour la solution logicielle. 
+Les concepts comprennent les données et les règles qui s'appliquent à ces données. 
+Le modèle de domaine exploite le langage naturel du domaine.
 
-Un modèle de domaine utilise généralement le vocabulaire du domaine, ce qui permet de communiquer une représentation du modèle aux parties prenantes non techniques. Il ne doit pas faire référence à des implémentations techniques telles que des bases de données ou des composants logiciels en cours de conception.
-
-.Cas d'utilisation
-[plantuml]
-....
-include::example$uc-analyse.puml[]
-....
+Le modèle de domaine utilise généralement le vocabulaire du domaine, ce qui permet de communiquer une représentation du modèle aux parties prenantes non techniques. 
+Il ne doit pas faire référence à des implémentations techniques telles que des bases de données ou des composants logiciels en cours de conception.
 
 == Analyse préliminaire
 
-=== Plateau, Continents et Territoires
+*{project}* est un jeu de plateau, dans lequel le progrès est déterminé par la capacité d'un joueur à répondre aux questions de culture générale. 
 
-Un plateau est composé de 6 continents: Amérique du Nord, Amérique du Sud, Afrique, Asie, Europe et Océanie.
-Chaque continent est formé par un nombre fixe de territoires, entre 4 et 12, selon le tableau suivant:
+Le jeu est composé d'un plateau de jeu, de 400 cartes de questions, de 6 pions xref:termes.adoc#Camembert[camembert], de 36 xref:termes.adoc#Triangle[triangles] de couleurs différentes et d'un dé.
+
+Les questions sont réparties en 6 catégories différentes, 
+synthétisées dans le tableau ci-dessous{nbsp}: 
+
+.Catégories des questions
+|===
+| Couleur | Catégorie 
+
+| Bleu 
+| Géographie
+
+|Rose
+| Divertissements
+
+| Jaune
+| Histoire
+
+| Violet
+| Arts et Littérature
+
+| Vert
+| Sciences et Nature
+
+| Orange
+| Sports et Loisirs
 
 |===
-| Contienent | Nombre de territoires
 
-| Amérique du Nord
-| 9
+=== Plateau et Cases
 
-| Amérique du Sud
-| 4
+Un plateau est composé d'une case début et de 72 cases de couleurs différentes.
+Il se présente sous la forme d'une roue avec 1 cercle extérieur et 6 rayons.
 
-| Afrique
-| 6
-
-| Asie
-| 12
-
-| Europe 
-| 7
-
-| Océanie
-| 4
-
-|===
+Au centre,  à l'intersection des rayions, se trouve la case Départ.
+Aux 6 intersections des rayons avec le cercle se trouvent 6 cases "Quartiers Généraux de Catégorie", sur lesquelles est dessiné à chaque fois un gros triangle de couleur différente.
 
 
-.Plateau, Continents et Territoires
-[plantuml, cd-plateau-continent]
+.Plateau et Cases
+[plantuml, cd-plateau-cases]
 ....
-class Plateau
-class Continent {
-    nom : String
-    couleur : Couleur
-}
-class Territoire {
-    nom : String
-}
-
-Plateau *- "continents [6]" Continent : \t\t\t\t\t\t
-Continent *- "territoires [4..12]" Territoire : \t\t\t\t\t\t
+include::example$cd-plateau-cases.plantuml[]
 ....
 
+.Invariants
+[source,ocl]
+----
+context Case
+-- Tous les voisins d'une case l'ont aussi comme voisin.
+inv: self.voisins->forAll(each | each.voisins->contains(self))
+----
 
+=== Cartes, Questions et Réponses
 
-
-== Invariants
-
-- Après le début de la partie, un territoire doit toujours avoir au moins une armée.
+.Cartes, Questions et Réponses
+[plantuml, cd-cartes-questions-reponses]
+....
+include::example$cd-cartes-questions-reponses.plantuml[]
+....
 
 // TODO
 
@@ -83,16 +98,16 @@ Décrivez ici les classes conceptuelles du domaine, ainsi que leurs attributs et
 .Classes conceptuelles
 [plantuml]
 ....
-include::example$cd-analyse.puml[]
+include::example$cd-domain-model.plantuml[]
 ....
 
 == Cas d'utilisation
 
-=== Préparation
+=== UC-{counter:uc} -- Préparation
 
 include::partial$uc-preparation.adoc[]
 
-=== Tour de jeu
+=== UC-{counter:uc} -- Tour de jeu
 
 include::partial$uc-tour.adoc[]
 

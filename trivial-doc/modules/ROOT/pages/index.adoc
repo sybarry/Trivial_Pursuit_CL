@@ -1,2 +1,10 @@
 = Projet Trivial Pursuit
 Gerson Sunyé<gerson.sunye@univ-nantes.fr>
+
+«{nbsp}Conception de logiciels{nbsp}»
+
+
+Ce document a été créé grâce à au générateur de documentation https://antora.org/[Antora].
+
+Les sources de ce document sont disponibles sur https://gitlab.univ-nantes.fr/naomod/sd/projet-2023[GitLab].
+Elles ont été écrites en https://asciidoc.org/[Asciidoc] et les diagrammes ont été conçus en https://plantuml.com/[PlantUML].

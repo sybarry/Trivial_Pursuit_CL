@@ -4,7 +4,7 @@
 | Item | Description
 
 | # 
-| 1
+| UC-{counter:uc}
 
 | Cas d'utilisation	
 | Préparation
@@ -13,31 +13,28 @@
 | Initialisation, Mise en place
 
 | Objectif contextuel
-| Installer le plateau, avec les armées, les jetons et les cartes mission pour commencer la partie
+| Installer le plateau, les camemberts et les cartes.
 
 | Portée	
-| Le jeu
+| Système (Le jeu {project})
 
 | Niveau
-| Summary
+| Utilisateur
 
 | Condition de succès
-| Le plateau, les cartes, les jetons et pions sont en place.
-Les rôles des joueurs sont attribués.
+| Le plateau, les cartes et les camemberts sont en place.
 
 | Condition d'échec
-| Les joueurs n'arrivent pas à se mettre d'accord pour attribuer les rôles.
-Les cartes, jetons, pions et le plateau ne sont pas distribués.
+| Les cartes, le plateau et les camemberts  ne sont pas en place.
 
-| Acteurs principaux:
+| Acteurs principaux{nbsp}:
 | Les joueurs
 
 | Acteurs secondaires
-| 
+| {nbsp}
 
 | Événement déclencheur
 | Le début du jeu.
-
 
 | Priorité
 | Haute
@@ -51,12 +48,18 @@ Les cartes, jetons, pions et le plateau ne sont pas distribués.
 | Post-conditions
 a| 
 - Le plateau est prêt
-- Tous les joueurs ont une mission
-- Un des joueurs est le _Général_
+- Les cartes sont melangées et disponibles
+- Les camemberts sont au centre du plateau, sur la case *Départ*
 
 
 | Scénario nominal
 a|
+. Entre 2 et 6 joueurs se mettent d'accord pour participer à une partie
+. Chaque joueur choisi un camembert de couleur et le place sur la case *Départ*
+. Un des joueurs melange les cartes question et les place à côté du plateau
+
+
+
 . Chaque joueur choisit une couleur et prend toutes les armées de la couleur correspondante
 . Les joueurs élisent un _Général_
 . Le Général distribue une carte mission à chaque joueur

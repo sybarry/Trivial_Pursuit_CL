@@ -1,0 +1,6 @@
+@startuml
+!include cd-plateau-cases.plantuml
+!include cd-cartes-questions-reponses.plantuml
+
+class Base
+@enduml

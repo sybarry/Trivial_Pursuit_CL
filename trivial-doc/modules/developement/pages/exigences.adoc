@@ -1,4 +1,4 @@
-:project: 7 Wonders
+:project: Trivial Pursuit
 
 = Spécification des exigences
 

@@ -1,0 +1,14 @@
+@startuml
+class Carte
+class Question {
+    intitulé : String [1]
+}
+class Réponse {
+    réponse : String [1]
+}
+
+Carte *- "[6] questions" Question : \t\t\t\t\t
+Carte *-- "[6] réponses" Réponse
+Question "[1]" -- "[1]" Réponse
+
+@enduml

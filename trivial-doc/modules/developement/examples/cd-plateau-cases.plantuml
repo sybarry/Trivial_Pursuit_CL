@@ -1,0 +1,43 @@
+@startuml
+class Plateau
+abstract class Case <<abstract>> {
+    nom : String
+    couleur : Couleur
+}
+
+class "Quartier Général" as quartier
+class "Case Simple" as simple
+class "Case Initiale" as initiale
+
+class Catégorie {
+    thème : Thème
+
+}
+
+enum Thème {
+    Géographie
+    Divertissements
+    Histoire
+    Arts et Littérature
+    Sciences et Nature
+    Sports et Loisirs
+}
+
+enum Couleur {
+    Bleu
+    Rose
+    Jaune
+    Vert
+    Violet
+    Orange
+}
+
+Plateau *- "cases [72]" Case : \t\t\t\t\t\t
+Plateau --> "début [1]" initiale : \t\t\t\t\t\t
+simple --> "catégorie [1]" Catégorie
+quartier --> "catégorie [1]" Catégorie
+Case <|-- quartier
+Case <|-- simple
+Case <|-- initiale
+Case --> "voisins [1..6] " Case : \t\t\t\t\t\t
+@enduml

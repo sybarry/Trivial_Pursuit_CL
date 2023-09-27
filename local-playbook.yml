@@ -1,0 +1,19 @@
+site:
+  title: Projet Trivial Pursuite - Développement
+  url: https://naomod.univ-nantes.io/sd/slides/
+  start_page: trivial-doc::index.adoc
+asciidoc:
+  attributes:
+    plantuml-server-url: http://www.plantuml.com/plantuml
+    plantuml-config: ../../diagram/plantuml/plantuml.config 
+  extensions:
+  - asciidoctor-plantuml
+content:
+  sources:
+  - url: .
+    branches:  main
+    start_path: trivial-doc
+ui:
+  bundle:
+    url: https://gitlab.univ-nantes.fr/sunye-g/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true

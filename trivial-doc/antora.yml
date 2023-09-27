@@ -1,7 +1,7 @@
 name: trivial-doc
 version: dev
 prerelease: '.0.1'
-title: Projet Trivial Pursuite
+title: Projet Trivial Pursuit
 asciidoc:
   attributes:
     source-language: asciidoc@
