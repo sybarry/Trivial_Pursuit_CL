@@ -21,6 +21,9 @@
 | Niveau
 | Utilisateur
 
+| Échéance
+| Version 1.0.0
+
 | Condition de succès
 | Le plateau, les cartes et les camemberts sont en place.
 
@@ -55,21 +58,9 @@ a|
 | Scénario nominal
 a|
 . Entre 2 et 6 joueurs se mettent d'accord pour participer à une partie
-. Chaque joueur choisi un camembert de couleur et le place sur la case *Départ*
+. Chaque joueur choisit un camembert de couleur et le place sur la case *Départ*, au centre du plateau
 . Un des joueurs melange les cartes question et les place à côté du plateau
-
-
-
-. Chaque joueur choisit une couleur et prend toutes les armées de la couleur correspondante
-. Les joueurs élisent un _Général_
-. Le Général distribue une carte mission à chaque joueur
-. Chaque joueur s'empare des unités d'armée selon le nombre total de joueurs. 35 unités pour 3 joueurs, 30 pour 4, 25 pour 5 et 20 pour 6.
-. Le Général prend la pile de cartes Risk, en retire les cartes _Joker_, mélange les cartes et les distribue une à une aux joueurs, 
-  en commençant par le joueur placé à sa gauche.
-. Les joueurs placent une armée sur chacun des territoires qu’ils ont reçus
-. Lorsque tous les territoires sont occupés, chaque joueur, à commencer par celui qui est à gauche du Général, 
-  pose une deuxième armée sur l’un de *ses* territoires au choix
-. Quand toutes les armées sont placées, les joueurs remettent les cartes Risk au Général, qui y introduit les cartes _Joker_, les mélange et les repose la pile, face cachée, près du plateau
+. Chacun des joueurs lance le dé. Celui qui obtient le score le plus haut, joue le premier.
 
 
 | Extensions	
@@ -77,30 +68,29 @@ a| . <#> : <condition> : <action or use-case>
 . <#> : <condition> : <action or use-case>"
 
 | Alternatives	
-a| . S’il y a moins de 6 joueurs, le Général doit préalablement retirer toutes les cartes mission concernant les couleurs non attribuées.
+a| * Aucune
 
 | Cas d'utilisation supérieur
 | Aucun
 
 | Cas d'utilisation subordonnés 
 | Aucun
-// _optional, depending on tools, links to sub.use cases_
 
-|Performance Target	|the amount of time this use case should take
+| Objectif de Performance
+| Aucun
 
 | Problèmes ouverts	
 a|
 - La règle pour 2 joueurs n'est traitée
 - Les variantes ne sont pas considérées
 
-| Échéancier	
-| Version 1.0.0
+
 
 | Contraintes
 |
 
 |Annexes
-| Aucun
+| Les règles du jeu Trivial Pursuit édition *Genus*, version https://www.1jour-1jeu.com/jeu-de-plateau/2001-trivial-pursuit-edition-genus/fichiers[PDF].
 
 |===
 

@@ -9,24 +9,25 @@
 | Tour de jeu
 
 | Description
-| Les joueurs jouent leurs tours alternativement, plusieurs fois dans une partie. Pendant ce tour ils peuvent effectuer plusieurs actions : former une combinaison de cartes, attaquer, déplacer des armées.
+| Les joueurs jouent leurs tours alternativement, plusieurs fois dans une partie.
+Pendant chaque tour, ils peuvent effectuer plusieurs actions{nbsp}:
+lancer le dée, déplacer le camembert, répondre à une question.
 
-| Niveau
-| Stratégique
+| Niveau
+| Utilisateur
 
 | Portée
-| Système
+| Système (Le jeu {project})
 
 | Priorité
 | Haute
 
 | Échéance
-| 1e version
+| Version 1.0.0
 
 | Acteurs principaux
 a| 
-. Les joueurs
-. L'arbitre
+. Un joueur
 
 | Acteurs de soutien
 | Aucun pour l'instant.
@@ -37,58 +38,23 @@ a|
 | Pré-conditions
 a|
  - Aucun tour d'un autre joueur n'est entamé.
+ - Ce le tour de ce joueur
  - Le paquet de cartes est disponible.
- - Le joueur n’est pas éliminé.
  - La partie est en cours.
 
 | Post-conditions
-| Aucune
+| Aucune
 
 | Condition finale de réussite
-a| 
-  - Le joueur a reçu sa carte territoire-armée s'il a gagné un combat.
-  Context User inv:
-  pre: i = self.hand.size
-  post: implies(self.wonFight)-> self.hand.size == i+1
-  - Le joueur a terminé son tour.
-  Context Game inv:
-  self.step = 5
-  - Les conditions finales de réussite des combats sont réunies.
-  cf use case 3
+a|
+- Le joueur a lancé le dé une our plusieurs fois
+- Le joueur a répondu à une ou plusieurs questions (autant de questions que de lancées de dé)
+- Le joueur a mal répondu à la dernière question *OU* il a remporté la partie
 
 | Condition finale d'échec
 a|
- - Le joueur n'a pas reçu sa carte territoire-armée alors qu'il a gagné un combat.
-
-[source,ocl]
-----
-  Context User inv:
-  pre: i = self.hand.size
-  post: implies(self.wonFight)-> self.hand.size == self.hand.size
-----
-
- - Le joueur n'a que des territoires vides.
-
-[source, ocl]
-----
- Context User inv:
- self.territories->forAll(t : Territory \| t.units = 0)
-----
- - Le joueur a plus de cinq cartes en main.
-
-[source,ocl]
-----
-  Context User inv:
-  self.size(cards) >5
-----
-
- - Le tour du joueur n'est pas terminé.
-
-[source,ocl]
-----
-  Context Game inv:
-  self.step != 5
-----
+- Le joueur n'a répondu à aucune question
+- Le joueur a répondu correctement à la dernière question, mais ce n'est plus son tour
   
 | Garanties minimales
 a|
@@ -97,11 +63,19 @@ a|
   - Le jeu passe au tour du joueur suivant
 
 | Événement déclencheur
-| Le joueur précédent termine son tour, ou alors le joueur est le premier à commencer la partie.
+| Le joueur précédent termine son tour, *OU*  le joueur commence la partie.
 
 | Scénario nominal
 a| 
-1. Le joueur reçoit ses renforts en relation avec le nombre de territoires conquis par le joueur. S'il le souhaite il peut proposer une combinaison de 3 cartes pour remporter des armées supplémentaires.
+. Le joueur lance le dé
+. Le joueur déplace son camembert d'autant de cases qu'indiqué par le dé, sans passer par la même case.
+. Un autre joueur prend une carte et lit la question correspondant à la couleur de la case (chaque couleur correspond à une catégorie).
+. Le joeur lit
+
+
+
+
+reçoit ses renforts en relation avec le nombre de territoires conquis par le joueur. S'il le souhaite il peut proposer une combinaison de 3 cartes pour remporter des armées supplémentaires.
 2. Le joueur place tous ses renforts sur le plateau parmi ses territoires.
 3. Le joueur effectue autant d'attaque qu'il le souhaite [.big]##(Use Case 3)##, il peut ne pas attaquer pendant sont tour également.
 4. Si le joueur a gagné au moins un combat, il pioche une seule carte territoire-armée.

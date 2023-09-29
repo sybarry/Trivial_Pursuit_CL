@@ -1,7 +1,9 @@
 
-# Antora files
+# Build files
 
 build/
+.gitlab-ci-local/
+public/
 
 # System files
 
@@ -10,3 +12,4 @@ build/
 # IDE
 .vscode/
 .idea/
+

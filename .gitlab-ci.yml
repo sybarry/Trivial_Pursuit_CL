@@ -1,20 +1,47 @@
-# The Docker image that will be used to build your app
-image: docker-registry.univ-nantes.fr/bousse-e/docker-antora-assembler
+stages:
+  - pre-build
+  - after-pre-build
+  - build1
+  - test
+  - publish
+
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
-# Functions that should be executed before the build script is run
-before_script:
-  #- bundle install
-pages:
+
+antora:
+  image: docker-registry.univ-nantes.fr/bousse-e/docker-antora-assembler:12
+  services:
+    - name: docker.io/yuzutech/kroki
+      alias: kroki
+  stage: build1
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - build/antora-cache
   script:
-    - antora --stacktrace generate antora-playbook.yml     
-    - mkdir -p public
-    - rsync -r build/site/ public
+    - antora --stacktrace generate antora-playbook.yml
   artifacts:
     paths:
-      # The folder that contains the files to be exposed at the Page URL
+      - build
+
+check-links:
+  stage: test
+  image:
+    name: ghcr.io/linkchecker/linkchecker:latest
+    entrypoint: [""]
+  script:
+    - cd build/site
+    - linkchecker --ignore-url 'https://fonts.googleapis.com/.*'
+      --ignore-url 'https://cdnjs.cloudflare.com/.*'
+      --ignore-url '.*reveal.js.*'
+      --ignore-url '.*isi.pdf'
+      index.html
+
+pages:
+  stage: publish
+  script:
+    - rm -rf public
+    - mv build/site public
+  artifacts:
+    paths:
       - public
-  rules:
-    # This ensures that only pushes to the default branch will trigger
-    # a pages deploy
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
