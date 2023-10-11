@@ -1,5 +1,5 @@
 :project: Trivial Pursuit
-:f-req: Req-{counter:freq}
+
 = Spécification des exigences
 
 
@@ -221,12 +221,14 @@ Lorsque des outils de développement, tels des référentiels d’exigences ou d
 ////
 
 
+
+[id="freq-{counter:freq}"]
 === Fonctionnalité «{nbsp}Joindre une partie{nbsp}»
 
 
 ==== Description et priorité
 
-Id:: {f-req}
+Id:: FR-{freq}
 Description:: Cette fonctionnalité permet à un joueur de se connecter au serveur de jeu, pour ensuite participer à une partie.
 
 Priorité:: Haute
@@ -243,9 +245,10 @@ Priorité:: Haute
 .Cas d'utilisation «{nbsp}Joindre une partie{nbsp}»
 include::partial$req-joindre-partie.adoc[]
 
+[id="freq-{counter:freq}"]
 === Fonctionnalité «{nbsp}Rejoindre une partie{nbsp}»
 
-Id:: {f-req}
+Id:: FR-{freq}
 Description:: Permet à un joueur de se connecter au Système, choisir une partie et commencer à jouer.
 
 Priorité:: Haute
@@ -254,9 +257,10 @@ Priorité:: Haute
 .Cas d'utilisation «{nbsp}Rejoindre une partie{nbsp}»
 include::partial$req-joindre-partie.adoc[]
 
+[id="freq-{counter:freq}"]
 === Fonctionnalité «{nbsp}Jouer un tour{nbsp}»
 
-Id:: {f-req}
+Id:: FR-{freq}
 Description:: Permet à un joueur déjà connecté au Système et affecté à une partie, de jouer à cette partie.
 Priorité:: Moyenne
 
@@ -283,7 +287,7 @@ include::partial$req-jouer-tour.adoc[]
 
 ==== Extensibilité
 
-NOTE: TODO
+// NOTE: TODO
 
 ==== Maintenabilité
 
@@ -295,12 +299,28 @@ NOTE: TODO
 
 == Autres exigences
 
-NOTE: Définissez toute autre exigence non couverte ailleurs dans le SRS. Il peut s'agir d'exigences relatives à la base de données, à l'internationalisation, à la législation, aux objectifs de réutilisation du projet, etc. Ajoutez toute nouvelle section pertinente pour le projet.
+// NOTE: Définissez toute autre exigence non couverte ailleurs dans le SRS. Il peut s'agir d'exigences relatives à la base de données, à l'internationalisation, à la législation, aux objectifs de réutilisation du projet, etc. Ajoutez toute nouvelle section pertinente pour le projet.
+
+== Liste d'exigences
+
+.Exigences fonctionnelles
+|===
+| Code | Titre
+
+| <<freq-1, FR-1>>
+| <<freq-1>>
+
+| <<freq-2, FR-2>>
+| <<freq-2>>
+
+| <<freq-3, FR-3>>
+| <<freq-3>>
+
+|===
+
 
 [glossary]
-=== Annexe A : Glossaire
+== Annexe A : Glossaire
 
 include::termes.adoc[]
-
-=== Annexe C : Liste à déterminer
 
