@@ -4,10 +4,10 @@
 | Item | Description
 
 | # 
-| 1
+| 12
 
 | Cas d'utilisation	
-| _à compléter_
+| Réinitialiser mot de passe
 
 | Alias
 | _à compléter_

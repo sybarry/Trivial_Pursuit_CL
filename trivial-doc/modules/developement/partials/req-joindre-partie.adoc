@@ -1,0 +1,107 @@
+
+[cols="30s,70n",options="header", frame=sides]
+|===
+| Item | Description
+
+| # 
+| 1
+
+| Cas d'utilisation	
+| Joindre une partie
+
+| Alias
+| Connexion
+
+| Objectif contextuel
+|
+
+| Portée	
+| Le système
+
+| Niveau
+| _Summary_
+
+| Condition de succès
+| Le joueur participe à une partie
+
+| Condition d'échec
+| Le joueur n'arrive pas à joindre une partie
+
+| Acteurs principaux:
+| Le joueur
+
+| Acteurs secondaires
+| Le serveur
+
+| Événement déclencheur
+| Le joueur souhaite jouer une partie
+
+
+| Priorité
+| Haute
+
+| Fréquence
+| Une fois par jour
+
+| Pré-conditions 
+a| 
+- Le joueur est connecté à Internet
+- Le joueur a une adresse email valide
+- Le serveur est en ligne
+
+| Post-conditions
+a| 
+- Le joueur est connecté au serveur
+
+
+| Scénario nominal
+a|
+. Le joueur ouvre son navigateur et visite le site {project}
+[#identification]
+. Le joueur informe son identifiant et son mot de passe et se connecte au serveur
+. Le serveur propose une liste de parties disponibles
+. Le joueur choisit une partie et la rejoint
+. Le serveur prévient le joueur que la partie va commencer
+
+| Extensions	
+a|
+* <<identification, [2a]>> Le joueur n'a pas d'identifiant.
+Créer un nouveau compte (Cas d'utilisation 11)
+* <<identification, [2b]>> Le joueur a oublié sont mot de passe.
+Réinitialiser mot de passe (Cas d'utilisation 12)
+
+
+| Alternatives	
+a|
+
+| Cas d'utilisation supérieur
+| Aucun
+
+| Cas d'utilisation subordonnés 
+a |
+* Créer un nouveau compte
+* Réinitialiser mot de passe
+
+| Objectif de performance
+| _à compléter_
+
+| Problèmes ouverts	
+a|
+-
+
+| Échéancier	
+| Version 1.0
+
+| Contraintes
+|
+
+| Annexes
+|
+
+|===
+
+
+
+
+
+

@@ -1,6 +1,70 @@
 @startuml
-!include cd-plateau-cases.plantuml
-!include cd-cartes-questions-reponses.plantuml
+class Carte
+class Question {
+    intitulé : String [1]
+}
+class Réponse {
+    réponse : String [1]
+}
 
-class Base
+Carte *-left- "[6] questions" Question : \t\t\t\t\t
+Carte *-- "[6] réponses" Réponse
+Question "[1]" -- "[1]" Réponse
+
+class Plateau
+abstract class Case <<abstract>> {
+    nom : String
+    couleur : Couleur
+}
+
+class "Quartier Général" as quartier
+class "Case Simple" as simple
+class "Case Initiale" as initiale
+
+class Catégorie {
+    thème : Thème
+
+}
+
+enum Thème {
+    Géographie
+    Divertissements
+    Histoire
+    Arts et Littérature
+    Sciences et Nature
+    Sports et Loisirs
+}
+
+enum Couleur {
+    Bleu
+    Rose
+    Jaune
+    Vert
+    Violet
+    Orange
+}
+
+Plateau *- "cases [72]" Case : \t\t\t\t\t\t
+Plateau --> "début [1]" initiale : \t\t\t\t\t\t
+simple --> "catégorie [1]" Catégorie
+quartier --> "catégorie [1]" Catégorie
+Case <|-- quartier
+Case <|-- simple
+Case <|-- initiale
+Case --> "voisins [2..6] " Case : \t\t\t\t\t\t
+
+class Partie {
+    nom : String
+}
+
+class Joueur {
+    identifiant : String
+    pion : Couleur
+}
+
+Partie *-> "joueurs\n[2..6]" Joueur : \t\t
+Partie -> "actif [1]" Joueur : \t\t
+Partie --> "[1]" Plateau
+Joueur --> "[1]" Case
+Plateau -left-> "[400]" Carte
 @enduml

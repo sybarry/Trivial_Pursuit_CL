@@ -25,7 +25,7 @@ Il ne doit pas faire référence à des implémentations techniques telles que d
 
 *{project}* est un jeu de plateau, dans lequel le progrès est déterminé par la capacité d'un joueur à répondre aux questions de culture générale. 
 
-Le jeu est composé d'un plateau de jeu, de 400 cartes de questions, de 6 pions xref:termes.adoc#Camembert[camembert], de 36 xref:termes.adoc#Triangle[triangles] de couleurs différentes et d'un dé.
+Le jeu est composé d'un plateau de jeu, de 400 cartes de questions, de 6 pions xref:termes.adoc#camembert[camembert], de 36 xref:termes.adoc#triangle[triangles] de couleurs différentes et d'un dé.
 
 Les questions sont réparties en 6 catégories différentes, 
 synthétisées dans le tableau ci-dessous{nbsp}:
@@ -60,9 +60,10 @@ synthétisées dans le tableau ci-dessous{nbsp}:
 Un plateau est composé d'une case début et de 72 cases de couleurs différentes.
 Il se présente sous la forme d'une roue avec 1 cercle extérieur et 6 rayons.
 
-Au centre,  à l'intersection des rayions, se trouve la case Départ.
-Aux 6 intersections des rayons avec le cercle se trouvent 6 cases "Quartiers Généraux de Catégorie", sur lesquelles est dessiné à chaque fois un gros triangle de couleur différente.
-
+Au centre,  à l'intersection des rayons, se trouve la case Départ.
+Aux 6 intersections des rayons avec le cercle se trouvent 6 cases "Quartiers Généraux de Catégorie".
+Chacune des 6 cases "Quartier Général" représente une catégorie différence et
+contient un gros triangle de couleur correspondant à la couleur de sa catégorie.
 
 .Plateau et Cases
 [plantuml, cd-plateau-cases]
@@ -86,7 +87,16 @@ inv: self.voisins->forAll(each | each.voisins->contains(self))
 include::example$cd-cartes-questions-reponses.plantuml[]
 ....
 
-// TODO
+=== Parties et Joueurs
+
+Une partie est constituée d'un plateau, de 2 à 6 joueurs, 400 cartes,
+
+.Parties et Joueurs
+[plantuml, cd-parties-joueurs]
+....
+include::example$cd-parties-joueurs.plantuml[]
+....
+
 
 
 == Modèle du domaine

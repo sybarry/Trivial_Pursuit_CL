@@ -8,13 +8,13 @@
 |*Signification*
 
 
-| <<Camembert>>
+| [#camembert]#Camembert#
 | Pièce mobile du plateau de jeu
 | Il correspond à la position d'un joueur pendant la partie. 
-Il contient 5 cases vides, qui sont remplies pendant la partie par des xref:#Triangle[triangles] de couleur différente
+Il contient 5 cases vides, qui sont remplies pendant la partie par des <<triangle, triangles>> de couleur différente
 
-| <<Triangle>>
-| Pièce triangulaire qui s'emboite à l'intérieur d'un xref:#camembert[camembert].
+| [#triangle]#Triangle#
+| Pièce triangulaire qui s'emboite à l'intérieur d'un <<camembert, camembert>>.
 | Les triangles ont des couleurs différentes qui correspondent aux différentes catégories de question.
 
 |===

@@ -1,17 +1,17 @@
 @startuml
 
-node Client {
-    artifact WebClient
+node Navigateur {
+    artifact WebClient as "Client Web"
 }
 node Server {
-    artifact GameServer
+    artifact GameServer as "Serveur TP"
 }
 
 node Database {
-    artifact DBMS
+    artifact DBMS as "SGBD"
 }
 
-WebClient -left- Server : TCP/IP - WebSockets
-Server -up- Database : JPA
+WebClient -right- Server : \t TCP/IP - WebSockets
+GameServer -up- DBMS : JDBC
 
 @enduml

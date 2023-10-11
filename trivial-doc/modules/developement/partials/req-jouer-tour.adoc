@@ -2,10 +2,10 @@
 |===
 | Item | Description
 
-| # 
+| #
 | 2
 
-| Cas d'utilisation	
+| Cas d'utilisation
 | Tour de jeu
 
 | Description
@@ -26,7 +26,7 @@ lancer le dée, déplacer le camembert, répondre à une question.
 | Version 1.0.0
 
 | Acteurs principaux
-a| 
+a|
 . Un joueur
 
 | Acteurs de soutien
@@ -37,10 +37,10 @@ a|
 
 | Pré-conditions
 a|
- - Aucun tour d'un autre joueur n'est entamé.
- - Ce le tour de ce joueur
- - Le paquet de cartes est disponible.
- - La partie est en cours.
+- Aucun tour d'un autre joueur n'est entamé.
+- Ce le tour de ce joueur
+- Le paquet de cartes est disponible.
+- La partie est en cours.
 
 | Post-conditions
 | Aucune
@@ -56,19 +56,27 @@ a|
 a|
 - Le joueur n'a répondu à aucune question
 - Le joueur a répondu correctement à la dernière question, mais ce n'est plus son tour
-  
+
 | Garanties minimales
 a|
-  - L'ordre des joueurs reste le même
-  - Deux joueurs ne jouent pas leur tour en même temps
-  - Le jeu passe au tour du joueur suivant
+- L'ordre des joueurs reste le même
+- Deux joueurs ne jouent pas leur tour en même temps
+- Le jeu passe au tour du joueur suivant
 
 | Événement déclencheur
 | Le joueur précédent termine son tour *OU*  le joueur commence la partie.
 
+
 | Scénario nominal
-a| 
-. Le joueur lance le dé
+a|
+. Le Système prévient le joueur que c'est son tour
+. Le joueur demande au Système de lancer le dé
+. Le Système affiche la valeur obtenue
+. Le Système propose les destinations (cases) possibles
+. Le joueur choisit la destination
+
+
+
 . Le joueur déplace son camembert d'autant de cases qu'indiqué par le dé, sans passer par la même case.
 . Un autre joueur prend une carte et lit la question correspondant à la couleur de la case (chaque couleur correspond à une catégorie).
 . Le joueur répond à la question
@@ -76,27 +84,4 @@ a|
 ** Si la réponse est incorrecte, le tour du joueur s'arrête
 **  Si la réponse est correcte, le joueur recommence son tour
 
-| Alternatives
-a|
-. [Alternative à 5] Le camembert est sur une case «{nbsp}Quartier Général{nbsp}»{nbsp}:
-.. Il remporte un triangle correspond à la couleur de la case, seulement s'il ne possède pas le triangle de couleur correspondant à la case.
-.. Si son camembert est plein{empty}footnote:[C'est son 6e triangle]{nbsp}: il remporte la partie (elle s'arrête)
-
-
-| Extensions
-a|
-
-
-| Fréquence
-|  Un tour dure environ 3 minutes.
-
-| Hypothèses
-| Aucune
-
-| Exigences particulières
-| Aucune
-
-| Questions ouvertes
-a|
-
-
+|===
