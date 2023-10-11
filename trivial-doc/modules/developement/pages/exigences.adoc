@@ -76,12 +76,12 @@ Le système {project} permettra à des joueurs de différents endroits de s'affr
 
 Le reste de ce document contient une description globale du système logiciel {project} (section <<description>>, les exigences fonctionnelles spécifiques (section <<functional>>) et les exigences non-fonctionnelles du système (voir <<nonfunctional>>.
 
-== Organisation du chapitre
+=== Organisation du chapitre
 
 [#description]
-== Description générale
+=== Description générale
 
-=== Perspectives du produit
+==== Perspectives du produit
 
 {project} est un jeu de plateau où plusieurs joueurs s'affrontent.
 Le logiciel {project} doit permettre aux joueurs qui sont connectés à Internet d'utiliser leurs appareils connectés pour jouer.
@@ -113,7 +113,7 @@ Plusieurs nœuds logiques peuvent s'exécuter sur un même *Nœud Physique* ou *
 {project} sera le premier d'une ligne de produits de type "Jeu de plateau".
 Son architecture servira comme exemple à d'autres produits.
 
-=== Fonctionnalités du produit
+==== Fonctionnalités du produit
 
 Le logiciel {project} doit assurer trois fonctions principales :
 
@@ -121,7 +121,7 @@ Le logiciel {project} doit assurer trois fonctions principales :
 . Création de jeu : permettre aux joueurs de se découvrir et de commencer une partie.
 . Le jeu{nbsp}: permettre aux joueurs de jouer effectivement à {project} jusqu'à la victoire de l'un d'entre eux.
 
-=== Caractéristiques et classes d'utilisateurs
+==== Caractéristiques et classes d'utilisateurs
 
 Le logiciel {project} a deux classes d'utilisateurs{nbsp}: les joueurs et les administrateurs.
 
@@ -131,45 +131,68 @@ Cependant, indépendamment de leur niveau, les joueurs utilisent la même interf
 Les administrateurs peuvent gérer les joueurs et les parties.
 
 
-=== Environnement opérationnel
+==== Environnement opérationnel
 
 Le Serveur doit fonctionner sur tout système d'exploitation populaire et récent{nbsp}: Linux, Windows, ou MacOS.
 Le client Web devrait fonctionner sur tout navigateur Web compatible avec les WebSockets{nbsp}: Firefox (≥ 7.0), Chrome (≥ 5.0), Safari (≥ 5.0), ou Edge (≥ 12.0).
 
-== Contraintes de conception et de mise en œuvre
 
-=== Langages de programmation
+== Exigences non-fonctionnelles
+
+=== Contraintes de conception et de mise en œuvre
+
+==== Langages de programmation
 
 :nfreq: {counter:nfreq}
-.Utiliser le langage Java, version 11 (minimum)
-[block, id="nfr-{nfreq}"]
+[quote, id="nfreq-{nfreq}", title="*Utiliser le langage Java, version 11 (minimum)*"]
 --
 *NF-Req-{nfreq}*:: Le serveur de jeu doit être développé en Java (version ≥ 11), en utilisant le https://spring.io[Spring Boot] (version ≥{nbsp}3.0.0).
 --
 
+
 :nfreq: {counter:nfreq}
-.Utiliser le langage TypeScripit, version 4 (minimum)
-[block, id="nfr-{nfreq}"]
+[quote, id="nfreq-{nfreq}", title="*Utiliser le langage TypeScript, version 4 (minimum)*"]
 --
 *NF-Req-{nfreq}*:: Le client doit être développé en TypeScript (version ≥ 4.0), en utilisant le https://angular.io[Angular Framework] (version ≥ 16.0).
 --
 
 === Langage de conception
 
-. Les documents sur le développement du logiciel doivent être écrits dans le format Asciidoc.
-. Les diagrammes UML d'analyse, conception et mise en œuvre devront être réalisés en PlantUML.
+:nfreq: {counter:nfreq}
+[quote, id="nfreq-{nfreq}", title="*Utiliser Asciidoc*"]
+--
+*NF-Req-{nfreq}*:: La documentation de développement du logiciel doit être écrite dans le format Asciidoc.
+--
 
-=== Conception
+:nfreq: {counter:nfreq}
+[quote, id="nfreq-{nfreq}", title="*Utiliser PlantUML*"]
+--
+*NF-Req-{nfreq}*:: Les diagrammes UML d'analyse, conception et mise en œuvre devront être réalisés en PlantUML.
+--
+
 === Mise en œuvre
 
-. Les tests dynamiques doivent utiliser JUnit Jupiter (version ≥ 5.0) et Jasmine (version ≥ 5.1.0).
-. Le code doit journaliser ses principales opérations en utilisant https://www.slf4j.org[SLF4J] et
+:nfreq: {counter:nfreq}
+[quote, id="nfreq-{nfreq}", title="*Utiliser JUnit Jupiter (version ≥ 5.0)*"]
+--
+*NF-Req-{nfreq}*:: Les tests dynamiques doivent utiliser JUnit Jupiter (version ≥ 5.0) et Jasmine (version ≥ 5.1.0).
+--
+
+:nfreq: {counter:nfreq}
+[quote, id="nfreq-{nfreq}", title="*Utiliser un framework de Log*"]
+--
+*NF-Req-{nfreq}*:: Le code doit journaliser ses principales opérations en utilisant https://www.slf4j.org[SLF4J] et
 https://www.npmjs.com/package/typescript-logging[TypeScript Logging].
+--
 
 === Outils de production
 
-. Tous les artefacts logiciels doivent utiliser un outil de production{nbsp}: Maven (version ≥ 3.9.0) ou
+:nfreq: {counter:nfreq}
+[quote, id="nfreq-{nfreq}", title="*Utiliser un outils de production automatique*"]
+--
+*NF-Req-{nfreq}*:: Tous les artefacts logiciels doivent utiliser un outil de production{nbsp}: Maven (version ≥ 3.9.0) ou
 Gradle (version ≥ 8.0) pour Java et npm (version ≥ 9.0.0) pour TypeScript.
+--
 
 === Outils de développement
 
@@ -331,6 +354,23 @@ include::partial$req-jouer-tour.adoc[]
 | <<nfreq-2, NFR-2>>
 | <<nfreq-2>>
 
+| <<nfreq-3, NFR-3>>
+| <<nfreq-3>>
+
+| <<nfreq-4, NFR-4>>
+| <<nfreq-4>>
+
+| <<nfreq-5, NFR-5>>
+| <<nfreq-5>>
+
+| <<nfreq-6, NFR-6>>
+| <<nfreq-6>>
+
+| <<nfreq-7, NFR-7>>
+| <<nfreq-7>>
+
+| <<nfreq-8, NFR-8>>
+| <<nfreq-8>>
 |===
 
 
