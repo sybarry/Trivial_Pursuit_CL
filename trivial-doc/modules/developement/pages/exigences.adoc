@@ -1,4 +1,6 @@
 :project: Trivial Pursuit
+:counter: freq: 0
+:counter: nfreq: 0
 
 = Spécification des exigences
 
@@ -6,7 +8,6 @@
 == Introduction 
 
 Ce chapitre décrit les exigences du projet «{project}». Il suit la norme ISO/IEC/IEEE https://ieeexplore.ieee.org/document/8559686[29148-2018].
-
 
 === Avant-propos
 
@@ -139,9 +140,18 @@ Le client Web devrait fonctionner sur tout navigateur Web compatible avec les We
 
 === Langages de programmation
 
+.Utiliser le langage Java, version 11 (minimum)
+[block, id="nfr-{counter:nfreq}"]
+--
 . Le serveur de jeu doit être développé en Java (version ≥ 11), en utilisant le https://spring.io[Spring Boot] (version ≥{nbsp}3.0.0).
-. Le client doit être développé en TypeScript (version ≥ 4.0), en utilisant le https://angular.io[Angular Framework] (version ≥ 16.0).
+--
 
+
+.Utiliser le langage TypeScripit, version 4 (minimum)
+[block, id="nfr-{counter:nfreq}"]
+--
+. Le client doit être développé en TypeScript (version ≥ 4.0), en utilisant le https://angular.io[Angular Framework] (version ≥ 16.0).
+--
 
 === Langage de conception
 
@@ -303,6 +313,13 @@ include::partial$req-jouer-tour.adoc[]
 
 == Liste d'exigences
 
+{freq}
+
+{nfreq}
+
+* Nombre total d'exigences fonctionnelles{nbsp}: {freq}
+* Nombre total d'exigences non-fonctionnelles{nbsp}: {nfreq}
+
 .Exigences fonctionnelles
 |===
 | Code | Titre
@@ -315,6 +332,18 @@ include::partial$req-jouer-tour.adoc[]
 
 | <<freq-3, FR-3>>
 | <<freq-3>>
+
+|===
+
+.Exigences non-fonctionnelles
+|===
+| Code | Titre
+
+| <<nfreq-1, NFR-1>>
+| <<nfreq-1>>
+
+| <<nfreq-2, NFR-2>>
+| <<nfreq-2>>
 
 |===
 
