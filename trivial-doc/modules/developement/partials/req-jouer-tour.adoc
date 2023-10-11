@@ -1,3 +1,5 @@
+[sidebar, title="Cas d'utilisation «{nbsp}Jouer un tour{nbsp}»"]
+--
 [cols="30s,70n",options="header", frame=sides]
 |===
 | Item | Description
@@ -92,3 +94,4 @@ a|
 * Que faire si un des joueurs abandonne une partie en cours{nbsp}?
 
 |===
+--

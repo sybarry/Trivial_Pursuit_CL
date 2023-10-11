@@ -1,4 +1,5 @@
-
+[sidebar, title="Réinitialiser mot de passe"]
+--
 [cols="30s,70n",options="header", frame=sides]
 |===
 | Item | Description
@@ -31,7 +32,7 @@
 | _à compléter_
 
 | Acteurs secondaires
-| _à compléter_
+| _à compléter_
 
 | Événement déclencheur
 | _à compléter_
@@ -57,13 +58,10 @@ a|
 
 | Scénario nominal
 a|
-. _à compléter_
-. _à compléter_
-. _à compléter_
-. _à compléter_
-. _à compléter_
-. _à compléter_
-
+. Le joueur demande au Système la réinitialisation de son mot de passe
+. Le joueur saisi son identifiant
+. Le Système envoie une URL unique au joueur
+. Le joueur ouvre l'URL et saisi son nouveau mot de passe
 
 | Extensions	
 a| 
@@ -72,18 +70,15 @@ a|
 
 | Alternatives	
 a| 
-. _à compléter_
-. _à compléter_
+* Alternative à 3{nbsp}: Le joueur n'est pas inscrit, le Système ne fait rien.
 
 | Cas d'utilisation supérieur
-| _à compléter_
+| Joindre une partie (<<uc-1,UC-1>>, <<uc-1>>)
 
 | Cas d'utilisation subordonnés 
-| _à compléter_
-// _optional, depending on tools, links to sub.use cases_
-
+| Aucun
 | Objectif de performance
-| _à compléter_
+| _à compléter_
 
 | Problèmes ouverts	
 a|
@@ -91,7 +86,7 @@ a|
 - _à compléter_
 
 | Échéancier	
-| _à compléter_
+| Version 1.1
 
 | Contraintes
 | _à compléter_
@@ -100,9 +95,4 @@ a|
 | _à compléter_
 
 |===
-
-
-
-
-
-
+--

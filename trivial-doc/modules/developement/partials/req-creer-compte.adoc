@@ -1,4 +1,5 @@
-
+[sidebar, title="Créer un compte"]
+--
 [cols="30s,70n",options="header", frame=sides]
 |===
 | Item | Description
@@ -91,9 +92,4 @@ Aucun
 |
 
 |===
-
-
-
-
-
-
+--

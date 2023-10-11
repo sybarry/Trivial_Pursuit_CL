@@ -1,5 +1,6 @@
-
-[cols="30s,70n",options="header", frame=sides, id="uc-1"]
+[sidebar, title="Cas d'utilisation «{nbsp}Rejoindre une partie{nbsp}»", id="REQ-UC-1"]
+--
+[cols="30s,70n",options="header", frame=sides, "]
 |===
 | Item | Description
 
@@ -27,7 +28,7 @@
 | Condition d'échec
 | Le joueur n'arrive pas à joindre une partie
 
-| Acteurs principaux:
+| Acteurs principaux
 | Le joueur
 
 | Acteurs secondaires
@@ -35,7 +36,6 @@
 
 | Événement déclencheur
 | Le joueur souhaite jouer une partie
-
 
 | Priorité
 | Haute
@@ -67,9 +67,8 @@ a|
 a|
 * <<identification, [2a]>> Le joueur n'a pas d'identifiant.
 Créer un nouveau compte (Cas d'utilisation 11)
-* <<identification, [2b]>> Le joueur a oublié sont mot de passe.
+* <<identification, [2b]>> Le joueur a oublié son mot de passe.
 Réinitialiser mot de passe (Cas d'utilisation 12)
-
 
 | Alternatives	
 a|
@@ -99,9 +98,4 @@ a|
 |
 
 |===
-
-
-
-
-
-
+--

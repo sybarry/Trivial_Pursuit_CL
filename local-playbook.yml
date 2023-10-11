@@ -1,5 +1,5 @@
 site:
-  title: Projet Trivial Pursuite - Développement
+  title: Projet Trivial Pursuit - Développement
   url: https://naomod.univ-nantes.io/sd/slides/
   start_page: trivial-doc::index.adoc
 asciidoc:

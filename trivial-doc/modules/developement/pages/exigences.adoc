@@ -4,7 +4,6 @@
 
 = Spécification des exigences
 
-
 == Introduction 
 
 Ce chapitre décrit les exigences du projet «{project}». Il suit la norme ISO/IEC/IEEE https://ieeexplore.ieee.org/document/8559686[29148-2018].
@@ -246,14 +245,21 @@ une base de données par le biais de l'API Java Persistence (JPA).
 [id="freq-{freq}"]
 === Fonctionnalité «{nbsp}Joindre une partie{nbsp}»
 
-
 ==== Description et priorité
 
-Id:: FR-{freq}
-Description:: Cette fonctionnalité permet à un joueur de se connecter au serveur de jeu, pour ensuite participer à une partie.
+[cols="30s,70n",options="header", frame=sides]
+|===
 
-Priorité:: Haute
+| Id
+| FR-{freq}
 
+| Description
+| Cette fonctionnalité permet à un joueur de se connecter au serveur de jeu, pour ensuite participer à une partie.
+
+|Priorité
+| Haute
+
+|===
 
 ==== Description sous la forme d'un cas d'utilisation
 
@@ -266,15 +272,26 @@ include::partial$req-joindre-partie.adoc[]
 
 ==== Description et priorité
 
-Id:: FR-{freq}
-Description:: Permet à un joueur de se connecter au Système, choisir une partie et commencer à jouer.
+[cols="30s,70n",options="header", frame=sides]
+|===
 
-Priorité:: Haute
+| Id
+| FR-{freq}
+
+| Description
+| Permet à un joueur de se connecter au Système, choisir une partie et commencer à jouer.
+
+|Priorité
+| Haute
+
+|===
+
+
 
 ==== Description sous la forme d'un cas d'utilisation
-
-.Cas d'utilisation «{nbsp}Rejoindre une partie{nbsp}»
+--
 include::partial$req-joindre-partie.adoc[]
+--
 
 :freq: {counter:freq}
 [id="freq-{freq}"]
@@ -282,13 +299,22 @@ include::partial$req-joindre-partie.adoc[]
 
 ==== Description et priorité
 
-Id:: FR-{freq}
-Description:: Permet à un joueur déjà connecté au Système et affecté à une partie, de jouer à cette partie.
-Priorité:: Moyenne
+[cols="30s,70n",options="header", frame=sides]
+|===
+
+| Id
+| FR-{freq}
+
+| Description
+| Permet à un joueur déjà connecté au Système et affecté à une partie, de jouer à cette partie.
+
+|Priorité
+| Moyenne
+
+|===
 
 ==== Description sous la forme d'un cas d'utilisation
 
-.Cas d'utilisation «{nbsp}Jouer un tour{nbsp}»
 include::partial$req-jouer-tour.adoc[]
 
 :freq: {counter:freq}
@@ -297,7 +323,13 @@ include::partial$req-jouer-tour.adoc[]
 
 ==== Description et priorité
 
-Id:: FR-{freq}
+[cols="30s,70n",options="header", frame=sides]
+|===
+
+| Id
+| FR-{freq}
+
+|===
 
 ==== Description sous la forme d'un cas d'utilisation
 
