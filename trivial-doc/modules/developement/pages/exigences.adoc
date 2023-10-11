@@ -140,17 +140,18 @@ Le client Web devrait fonctionner sur tout navigateur Web compatible avec les We
 
 === Langages de programmation
 
+:nfreq: {counter:nfreq}
 .Utiliser le langage Java, version 11 (minimum)
-[block, id="nfr-{counter:nfreq}"]
+[block, id="nfr-{nfreq}"]
 --
-. Le serveur de jeu doit être développé en Java (version ≥ 11), en utilisant le https://spring.io[Spring Boot] (version ≥{nbsp}3.0.0).
+*NF-Req-{nfreq}*:: Le serveur de jeu doit être développé en Java (version ≥ 11), en utilisant le https://spring.io[Spring Boot] (version ≥{nbsp}3.0.0).
 --
 
-
+:nfreq: {counter:nfreq}
 .Utiliser le langage TypeScripit, version 4 (minimum)
-[block, id="nfr-{counter:nfreq}"]
+[block, id="nfr-{nfreq}"]
 --
-. Le client doit être développé en TypeScript (version ≥ 4.0), en utilisant le https://angular.io[Angular Framework] (version ≥ 16.0).
+*NF-Req-{nfreq}*:: Le client doit être développé en TypeScript (version ≥ 4.0), en utilisant le https://angular.io[Angular Framework] (version ≥ 16.0).
 --
 
 === Langage de conception
@@ -221,18 +222,8 @@ une base de données par le biais de l'API Java Persistence (JPA).
 [#functional]
 == Exigences fonctionnelles
 
-////
-[NOTE]
-====
-Décrire les exigences fonctionnelles du système qui peuvent être exprimées et langage naturel. Pour plusieurs applications, c’est la partie principale de la SEL et son organisation doit, par conséquent, être bien réfléchie. Elle est habituellement hiérarchisée par caractéristiques, mais elle peut l’être, par utilisateur ou par sous-système. Les exigences fonctionnelles peuvent inclure les caractéristiques, les capacités et la sécurité.
-
-Lorsque des outils de développement, tels des référentiels d’exigences ou des outils de modélisation sont utilisés, on peut référer à ces données en indiquant l’endroit et le nom de cet outil]
-====
-////
-
-
-
-[id="freq-{counter:freq}"]
+:freq: {counter:freq}
+[id="freq-{freq}"]
 === Fonctionnalité «{nbsp}Joindre une partie{nbsp}»
 
 
@@ -255,7 +246,8 @@ Priorité:: Haute
 .Cas d'utilisation «{nbsp}Joindre une partie{nbsp}»
 include::partial$req-joindre-partie.adoc[]
 
-[id="freq-{counter:freq}"]
+:freq: {counter:freq}
+[id="freq-{freq}"]
 === Fonctionnalité «{nbsp}Rejoindre une partie{nbsp}»
 
 Id:: FR-{freq}
@@ -267,7 +259,8 @@ Priorité:: Haute
 .Cas d'utilisation «{nbsp}Rejoindre une partie{nbsp}»
 include::partial$req-joindre-partie.adoc[]
 
-[id="freq-{counter:freq}"]
+:freq: {counter:freq}
+[id="freq-{freq}"]
 === Fonctionnalité «{nbsp}Jouer un tour{nbsp}»
 
 Id:: FR-{freq}
@@ -313,14 +306,7 @@ include::partial$req-jouer-tour.adoc[]
 
 == Liste d'exigences
 
-{freq}
-
-{nfreq}
-
-* Nombre total d'exigences fonctionnelles{nbsp}: {freq}
-* Nombre total d'exigences non-fonctionnelles{nbsp}: {nfreq}
-
-.Exigences fonctionnelles
+.Exigences fonctionnelles ({freq})
 |===
 | Code | Titre
 
@@ -335,7 +321,7 @@ include::partial$req-jouer-tour.adoc[]
 
 |===
 
-.Exigences non-fonctionnelles
+.Exigences non-fonctionnelles ({nfreq})
 |===
 | Code | Titre
 
