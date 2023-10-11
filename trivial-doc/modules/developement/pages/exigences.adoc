@@ -230,7 +230,7 @@ Priorité:: Haute
 
 ==== Séquences de Stimulus/Réponse
 
-NOTE: Liste des séquences d'actions de l'utilisateur et des réponses du système qui stimulent le comportement défini pour cette fonctionnalité. Celles-ci correspondront aux éléments de dialogue associés aux cas d'utilisation.
+// NOTE: Liste des séquences d'actions de l'utilisateur et des réponses du système qui stimulent le comportement défini pour cette fonctionnalité. Celles-ci correspondront aux éléments de dialogue associés aux cas d'utilisation.
 
 ==== Exigences fonctionnelles
 

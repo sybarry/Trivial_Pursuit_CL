@@ -17,6 +17,7 @@ asciidoc:
     url-asciidoc: https://docs.asciidoctor.org/asciidoc/latest
     kroki-fetch-diagram: true
     kroki-server-url: http://kroki:8000
+    icons: font
   extensions:
     - asciidoctor-kroki
     - '@djencks/asciidoctor-mathjax'
