@@ -87,4 +87,8 @@ a|
 .. Il remporte un triangle correspond à la couleur de la case, seulement s'il ne possède pas le triangle de couleur correspondant à la case.
 .. Si son camembert est plein{empty}footnote:[C'est son 6e triangle]{nbsp}: il remporte la partie (elle s'arrête)
 
+| Problèmes ouverts
+a|
+* Que faire si un des joueurs abandonne une partie en cours{nbsp}?
+
 |===

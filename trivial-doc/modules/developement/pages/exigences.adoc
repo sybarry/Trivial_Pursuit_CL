@@ -1,5 +1,5 @@
 :project: Trivial Pursuit
-
+:f-req: Req-{counter:freq}
 = Spécification des exigences
 
 
@@ -226,7 +226,8 @@ Lorsque des outils de développement, tels des référentiels d’exigences ou d
 
 ==== Description et priorité
 
-Cette fonctionnalité permet à un joueur de se connecter au serveur de jeu, pour ensuite participer à une partie.
+Id:: {f-req}
+Description:: Cette fonctionnalité permet à un joueur de se connecter au serveur de jeu, pour ensuite participer à une partie.
 
 Priorité:: Haute
 
@@ -236,30 +237,18 @@ Priorité:: Haute
 
 ==== Exigences fonctionnelles
 
-////
-[NOTE]
-====
-Détaillez les exigences fonctionnelles détaillées associées à cette fonctionnalité. Il s'agit des capacités logicielles qui doivent être présentes pour permettre à l'utilisateur d'effectuer les services fournis par la fonction ou d'exécuter le cas d'utilisation. 
-
-Indiquez comment le produit doit réagir aux conditions d'erreur prévues ou aux entrées non valides. Les exigences doivent être concises, complètes, non ambiguës, vérifiables et nécessaires. 
-
-Utilisez la mention "A faire" pour indiquer que les informations nécessaires ne sont pas encore disponibles.
-
-Chaque exigence doit être identifiée de manière unique par un numéro de séquence ou une étiquette significative.
-
-* REQ-1:	
-* REQ-2:
-====
-////
 
 ==== Description sous la forme d'un cas d'utilisation
 
 .Cas d'utilisation «{nbsp}Joindre une partie{nbsp}»
 include::partial$req-joindre-partie.adoc[]
 
-=== Fonctionnalité «{project}Rejoindre une partie{project}»
+=== Fonctionnalité «{nbsp}Rejoindre une partie{nbsp}»
 
-// NOTE: Ajoutez la description de la fonctionnalité "B" en vous basant sur la structure de la fonctionnalité "A"
+Id:: {f-req}
+Description:: Permet à un joueur de se connecter au Système, choisir une partie et commencer à jouer.
+
+Priorité:: Haute
 
 ==== Description sous la forme d'un cas d'utilisation
 .Cas d'utilisation «{nbsp}Rejoindre une partie{nbsp}»
@@ -267,6 +256,9 @@ include::partial$req-joindre-partie.adoc[]
 
 === Fonctionnalité «{nbsp}Jouer un tour{nbsp}»
 
+Id:: {f-req}
+Description:: Permet à un joueur déjà connecté au Système et affecté à une partie, de jouer à cette partie.
+Priorité:: Moyenne
 
 ==== Description sous la forme d'un cas d'utilisation
 
