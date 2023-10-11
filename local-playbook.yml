@@ -4,8 +4,14 @@ site:
   start_page: trivial-doc::index.adoc
 asciidoc:
   attributes:
+    author: Gerson Sunyé
+    email: gerson.sunye@univ-nantes.fr
     plantuml-server-url: http://www.plantuml.com/plantuml
-    plantuml-config: ../../diagram/plantuml/plantuml.config 
+    plantuml-config: ../../diagram/plantuml/plantuml.config
+    listing-caption: Listing@
+    kroki-fetch-diagram: true
+    kroki-server-url: http://kroki:8000
+    sectnums: true
   extensions:
   - asciidoctor-plantuml
 content:
