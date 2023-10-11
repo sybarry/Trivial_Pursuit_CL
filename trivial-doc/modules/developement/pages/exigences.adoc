@@ -1,5 +1,6 @@
 :project: Trivial Pursuit
 = Spécification des exigences
+:icons: font
 
 == Introduction 
 
