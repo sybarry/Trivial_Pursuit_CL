@@ -11,6 +11,7 @@ asciidoc:
     listing-caption: Listing@
     kroki-fetch-diagram: true
     kroki-server-url: http://kroki:8000
+    icons: font
   extensions:
     - asciidoctor-plantuml
 content:

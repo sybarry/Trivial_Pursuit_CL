@@ -53,7 +53,7 @@ Ce document est à la destination des étudiants de première année du Master I
 
 === Portée du projet
 
-NOTE: Fournissez une brève description du logiciel spécifié et de son objectif, y compris les avantages, les objectifs et les buts pertinents. Reliez le logiciel aux objectifs de l'entreprise ou aux stratégies commerciales. Si vous disposez d'un document distinct sur la vision et la portée, faites-y référence plutôt que d'en reproduire le contenu ici.
+// NOTE: Fournissez une brève description du logiciel spécifié et de son objectif, y compris les avantages, les objectifs et les buts pertinents. Reliez le logiciel aux objectifs de l'entreprise ou aux stratégies commerciales. Si vous disposez d'un document distinct sur la vision et la portée, faites-y référence plutôt que d'en reproduire le contenu ici.
 
 Le système logiciel à produire est une version simplifiée du jeu de plateau {project}, qui sera désigné par le terme "{project}" dans le présent document.
 
@@ -103,7 +103,7 @@ Les joueurs interagissent avec le `Client Web`, qui utilise le protocole les Web
 include::example$deployment-diagram.puml[]
 ----
 
-NOTE: Un *Nœud Logique* est une cible de déploiement qui représente une ressource informatique sur laquelle
+IMPORTANT: Un *Nœud Logique* est une cible de déploiement qui représente une ressource informatique sur laquelle
 les artefacts peuvent être déployés pour être exécutés. +
 Plusieurs nœuds logiques peuvent s'exécuter sur un même *Nœud Physique* ou *Dispositif*.
 
@@ -209,12 +209,14 @@ une base de données par le biais de l'API Java Persistence (JPA).
 [#functional]
 == Exigences fonctionnelles
 
+////
 [NOTE]
 ====
 Décrire les exigences fonctionnelles du système qui peuvent être exprimées et langage naturel. Pour plusieurs applications, c’est la partie principale de la SEL et son organisation doit, par conséquent, être bien réfléchie. Elle est habituellement hiérarchisée par caractéristiques, mais elle peut l’être, par utilisateur ou par sous-système. Les exigences fonctionnelles peuvent inclure les caractéristiques, les capacités et la sécurité.
 
 Lorsque des outils de développement, tels des référentiels d’exigences ou des outils de modélisation sont utilisés, on peut référer à ces données en indiquant l’endroit et le nom de cet outil]
 ====
+////
 
 
 === Fonctionnalité «{nbsp}Joindre une partie{nbsp}»
@@ -232,6 +234,7 @@ NOTE: Liste des séquences d'actions de l'utilisateur et des réponses du systè
 
 ==== Exigences fonctionnelles
 
+////
 [NOTE]
 ====
 Détaillez les exigences fonctionnelles détaillées associées à cette fonctionnalité. Il s'agit des capacités logicielles qui doivent être présentes pour permettre à l'utilisateur d'effectuer les services fournis par la fonction ou d'exécuter le cas d'utilisation. 
@@ -245,6 +248,7 @@ Chaque exigence doit être identifiée de manière unique par un numéro de séq
 * REQ-1:	
 * REQ-2:
 ====
+////
 
 ==== Description sous la forme d'un cas d'utilisation
 
@@ -253,7 +257,7 @@ include::partial$req-joindre-partie.adoc[]
 
 === Fonctionnalité «{project}Rejoindre une partie{project}»
 
-NOTE: Ajoutez la description de la fonctionnalité "B" en vous basant sur la structure de la fonctionnalité "A"
+// NOTE: Ajoutez la description de la fonctionnalité "B" en vous basant sur la structure de la fonctionnalité "A"
 
 ==== Description sous la forme d'un cas d'utilisation
 .Cas d'utilisation «{nbsp}Rejoindre une partie{nbsp}»
