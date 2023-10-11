@@ -1,5 +1,5 @@
 
-[cols="30s,70n",options="header", frame=sides]
+[cols="30s,70n",options="header", frame=sides, id="uc-1"]
 |===
 | Item | Description
 
@@ -78,7 +78,7 @@ a|
 | Aucun
 
 | Cas d'utilisation subordonnés 
-a |
+a|
 * Créer un nouveau compte
 * Réinitialiser mot de passe
 

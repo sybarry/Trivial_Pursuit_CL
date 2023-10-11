@@ -301,6 +301,10 @@ Id:: FR-{freq}
 
 ==== Description sous la forme d'un cas d'utilisation
 
+.Cas d'utilisation «{nbsp}Créer un compte{nbsp}»
+include::partial$req-creer-compte.adoc[]
+
+
 :freq: {counter:freq}
 [id="freq-{freq}"]
 === Fonctionnalité «{nbsp}Réinitialiser mot de passe{nbsp}»
@@ -311,6 +315,8 @@ Id:: FR-{freq}
 
 ==== Description sous la forme d'un cas d'utilisation
 
+.Cas d'utilisation «{nbsp}Réinitialiser mot de passe{nbsp}»
+include::partial$req-reinitialiser-mdp.adoc[]
 
 == Autres exigences non-fonctionnelles
 
@@ -363,11 +369,6 @@ IMPORTANT: Les directives de codage Java peuvent être facilement vérifiées gr
 --
 
 IMPORTANT: Configurez npm pour https://blog.logrocket.com/linting-typescript-eslint-prettier/[utiliser ESLint et Prettier], et forcer votre code à respecter des conventions de codage TypeScript.
-
-=== Règles métier
-
-
-== Autres exigences
 
 == Liste d'exigences
 

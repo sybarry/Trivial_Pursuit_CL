@@ -16,10 +16,10 @@
 | _à compléter_
 
 | Portée	
-| _à compléter_
+| Stratégique ou Système
 
 | Niveau
-| _à compléter_
+| Synthèse, utilisateur et sous-fonction.
 
 | Condition de succès
 | _à compléter_

@@ -10,94 +10,85 @@
 | Créer un compte
 
 | Alias
-| _à compléter_
+| Inscription
 
 | Objectif contextuel
 | _à compléter_
 
 | Portée	
-| _à compléter_
+| Système
 
 | Niveau
-| _à compléter_
+| Utilisateur
 
 | Condition de succès
-| _à compléter_
+| Le joueur arrive à créer un compte, connait son identifiant et son mot de passe
 
-| Condition d'échec
-| _à compléter_
+| Conditions d'échec
+a|
+* Le joueur n'arrive pas à créer un compte
+* Le joueur crée un compte, mais ne connait pas son identifiant ou son mot de passe/
 
-| Acteurs principaux:
-| _à compléter_
+| Acteurs principaux
+| Le joueur
 
 | Acteurs secondaires
-| _à compléter_
+| Un serveur d'identification
 
 | Événement déclencheur
-| _à compléter_
-
+| Le joueur souhaite participer à une partie
 
 | Priorité
-| _à compléter_
+| Moyenne
 
 | Fréquence
-| _à compléter_
+|
 
 | Pré-conditions 
 a| 
-- _à compléter_
-- _à compléter_
+* Le joueur est connecté à Internet et possède une adresse email valide et accessible
 
 | Post-conditions
 a| 
-- _à compléter_
-- _à compléter_
-- _à compléter_
+* Le Système connaît le joueur à travers son identifiant
 
 
 | Scénario nominal
 a|
-. _à compléter_
-. _à compléter_
-. _à compléter_
-. _à compléter_
-. _à compléter_
-. _à compléter_
-
+. Le joueur demande la création d'un compte
+. Le joueur saisi son adresse email, son nom, prénom, date de naissance et son mot de passe
+. Le Système envoie une URL unique à l'adresse email du joueur
+. Le joueur reçoit l'email et ouvre l'URL
+. Le serveur reçoit la requête correspondant à l'URL envoyée et valide l'inscription
 
 | Extensions	
-a| 
-. _à compléter_
-. _à compléter_
+a|
 
 | Alternatives	
 a| 
-. _à compléter_
-. _à compléter_
+
 
 | Cas d'utilisation supérieur
-| _à compléter_
+| Joindre une partie (<<uc-1, UC-1>>, <<uc-1>>)
 
 | Cas d'utilisation subordonnés 
-| _à compléter_
-// _optional, depending on tools, links to sub.use cases_
+| Aucun
 
 | Objectif de performance
-| _à compléter_
+|-
 
 | Problèmes ouverts	
 a|
-- _à compléter_
-- _à compléter_
+Aucun
 
 | Échéancier	
-| _à compléter_
+| _Version 1.1
 
 | Contraintes
-| _à compléter_
+|
 
 | Annexes
-| _à compléter_
+| 
 
 |===
 
