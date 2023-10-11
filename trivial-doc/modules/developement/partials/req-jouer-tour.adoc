@@ -74,14 +74,17 @@ a|
 . Le Système affiche la valeur obtenue
 . Le Système propose les destinations (cases) possibles
 . Le joueur choisit la destination
-
-
-
-. Le joueur déplace son camembert d'autant de cases qu'indiqué par le dé, sans passer par la même case.
-. Un autre joueur prend une carte et lit la question correspondant à la couleur de la case (chaque couleur correspond à une catégorie).
+. Le Système affiche le camembert sur la case destination
+. Le Système tire une carte et affiche une question correspondant à la couleur de la case destination
 . Le joueur répond à la question
-. L'autre joueur compare sa réponse avec celle de la carte{nbsp}
-** Si la réponse est incorrecte, le tour du joueur s'arrête
-**  Si la réponse est correcte, le joueur recommence son tour
+. Le Système valide la réponse{nbsp}:
+.. Mauvaise réponse{nbsp}: le tour de ce joueur est fini
+.. Bonne réponse{nbsp}: le joueur recommence son tour
+
+| Alternatives
+a|
+. [Alternative à 9b] Le camembert est sur une case «{nbsp}Quartier Général{nbsp}»{nbsp}:
+.. Il remporte un triangle correspond à la couleur de la case, seulement s'il ne possède pas le triangle de couleur correspondant à la case.
+.. Si son camembert est plein{empty}footnote:[C'est son 6e triangle]{nbsp}: il remporte la partie (elle s'arrête)
 
 |===
