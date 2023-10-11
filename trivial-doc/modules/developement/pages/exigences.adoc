@@ -236,8 +236,6 @@ Client Lourd, _Smartphones_, etc.
 La partie client du logiciel doit fonctionner sur des navigateurs web, tandis que la partie serveur doit interagir avec
 une base de données par le biais de l'API Java Persistence (JPA).
 
-
-
 === Interfaces de communication
 
 * Les communications entre le client et le serveur de jeu doivent utiliser des Websockets.
@@ -317,15 +315,33 @@ include::partial$req-jouer-tour.adoc[]
 
 ==== Maintenabilité
 
-. Le logiciel doit être lisible et facile à maintenir.
-. La source Java doit respecter les directives de Google{nbsp}: https://google-styleguide.googlecode.com/svn/trunk/javaguide.html.
+:nfreq: {counter:nfreq}
+[quote, id="nfreq-{nfreq}", title="*Le code doit être maintenable*"]
+--
+*NF-Req-{nfreq}*:: Le logiciel doit être lisible et facile à maintenir.
+--
+
+:nfreq: {counter:nfreq}
+[quote, id="nfreq-{nfreq}", title="*Respect des conventions de codage Java*"]
+--
+*NF-Req-{nfreq}*:: Les sources Java doivent respecter les https://google.github.io/styleguide/javaguide.html[directives de codage Google].
+--
+
+IMPORTANT: Les directives de codage Java peuvent être facilement vérifiées grâce à https://pmd.github.io/pmd/pmd_rules_java_codestyle.html[PMD]
+
+
+:nfreq: {counter:nfreq}
+[quote, id="nfreq-{nfreq}", title="*Respect des conventions de codage TypeScript*"]
+--
+*NF-Req-{nfreq}*:: La source TypeScript doit respecter les https://google.github.io/styleguide/tsguide.html[directives de codage Google].
+--
+
+IMPORTANT: Configurez npm pour https://blog.logrocket.com/linting-typescript-eslint-prettier/[utiliser ESLint et Prettier], et forcer votre code à respecter des conventions de codage TypeScript.
 
 === Règles métier
 
 
 == Autres exigences
-
-// NOTE: Définissez toute autre exigence non couverte ailleurs dans le SRS. Il peut s'agir d'exigences relatives à la base de données, à l'internationalisation, à la législation, aux objectifs de réutilisation du projet, etc. Ajoutez toute nouvelle section pertinente pour le projet.
 
 == Liste d'exigences
 
@@ -371,6 +387,12 @@ include::partial$req-jouer-tour.adoc[]
 
 | <<nfreq-8, NFR-8>>
 | <<nfreq-8>>
+
+| <<nfreq-9, NFR-9>>
+| <<nfreq-9>>
+
+| <<nfreq-10, NFR-10>>
+| <<nfreq-10>>
 |===
 
 
