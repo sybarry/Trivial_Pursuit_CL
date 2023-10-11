@@ -137,6 +137,7 @@ Le Serveur doit fonctionner sur tout système d'exploitation populaire et récen
 Le client Web devrait fonctionner sur tout navigateur Web compatible avec les WebSockets{nbsp}: Firefox (≥ 7.0), Chrome (≥ 5.0), Safari (≥ 5.0), ou Edge (≥ 12.0).
 
 
+[#nonfunctional]
 == Exigences non-fonctionnelles
 
 === Contraintes de conception et de mise en œuvre
@@ -221,8 +222,6 @@ Client Lourd, _Smartphones_, etc.
 
 == Exigences en matière d'interface externe
 
-* Aucune
-
 === Interfaces utilisateur
 
 * Aucune exigence
@@ -255,12 +254,6 @@ Description:: Cette fonctionnalité permet à un joueur de se connecter au serve
 
 Priorité:: Haute
 
-==== Séquences de Stimulus/Réponse
-
-// NOTE: Liste des séquences d'actions de l'utilisateur et des réponses du système qui stimulent le comportement défini pour cette fonctionnalité. Celles-ci correspondront aux éléments de dialogue associés aux cas d'utilisation.
-
-==== Exigences fonctionnelles
-
 
 ==== Description sous la forme d'un cas d'utilisation
 
@@ -271,18 +264,23 @@ include::partial$req-joindre-partie.adoc[]
 [id="freq-{freq}"]
 === Fonctionnalité «{nbsp}Rejoindre une partie{nbsp}»
 
+==== Description et priorité
+
 Id:: FR-{freq}
 Description:: Permet à un joueur de se connecter au Système, choisir une partie et commencer à jouer.
 
 Priorité:: Haute
 
 ==== Description sous la forme d'un cas d'utilisation
+
 .Cas d'utilisation «{nbsp}Rejoindre une partie{nbsp}»
 include::partial$req-joindre-partie.adoc[]
 
 :freq: {counter:freq}
 [id="freq-{freq}"]
 === Fonctionnalité «{nbsp}Jouer un tour{nbsp}»
+
+==== Description et priorité
 
 Id:: FR-{freq}
 Description:: Permet à un joueur déjà connecté au Système et affecté à une partie, de jouer à cette partie.
@@ -293,14 +291,42 @@ Priorité:: Moyenne
 .Cas d'utilisation «{nbsp}Jouer un tour{nbsp}»
 include::partial$req-jouer-tour.adoc[]
 
+:freq: {counter:freq}
+[id="freq-{freq}"]
+=== Fonctionnalité «{nbsp}Créer un compte{nbsp}»
 
-[#nonfunctional]
+==== Description et priorité
+
+Id:: FR-{freq}
+
+==== Description sous la forme d'un cas d'utilisation
+
+:freq: {counter:freq}
+[id="freq-{freq}"]
+=== Fonctionnalité «{nbsp}Réinitialiser mot de passe{nbsp}»
+
+==== Description et priorité
+
+Id:: FR-{freq}
+
+==== Description sous la forme d'un cas d'utilisation
+
+
 == Autres exigences non-fonctionnelles
 
 === Exigences de performance 
 
-. Le jeu doit être _jouable_, ce qui signifie que les utilisateurs doivent avoir un retour rapide de leurs actions et que les retards dus aux problèmes de communication/connexion doivent être correctement tenus.
-. Le client Web doit pouvoir s'exécuter sur un ordinateur personnel doté de 4 Go de RAM.
+:nfreq: {counter:nfreq}
+[quote, id="nfreq-{nfreq}", title="*Jouabilité*"]
+--
+*NF-Req-{nfreq}*:: Le jeu doit être _jouable_, ce qui signifie que les utilisateurs doivent avoir un retour rapide de leurs actions et que les retards dus aux problèmes de communication/connexion doivent être correctement tenus.
+--
+
+:nfreq: {counter:nfreq}
+[quote, id="nfreq-{nfreq}", title="*Efficacité*"]
+--
+*NF-Req-{nfreq}*:: Le client Web doit pouvoir s'exécuter sur un ordinateur personnel doté de 4 Go de RAM.
+--
 
 
 === Exigences de sécurité
@@ -358,6 +384,12 @@ IMPORTANT: Configurez npm pour https://blog.logrocket.com/linting-typescript-esl
 | <<freq-3, FR-3>>
 | <<freq-3>>
 
+| <<freq-4, FR-4>>
+| <<freq-4>>
+
+| <<freq-5, FR-5>>
+| <<freq-5>>
+
 |===
 
 .Exigences non-fonctionnelles ({nfreq})
@@ -393,6 +425,12 @@ IMPORTANT: Configurez npm pour https://blog.logrocket.com/linting-typescript-esl
 
 | <<nfreq-10, NFR-10>>
 | <<nfreq-10>>
+
+| <<nfreq-11, NFR-11>>
+| <<nfreq-11>>
+
+| <<nfreq-12, NFR-12>>
+| <<nfreq-12>>
 |===
 
 
