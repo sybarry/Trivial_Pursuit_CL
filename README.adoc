@@ -1,8 +1,4 @@
-= Projet Risk
+= Projet Trivial Pursuit
 
-Projet exemple, solution partielle. 
+Projet M1 Alma 2023-24
 
-
-== Resources additionnelles
-
-- https://www.regledujeu.fr/risk-regle-du-jeu/[Risk: Règle du jeu]

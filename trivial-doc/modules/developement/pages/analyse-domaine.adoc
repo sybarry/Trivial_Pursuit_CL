@@ -101,11 +101,6 @@ include::example$cd-parties-joueurs.plantuml[]
 
 == Modèle du domaine
 
-[NOTE]
-====
-Décrivez ici les classes conceptuelles du domaine, ainsi que leurs attributs et associations.
-====
-
 .Classes conceptuelles
 [plantuml]
 ....
