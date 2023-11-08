@@ -2,6 +2,7 @@
 
 package "My System" {
 interface Web1
+interface Cli1
 interface Web2
 interface Lobby
 
@@ -23,10 +24,12 @@ interface Lobby
 MiddlewareClient1 --( Lobby
 MiddlewareClient2 --( Lobby
 
-[Client web 1] --() Web1
-Web1 )-- [MiddlewareClient1]
+[Client web 1] --() Cli1
+Cli1 )-- [MiddlewareClient1]
 
-[Client web 2] --() Web2
-Web2 )-- [MiddlewareClient2]
+[Client web 2] --( Web2
+[MiddlewareClient2] -up-() Web2
 
+[Client web 1] --( Web1
+[MiddlewareClient1] -up-() Web1
 @enduml
