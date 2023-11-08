@@ -1,0 +1,23 @@
+@startuml
+
+package "My System" {
+[GameServer]
+
+[LobbyServer]
+
+[MiddlewareClient1]
+[MiddlewareClient2]
+
+[Client web 1]
+[Client web 2]
+}
+
+[GameServer] -- [LobbyServer]
+
+[Client web 1] -- [MiddlewareClient1]
+[Client web 2] -- [MiddlewareClient2]
+
+MiddlewareClient1 -- [LobbyServer] : Websocket
+MiddlewareClient2 -- LobbyServer: Websocket
+
+@enduml

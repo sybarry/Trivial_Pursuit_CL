@@ -16,7 +16,7 @@ asciidoc:
     url-repo: https://gitlab.com/antora/antora
     url-asciidoc: https://docs.asciidoctor.org/asciidoc/latest
     kroki-fetch-diagram: true
-    kroki-server-url: http://kroki:8000
+    kroki-server-url: https://kroki.io
     icons: font
   extensions:
     - asciidoctor-kroki

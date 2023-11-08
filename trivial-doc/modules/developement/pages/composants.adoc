@@ -1,56 +1,232 @@
 = Spécification des composants
 
-== Travail à réaliser
-
+[NOTE]
+====
 Objectif::
-Découpage de la solution en composants (ou sous-systèmes) et spécification des interfaces fournies et requises par ces composants
+Découpage de la solution en composants (ou sous-systèmes), affectation des responsabilités aux composants et spécification des interfaces fournies et requises par ces composants
 
 Moyens::
 Utilisez des diagrammes d'interaction (séquence, communication) pour décrire l'échange de messages entre les composants pour en déduire leurs interfaces.
+====
 
+== Vue globale des composants
 
-.Diagramme de composants
+.Diagramme de composants décrivant la solution proposée
 [plantuml]
 ....
-include::example$components.puml
+include::example$dc-global.puml[]
 ....
 
 
-.Autre diagramme
+
+== Composant A
+
 [plantuml]
 ....
 @startuml
-'https://plantuml.com/component-diagram
+left to right direction
 
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
+component Server {
+    portin "WebSockets" as cws
+    portout "HTTP" as sws
 }
 
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
+interface Provided
+
+interface Required
+
+
+sws --() Provided
+Required  )-- cws
+@enduml
+....
+
+=== Responsabilités du Composant A
+
+* Serveur :
+
+.Quelques exemples
+* Créé tous les objets relatifs au jeu : les joueurs, les cartes, les merveilles et les initialises.
+* Gère les connections au serveur et les pseudos
+* Lorsque tous les joueurs sont prêts, lance la partie et distribue au client ce dont il a besoin : Merveille, cartes au tour 1
+* À chaque tour, il reçoit la liste suivante : Le paquet de cartes non jouées, la carte jouée/déposée sur la merveille/défossée,
+le nombre d'argent à ajouter au joueur
+* Une fois que tout le monde a envoyé son jeu, envoie à chaque client : ses nouvelles cartes, les cartes jouées depuis le début de la partie de son voisin de gauche et de droite
+* Gère les tours de la partie
+* Définit le joueur gagnant
+
+=== Interfaces fournies
+
+==== Interface A
+
+[plantuml]
+....
+interface A {
+    operationA(a: String, b: Integer): Boolean
 }
+....
 
-cloud {
-  [Example 1]
+.Contraintes sur les operations
+[source, ocl]
+----
+context A::operationA(a: String, b: Integer): Boolean
+pre: a.size() > 3
+post:
+-- Pas de postconditions
+----
+
+
+==== Interface B
+
+[plantuml]
+....
+interface B {
+    operationB(a: String, b: Integer): Boolean
 }
+....
+
+.Contraintes sur les operations
+[source, ocl]
+----
+context B::operationA(a: String, b: Integer): Boolean
+pre: a.size() > 3
+post:
+-- Pas de postconditions
+----
 
 
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
+== Composant A
+
+[note]
+====
+Description de ses responsabilités et de ses interfaces
+====
 
 
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
+
+
+== Interactions
+
+[note]
+====
+Basez-vous sur les cas d'utilisation (spécification des exigences) pour illustrer les interactions entre les différents composants
+====
+
+.Connexion au serveur
+[plantuml]
+....
+@startuml
+
+actor "ClientA:Client" as C1
+actor "ClientB:Client" as C2
+actor "ClientC:Client" as C3
+
+C1 -> Serveur: Connect("Teddy")
+Serveur --> C1 : true
+C1 -> Serveur: allPlayers()
+Serveur --> C1: {}
+
+
+C2 -> Serveur: Connect("Romain")
+Serveur --> C2 : true
+C2 -> Serveur : allPlayers()
+Serveur --> C2 : {"Teddy": false}
+
+Serveur --> C1 : newPlayer("Romain")
+
+
+C3 -> Serveur: Connect("Romain")
+Serveur --> C3 : true
+Serveur --> C3 : changePseudo("Romain0")
+C3 --> Serveur : allPlayers()
+Serveur --> C3 : {"Teddy": false, "Romain": false}
+
+Serveur --> C1 : newPlayer("Romain0")
+Serveur --> C2 : newPlayer("Romain0")
+
+C1 -> Serveur: ready("Teddy")
+Serveur -> C2 : playerReady("Teddy")
+Serveur -> C3 : playerReady("Teddy")
+
+C2 -> Serveur: ready("Romain")
+Serveur -> C1 : playerReady("Romain")
+Serveur -> C3 : playerReady("Romain")
+
+C3 -> Serveur: ready("Romain0")
+Serveur -> C1 : playerReady("Romain0")
+Serveur -> C2 : playerReady("Romain0")
+
+
+Serveur -> C1 : play()
+Serveur -> C2 : play()
+Serveur -> C3 : play()
 
 @enduml
 ....
+
+.Déroulement de l'initialisation du tour 1
+[plantuml]
+....
+@startuml
+
+actor "ClientA:Client" as C1
+actor "ClientB:Client" as C2
+actor "ClientC:Client" as C3
+
+
+Serveur -> C1 : recoverWonderMe(Merveille1)
+Serveur -> C2 : recoverWonderMe(Merveille2)
+Serveur -> C3 : recoverWonderMe(Merveille3)
+Serveur -> C1 : recoverDeck(Deck1)
+Serveur -> C2 : recoverDeck(Deck2)
+Serveur -> C3 : recoverDeck(Deck3)
+
+
+Serveur -> C1 : recoverWonderLeft(Merveille3)
+Serveur -> C1 : recoverWonderRight(Merveille2)
+
+Serveur -> C1 : recoverCardPlayedLeft({})
+Serveur -> C1 : recoverCardPlayedRight({})
+
+Serveur -> C2 : recoverWonderLeft(Merveille1)
+Serveur -> C2 : recoverWonderRight(Merveille3)
+
+Serveur -> C2 : recoverCardPlayedLeft({})
+Serveur -> C2 : recoverCardPlayedRight({})
+
+Serveur -> C3 : recoverWonderLeft(Merveille2)
+Serveur -> C3 : recoverWonderRight(Merveille1)
+
+Serveur -> C3 : recoverCardPlayedLeft({})
+Serveur -> C3 : recoverCardPlayedRight({})
+
+@enduml
+....
+
+.Déroulement d'un tour (on suppose les clients déjà initialisés et le tour 4)
+
+[plantuml]
+....
+@startuml
+
+actor "Rom:Client" as C1
+actor "Ted:Client" as C2
+actor "Isma:Client" as C3
+
+C1 -> Serveur : giveUnplayedCards("Rom", PaquetCartesNonJouées1:Liste de cartes)
+C1 -> Serveur : givePlayedCard("Rom", Carte2 : Carte)
+
+C2 -> Serveur : giveUnplayedCards("Ted", PaquetCartesNonJouées2:Liste de cartes)
+C2 -> Serveur : givePlayedCard("Ted", Carte3 : Carte)
+
+C3 -> Serveur : giveUnplayedCards("Isma", PaquetCartesNonJouées3:Liste de cartes)
+C3 -> Serveur : giveDiscardedCard("Isma", Carte3 : Carte)
+C3 -> Serveur : giveMoney("Isma", 2)
+
+Serveur -> C1 : play()
+Serveur -> C2 : play()
+Serveur -> C3 : play()
+
+@enduml
+....
+
