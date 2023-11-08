@@ -266,32 +266,6 @@ une base de données par le biais de l'API Java Persistence (JPA).
 .Cas d'utilisation «{nbsp}Joindre une partie{nbsp}»
 include::partial$req-joindre-partie.adoc[]
 
-:freq: {counter:freq}
-[id="freq-{freq}"]
-=== Fonctionnalité «{nbsp}Rejoindre une partie{nbsp}»
-
-==== Description et priorité
-
-[cols="30s,70n",options="header", frame=sides]
-|===
-
-| Id
-| FR-{freq}
-
-| Description
-| Permet à un joueur de se connecter au Système, choisir une partie et commencer à jouer.
-
-|Priorité
-| Haute
-
-|===
-
-
-
-==== Description sous la forme d'un cas d'utilisation
---
-include::partial$req-joindre-partie.adoc[]
---
 
 :freq: {counter:freq}
 [id="freq-{freq}"]
