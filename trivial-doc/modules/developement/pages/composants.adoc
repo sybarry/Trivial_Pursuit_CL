@@ -26,7 +26,7 @@ include::example$dc-global.puml[]
 @startuml
 left to right direction
 
-component Server {
+component A as "Component A" {
     portin "WebSockets" as cws
     portout "HTTP" as sws
 }
@@ -46,7 +46,7 @@ Required  )-- cws
 * Serveur :
 
 .Quelques exemples
-* Créé tous les objets relatifs au jeu : les joueurs, les cartes, les merveilles et les initialises.
+* Créé tous les objets relatifs au jeu : les joueurs, les cartes, les merveilles et les initialise.
 * Gère les connections au serveur et les pseudos
 * Lorsque tous les joueurs sont prêts, lance la partie et distribue au client ce dont il a besoin : Merveille, cartes au tour 1
 * À chaque tour, il reçoit la liste suivante : Le paquet de cartes non jouées, la carte jouée/déposée sur la merveille/défossée,
@@ -59,12 +59,28 @@ le nombre d'argent à ajouter au joueur
 
 ==== Interface A
 
+[TIP]
+====
+Utilisez la notation UML pour spécifier la signature de chaque operation de l'interface.
+
+====
+
+[WARNING]
+====
+* La syntaxe de la notation UML est différente de celle de Java{nbsp}!
+* Les types de base sont  différents aussi{nbsp}! Par exemple, `int`, `float`, `bool` ne sont pas des types UML.
+* Si les paramètres sont multivalués (par ex. ensemble, séquence, etc.) utilisez les cardinalités: `names : String [1..4]`
+* `List<>`, `Set<>`, etc. ne sont pas des types UML.
+====
+
 [plantuml]
 ....
 interface A {
     operationA(a: String, b: Integer): Boolean
 }
 ....
+
+TIP: Si nécessaire, utilisez le langage OCL pour spécifier les pré et post-conditions des opérations.
 
 .Contraintes sur les operations
 [source, ocl]
@@ -102,14 +118,38 @@ post:
 Description de ses responsabilités et de ses interfaces
 ====
 
-
-
+=== Interface C
+[plantuml]
+....
+interface GameServer {
+connect(pseudo: String, password: String, ip: String, port: Integer):Boolean
+createGame(numberOfPlayers : Integer): Integer
+join(gameId : Integer): Integer
+notifyPlayersReady(): String
+chooseRole(role: String, playerId: Integer)
+resist(numberOfPawns: Integer)
+playPlaceCard(playerId: Integer, cardName: String)
+playHuntCard(cardName: String)
+letGo()
+putToken(tokenName: String, cardNames: String [0..2])
+}
+....
 
 == Interactions
 
-[note]
+[TIP]
 ====
-Basez-vous sur les cas d'utilisation (spécification des exigences) pour illustrer les interactions entre les différents composants
+* Utilisez les diagrammes d'interaction de la notation UML pour valider les interfaces des composants.
+
+* Basez-vous sur les cas d'utilisation (spécification des exigences) pour illustrer les interactions entre les différents composants
+====
+
+[WARNING]
+====
+* En UML, les interactions se passent au niveau des instances.
+* Rappel:
+** Niveau classes: Classes, opérations, types, etc.
+** Niveau instances: Objets, appels d'opération, valeurs, etc.
 ====
 
 .Connexion au serveur
@@ -174,32 +214,6 @@ actor "ClientB:Client" as C2
 actor "ClientC:Client" as C3
 
 
-Serveur -> C1 : recoverWonderMe(Merveille1)
-Serveur -> C2 : recoverWonderMe(Merveille2)
-Serveur -> C3 : recoverWonderMe(Merveille3)
-Serveur -> C1 : recoverDeck(Deck1)
-Serveur -> C2 : recoverDeck(Deck2)
-Serveur -> C3 : recoverDeck(Deck3)
-
-
-Serveur -> C1 : recoverWonderLeft(Merveille3)
-Serveur -> C1 : recoverWonderRight(Merveille2)
-
-Serveur -> C1 : recoverCardPlayedLeft({})
-Serveur -> C1 : recoverCardPlayedRight({})
-
-Serveur -> C2 : recoverWonderLeft(Merveille1)
-Serveur -> C2 : recoverWonderRight(Merveille3)
-
-Serveur -> C2 : recoverCardPlayedLeft({})
-Serveur -> C2 : recoverCardPlayedRight({})
-
-Serveur -> C3 : recoverWonderLeft(Merveille2)
-Serveur -> C3 : recoverWonderRight(Merveille1)
-
-Serveur -> C3 : recoverCardPlayedLeft({})
-Serveur -> C3 : recoverCardPlayedRight({})
-
 @enduml
 ....
 
@@ -213,19 +227,6 @@ actor "Rom:Client" as C1
 actor "Ted:Client" as C2
 actor "Isma:Client" as C3
 
-C1 -> Serveur : giveUnplayedCards("Rom", PaquetCartesNonJouées1:Liste de cartes)
-C1 -> Serveur : givePlayedCard("Rom", Carte2 : Carte)
-
-C2 -> Serveur : giveUnplayedCards("Ted", PaquetCartesNonJouées2:Liste de cartes)
-C2 -> Serveur : givePlayedCard("Ted", Carte3 : Carte)
-
-C3 -> Serveur : giveUnplayedCards("Isma", PaquetCartesNonJouées3:Liste de cartes)
-C3 -> Serveur : giveDiscardedCard("Isma", Carte3 : Carte)
-C3 -> Serveur : giveMoney("Isma", 2)
-
-Serveur -> C1 : play()
-Serveur -> C2 : play()
-Serveur -> C3 : play()
 
 @enduml
 ....

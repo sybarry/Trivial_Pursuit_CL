@@ -1,6 +1,10 @@
 @startuml
 
 package "My System" {
+interface Web1
+interface Web2
+interface Lobby
+
 [GameServer]
 
 [LobbyServer]
@@ -12,12 +16,17 @@ package "My System" {
 [Client web 2]
 }
 
-[GameServer] -- [LobbyServer]
 
-[Client web 1] -- [MiddlewareClient1]
-[Client web 2] -- [MiddlewareClient2]
+[LobbyServer] -up-() Lobby
 
-MiddlewareClient1 -- [LobbyServer] : Websocket
-MiddlewareClient2 -- LobbyServer: Websocket
+[GameServer] --( Lobby
+MiddlewareClient1 --( Lobby
+MiddlewareClient2 --( Lobby
+
+[Client web 1] --() Web1
+Web1 )-- [MiddlewareClient1]
+
+[Client web 2] --() Web2
+Web2 )-- [MiddlewareClient2]
 
 @enduml
