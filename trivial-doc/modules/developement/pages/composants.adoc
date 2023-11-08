@@ -231,3 +231,34 @@ actor "Isma:Client" as C3
 @enduml
 ....
 
+.Rejoindre une partie
+[plantuml]
+....
+participant "__one:Player__" as player1
+participant "__two:Player__" as player2
+participant "__three:Player__" as player3
+participant "__four:Player__" as player4
+participant "__five:Player__" as player5
+participant "__six:Player__" as player6
+participant "__game:GameServer__" as game
+
+player1 -> game : id := createGame(6)
+par
+    player1 ->> game : playerId := join(id, one)
+    player2 ->> game : playerId := join(id, two)
+    player3 ->> game : playerId := join(id, three)
+    player4 ->> game : playerId := join(id, four)
+    player5 ->> game : playerId := join(id, five)
+    player6 ->> game : playerId := join(id, six)
+end
+    game    --> player1: notifyPlayersReady()
+    player1 -> game: role := chooseRole("Creature", two)
+par
+    game    --> player1: gameStart(boardGameState)
+    game    --> player2: gameStart(boardGameState)
+    game    --> player3: gameStart(boardGameState)
+    game    --> player4: gameStart(boardGameState)
+    game    --> player5: gameStart(boardGameState)
+    game    --> player6: gameStart(boardGameState)
+end
+....
