@@ -444,5 +444,5 @@ IMPORTANT: Configurez npm pour https://blog.logrocket.com/linting-typescript-esl
 [glossary]
 == Annexe A : Glossaire
 
-include::termes.adoc[]
+include::termes.adoc[2]
 
