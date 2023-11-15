@@ -222,7 +222,7 @@ actor "ClientC:Client" as C3
 [plantuml]
 ....
 @startuml
-!include plantuml-config: https://gitlab.univ-nantes.fr/naomod/defaults/-/blob/main/plantuml/puml-theme-sober.puml
+!include https://gitlab.univ-nantes.fr/naomod/defaults/-/blob/main/plantuml/puml-theme-sober.puml
 
 actor "Rom:Client" as C1
 actor "Ted:Client" as C2
@@ -235,7 +235,7 @@ actor "Isma:Client" as C3
 .Rejoindre une partie
 [plantuml]
 ....
-!include: plantuml-config: https://gitlab.univ-nantes.fr/naomod/defaults/-/blob/main/plantuml/puml-theme-sober.puml
+!include: https://gitlab.univ-nantes.fr/naomod/defaults/-/blob/main/plantuml/puml-theme-sober.puml
 
 participant "__one:Player__" as player1
 participant "__two:Player__" as player2
