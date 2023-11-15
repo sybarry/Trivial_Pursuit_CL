@@ -6,11 +6,11 @@ asciidoc:
   attributes:
     author: Gerson Sunyé
     email: gerson.sunye@univ-nantes.fr
-    plantuml-server-url: http://www.plantuml.com/plantuml
+    #plantuml-server-url: http://www.plantuml.com/plantuml
     plantuml-config: https://gitlab.univ-nantes.fr/naomod/defaults/-/blob/main/plantuml/puml-theme-sober.puml
     listing-caption: Listing@
     kroki-fetch-diagram: true
-    kroki-server-url: http://kroki:8000
+    kroki-server-url: https://kroki.io
     sectnums: true
   extensions:
     - asciidoctor-kroki

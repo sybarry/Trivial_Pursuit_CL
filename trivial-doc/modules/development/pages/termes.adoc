@@ -1,5 +1,7 @@
 = Termes
 
+== Termes
+
 [.small]
 [width="100%",cols="30%,30%,40%",]
 |===
