@@ -7,13 +7,13 @@ asciidoc:
     author: Gerson Sunyé
     email: gerson.sunye@univ-nantes.fr
     plantuml-server-url: http://www.plantuml.com/plantuml
-    plantuml-config: ../../diagram/plantuml/plantuml.config
+    plantuml-config: https://gitlab.univ-nantes.fr/naomod/defaults/-/blob/main/plantuml/puml-theme-sober.puml
     listing-caption: Listing@
     kroki-fetch-diagram: true
     kroki-server-url: http://kroki:8000
     sectnums: true
   extensions:
-    - asciidoctor-plantuml
+    - asciidoctor-kroki
 content:
   sources:
   - url: https://gitlab.univ-nantes.fr/naomod/sd/trivial-pursuit.git

@@ -1,4 +1,6 @@
 @startuml
+!include https://gitlab.univ-nantes.fr/naomod/defaults/-/raw/main/plantuml/puml-theme-sober.puml
+
 class Carte
 class Question {
     intitulé : String [1]
