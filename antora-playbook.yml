@@ -10,7 +10,7 @@ asciidoc:
     plantuml-config: https://gitlab.univ-nantes.fr/naomod/defaults/-/blob/main/plantuml/puml-theme-sober.puml
     listing-caption: Listing@
     kroki-fetch-diagram: true
-    kroki-server-url: http://kroki:9000
+    kroki-server-url: http://kroki:8000
     sectnums: true
   extensions:
     - asciidoctor-kroki
