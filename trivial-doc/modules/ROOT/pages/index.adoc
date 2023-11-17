@@ -25,3 +25,10 @@ Ensuite, vous devrez lire et compléter les documents suivants{nbsp}:
 
 . xref:development:composants.adoc[]
 . xref:development:conception.adoc[]
+
+[WARNING]
+====
+Utilisez l'équipe Mattermost pour poser des questions sur le projet{nbsp}:
+
+- https://mattermost.univ-nantes.fr/design/
+====

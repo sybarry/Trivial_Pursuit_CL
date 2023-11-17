@@ -1,5 +1,4 @@
 @startuml
-!include https://gitlab.univ-nantes.fr/naomod/defaults/-/raw/main/plantuml/puml-theme-sober.puml
 start
 fork
 :Delete old cache files;

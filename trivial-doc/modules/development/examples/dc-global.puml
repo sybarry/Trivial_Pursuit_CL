@@ -1,5 +1,4 @@
 @startuml
-
 package "My System" {
 interface "Interface A" as Web1
 interface "Interface B" as Cli1
