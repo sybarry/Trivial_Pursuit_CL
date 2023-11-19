@@ -1,4 +1,4 @@
-= Spécification des composants
+ = Spécification des composants
 
 [NOTE]
 ====
@@ -19,7 +19,7 @@ include::example$dc-global.puml[]
 
 
 
-== Composant A
+== Composant A: Game server
 
 [plantuml]
 ....
@@ -45,15 +45,34 @@ Required  )-- cws
 
 * Serveur :
 
-.Quelques exemples
-* Créé tous les objets relatifs au jeu : les joueurs, les cartes, les merveilles et les initialise.
-* Gère les connections au serveur et les pseudos
-* Lorsque tous les joueurs sont prêts, lance la partie et distribue au client ce dont il a besoin : Merveille, cartes au tour 1
-* À chaque tour, il reçoit la liste suivante : Le paquet de cartes non jouées, la carte jouée/déposée sur la merveille/défossée,
-le nombre d'argent à ajouter au joueur
-* Une fois que tout le monde a envoyé son jeu, envoie à chaque client : ses nouvelles cartes, les cartes jouées depuis le début de la partie de son voisin de gauche et de droite
-* Gère les tours de la partie
-* Définit le joueur gagnant
+.Gestion de compte
+* Ajouter des pseudos et creér un utilisateur.
+* Recevoir les identifiants de connexion et authentifier un utilisateur.
+* Modifier le mot de passe/détails de l'utilisateur.
+* Créer un profil(Admin/joueur).
+
+.Gestion des parties de jeu
+* Créer une nouvelle partie.
+* Renvoyer la liste des parties disponibles.
+* Ajouter/retirer un jouer dans une partie.
+* Sauvegarder la partie en cours.
+* Renvoyer l'etat d'une partie.
+* Renvoyer le nombre de joueur par partie.
+* Mettre fin à une partie
+
+
+.Gestion du jeu
+* Retourner la liste des camembert disponibles.
+* Attribuer un camembert à un joueur.
+* Retourner la liste des cartes disponible.
+* Donner le tour d'un joueur.
+* Retourner une valeur de dé(Lancer le dé).
+* Retourner la question d'une carte correspondant à la couleur et les propositions de réponses.
+* Chronometrer la durée pour une réponse.
+* Valider la réponse du joueur.
+* Ajouter un triangle à un camembert.
+* Definir le joeur gagnant.
+
 
 === Interfaces fournies
 
