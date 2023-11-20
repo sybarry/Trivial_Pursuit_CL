@@ -17,11 +17,18 @@ Elles ont été écrites en https://asciidoc.org/[Asciidoc] et les diagrammes on
 
 Tous d'abord, vous devrez lire et analyser les documents suivants{nbsp}:
 
-. xref:developement:analyse-domaine.adoc[]
-. xref:developement:exigences.adoc[]
-. xref:developement:architecture.adoc[]
+. xref:development:analyse-domaine.adoc[]
+. xref:development:exigences.adoc[]
+. xref:development:architecture.adoc[]
 
 Ensuite, vous devrez lire et compléter les documents suivants{nbsp}:
 
-. xref:developement:composants.adoc[]
-. xref:developement:conception.adoc[]
+. xref:development:composants.adoc[]
+. xref:development:conception.adoc[]
+
+[WARNING]
+====
+Utilisez l'équipe Mattermost pour poser des questions sur le projet{nbsp}:
+
+- https://mattermost.univ-nantes.fr/design/
+====
