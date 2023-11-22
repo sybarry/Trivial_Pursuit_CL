@@ -96,7 +96,7 @@ Utilisez la notation UML pour spécifier la signature de chaque operation de l'i
 
 [plantuml]
 ....
-interface Account {
+interface Account A{
     Connect(String mail, String mot_de_passe): Boolean
     CreateAccount(String nom, String prenom, String email, String mot_de_passe) : Url
     ValideAccount() : Boolean
