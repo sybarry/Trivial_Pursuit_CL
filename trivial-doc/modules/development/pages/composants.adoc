@@ -96,10 +96,10 @@ Utilisez la notation UML pour spécifier la signature de chaque operation de l'i
 
 [plantuml]
 ....
-include::example$sober.config[]
-
-interface A << Interface >> {
-    operationA(a: String, b: Integer): Boolean
+interface Account {
+    Connect(String maile, String mot_de_passe): Boolean
+    CreateAccount(String nom, String prenom, String email, String mot_de_passe) : Url
+    ValideAccount() : Boolean
 }
 ....
 
