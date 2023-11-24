@@ -2,13 +2,13 @@
 package "My System" {
 interface "Interface A" as Web1
 interface "Interface B" as Cli1
-interface "Interface C" as Web2
+interface "Account" as Web2
 interface "Interface D" as Lobby
 
 component "Component A" as GameServer
 component "Component L" as LobbyServer
 component "Component C" as MiddlewareClient1
-component "Component D" as MiddlewareClient2
+component "Game server" as MiddlewareClient2
 
 [Client web 1]
 [Client web 2]
