@@ -115,16 +115,19 @@ post:
 ----
 
 
-==== Interface B
+==== Interface RejoindrePartie
 
 [plantuml]
 ....
-'skinparam ClassHeaderBackgroundColor blue
-'skinparam CircleColor blue
-'skinparam CircledCharacterFontColor blue
+interface JoinGame {
+    JoinPartie(String gameId, String playeId) : Boolean
+    GetListPartieDisponible() : List<String>
+    GetNombredeJoueur(String gameId) : Integer
+    GetEtatPartie(String gameId) : String
+    AddJoueurPartie(String gameId, String playeId) : Boolean
+    RetirJoueurPartie(String gameId, String playeId playeId) : Boolean
+    FinPartie(String gameId) : Boolean
 
-interface C as "C" << (I, White) Interface >> {
-    operation(a: String, b: Integer): Boolean
 }
 ....
 
@@ -137,8 +140,43 @@ post:
 -- Pas de postconditions
 ----
 
+[plantuml]
+....
+interface Play {
+    TourJoueur(String gameId): String
+    LenceDe(String gameId) : Integer
+    RetournValeurDe(String gameId) : Integer
+}
+....
 
-== Composant B
+.Contraintes sur les operations
+[source, ocl]
+----
+context B::operationA(a: String, b: Integer): Boolean
+pre: a.size() > 3
+post:
+-- Pas de postconditions
+----
+
+[plantuml]
+....
+interface Plateau {
+    RetourneListeCamembert(String gameId, String playeId, Strign camembertType): Boolean
+    CarteDisponible() : List<String>
+    ChooseCarte(String gameId, String carteId) : Boolean
+}
+....
+
+.Contraintes sur les operations
+[source, ocl]
+----
+context B::operationA(a: String, b: Integer): Boolean
+pre: a.size() > 3
+post:
+-- Pas de postconditions
+----
+
+== Composant A
 
 [note]
 ====
@@ -148,12 +186,10 @@ Description de ses responsabilités et de ses interfaces
 === Interface C
 [plantuml]
 ....
-include::example$sober.config[]
-
-interface GameServer << Interface >> {
-    connect(pseudo: String, password: String, ip: String, port: Integer):Boolean
-    createGame(numberOfPlayers : Integer): Integer
-    join(gameId : Integer): Integer
+interface GameServer {
+connect(pseudo: String, password: String, ip: String, port: Integer):Boolean
+createGame(numberOfPlayers : Integer): Integer
+join(gameId : Integer): Integer
 notifyPlayersReady(): String
 chooseRole(role: String, playerId: Integer)
 resist(numberOfPawns: Integer)
@@ -184,11 +220,11 @@ putToken(tokenName: String, cardNames: String [0..2])
 .Connexion au serveur
 [plantuml]
 ....
-include::example$sober.config[]
+@startuml
 
-participant "ClientA:Client" as C1
-participant "ClientB:Client" as C2
-participant "ClientC:Client" as C3
+actor "ClientA:Client" as C1
+actor "ClientB:Client" as C2
+actor "ClientC:Client" as C3
 
 C1 -> Serveur: Connect("Teddy")
 Serveur --> C1 : true
@@ -229,43 +265,40 @@ Serveur -> C2 : playerReady("Romain0")
 Serveur -> C1 : play()
 Serveur -> C2 : play()
 Serveur -> C3 : play()
+
+@enduml
 ....
 
 .Déroulement de l'initialisation du tour 1
 [plantuml]
 ....
-include::example$sober.config[]
+@startuml
 
-participant "ClientA:Client" as C1
-participant "ClientB:Client" as C2
-participant "ClientC:Client" as C3
+actor "ClientA:Client" as C1
+actor "ClientB:Client" as C2
+actor "ClientC:Client" as C3
 
-C1 -> C2 : sync-message()
-C1 -> C3 : another-sync-message()
-C1 -> C2 : sync-message()
-C1 -> C3 : another-sync-message()
-C1 -> C2 : sync-message()
-C1 -> C3 : another-sync-message()
+
+@enduml
 ....
 
-.Déroulement d'un tour, on suppose les clients déjà initialisés et le tour 4
+.Déroulement d'un tour (on suppose les clients déjà initialisés et le tour 4)
+
 [plantuml]
 ....
-include::example$sober.config[]
+@startuml
 
-participant "Rom:Client" as C1
-participant "Ted:Client" as C2
-participant "Isma:Client" as C3
+actor "Rom:Client" as C1
+actor "Ted:Client" as C2
+actor "Isma:Client" as C3
 
-C1 ->> C2 : async-message()
-C1 ->> C3 : another-async-message()
+
+@enduml
 ....
 
 .Rejoindre une partie
 [plantuml]
 ....
-include::example$sober.config[]
-
 participant "__one:Player__" as player1
 participant "__two:Player__" as player2
 participant "__three:Player__" as player3
