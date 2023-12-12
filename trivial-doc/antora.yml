@@ -17,6 +17,7 @@ asciidoc:
     url-asciidoc: https://docs.asciidoctor.org/asciidoc/latest
     kroki-fetch-diagram: true
     kroki-server-url: https://kroki.io
+    plantuml-config: https://gitlab.univ-nantes.fr/naomod/defaults/-/blob/main/plantuml/puml-theme-sober.puml
     icons: font
   extensions:
     - asciidoctor-kroki
@@ -24,4 +25,4 @@ asciidoc:
 
 nav:
 - modules/ROOT/nav.adoc
-- modules/developement/nav.adoc
+- modules/development/nav.adoc

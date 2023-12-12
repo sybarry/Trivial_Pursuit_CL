@@ -14,19 +14,21 @@ Utilisez des diagrammes d'interaction (séquence, communication) pour décrire l
 .Diagramme de composants décrivant la solution proposée
 [plantuml]
 ....
+include::example$sober.config[]
 include::example$dc-global.puml[]
 ....
 
+.Un autre exemple
 
-
-== Composant A: Game server
+== Composant : Game server
 
 [plantuml]
 ....
+include::example$sober.config[]
 @startuml
 left to right direction
 
-component A as "Component A" {
+component A as "Game server" {
     portin "WebSockets" as cws
     portout "HTTP" as sws
 }
@@ -74,9 +76,11 @@ Required  )-- cws
 * Definir le joeur gagnant.
 
 
+
+
 === Interfaces fournies
 
-==== Interface A
+==== Interface Account
 
 [TIP]
 ====
@@ -94,8 +98,10 @@ Utilisez la notation UML pour spécifier la signature de chaque operation de l'i
 
 [plantuml]
 ....
-interface A {
-    operationA(a: String, b: Integer): Boolean
+interface Account {
+    Connect(String mail, String mot_de_passe): Boolean
+    CreateAccount(String nom, String prenom, String email, String mot_de_passe) : Url
+    ValideAccount() : Boolean
 }
 ....
 
@@ -111,12 +117,19 @@ post:
 ----
 
 
-==== Interface B
+==== Interface RejoindrePartie
 
 [plantuml]
 ....
-interface B {
-    operationB(a: String, b: Integer): Boolean
+interface JoinGame {
+    JoinPartie(String gameId, String playeId) : Boolean
+    GetListPartieDisponible() : List<String>
+    GetNombredeJoueur(String gameId) : Integer
+    GetEtatPartie(String gameId) : String
+    AddJoueurPartie(String gameId, String playeId) : Boolean
+    RetirJoueurPartie(String gameId, String playeId playeId) : Boolean
+    FinPartie(String gameId) : Boolean
+
 }
 ....
 
@@ -129,6 +142,41 @@ post:
 -- Pas de postconditions
 ----
 
+[plantuml]
+....
+interface Play {
+    TourJoueur(String gameId): String
+    LenceDe(String gameId) : Integer
+    RetournValeurDe(String gameId) : Integer
+}
+....
+
+.Contraintes sur les operations
+[source, ocl]
+----
+context B::operationA(a: String, b: Integer): Boolean
+pre: a.size() > 3
+post:
+-- Pas de postconditions
+----
+
+[plantuml]
+....
+interface Plateau {
+    RetourneListeCamembert(String gameId, String playeId, Strign camembertType): Boolean
+    CarteDisponible() : List<String>
+    ChooseCarte(String gameId, String carteId) : Boolean
+}
+....
+
+.Contraintes sur les operations
+[source, ocl]
+----
+context B::operationA(a: String, b: Integer): Boolean
+pre: a.size() > 3
+post:
+-- Pas de postconditions
+----
 
 == Composant A
 
@@ -154,38 +202,58 @@ putToken(tokenName: String, cardNames: String [0..2])
 }
 ....
 
-== Composant B: Client(User Interface)
-=== Responsabilités du Composant B
-* Interface utilisateur :
+== Composant : serveur Client
 
-.UI de connexion
-* Afficher l'interface de connexion
-* Entrer un pseudo/mail et un mot de passe
-* Afficher l'interface pour la creation de compte
-* Entrer un mail, un nom, un prenom, une date de naissance, un mot de passe
-* Afficher l'interface pour la modification de compte
-* entrer les informations a modifier
+[plantuml]
+....
+include::example$sober.config[]
+@startuml
+left to right direction
 
-.UI du Jeu
-* Selctionner mon niveau(Beginner, intermediate, advanced)
-* Affichier la liste des parties disponibles
-* Selectionner et integrer une partie
+component A as "Game Client" {
+    portin "WebSockets" as cws
+    portout "HTTP" as sws
+}
 
-.UI du plateau de jeu
-* Selectionner un camenbert
-* Lancer un de
-* Afficher la valeur de de
-* Deplacer un camenbert
-* Afficher une question et les propositions de reponses
-* Repondre a une question
-* Ajouter un triangle dans un camenbert
-* Afficher le tour du prochain joueur
-* Afficher le joueur gagnant
-* Afficher la fin d'une partie
+interface Provided
 
-== Composant C: Data(Database)
-=== Responsabilités du Composant C
-* base de donees :
+interface Required
+
+sws --() Provided
+Required  )-- cws
+@enduml
+....
+
+=== Interfaces fournies
+
+=== Responsabilités du Composant CLient
+
+
+== Composant : serveur Data
+
+[plantuml]
+....
+include::example$sober.config[]
+@startuml
+left to right direction
+
+component A as "Game Data" {
+    portin "WebSockets" as cws
+    portout "HTTP" as sws
+}
+
+interface Provided
+
+interface Required
+
+sws --() Provided
+Required  )-- cws
+@enduml
+....
+
+=== Interfaces fournies
+
+=== Responsabilités du Composant Data
 
 == Interactions
 

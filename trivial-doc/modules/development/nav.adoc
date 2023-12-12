@@ -4,4 +4,3 @@
 * xref:architecture.adoc[]
 * xref:composants.adoc[]
 * xref:conception.adoc[]
-* xref:termes.adoc[]
