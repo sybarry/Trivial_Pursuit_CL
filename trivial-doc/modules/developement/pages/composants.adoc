@@ -154,6 +154,39 @@ putToken(tokenName: String, cardNames: String [0..2])
 }
 ....
 
+== Composant B: Client(User Interface)
+=== Responsabilités du Composant B
+* Interface utilisateur :
+
+.UI de connexion
+* Afficher l'interface de connexion
+* Entrer un pseudo/mail et un mot de passe
+* Afficher l'interface pour la creation de compte
+* Entrer un mail, un nom, un prenom, une date de naissance, un mot de passe
+* Afficher l'interface pour la modification de compte
+* entrer les informations a modifier
+
+.UI du Jeu
+* Selctionner mon niveau(Beginner, intermediate, advanced)
+* Affichier la liste des parties disponibles
+* Selectionner et integrer une partie
+
+.UI du plateau de jeu
+* Selectionner un camenbert
+* Lancer un de
+* Afficher la valeur de de
+* Deplacer un camenbert
+* Afficher une question et les propositions de reponses
+* Repondre a une question
+* Ajouter un triangle dans un camenbert
+* Afficher le tour du prochain joueur
+* Afficher le joueur gagnant
+* Afficher la fin d'une partie
+
+== Composant C: Data(Database)
+=== Responsabilités du Composant C
+* base de donees :
+
 == Interactions
 
 [TIP]
