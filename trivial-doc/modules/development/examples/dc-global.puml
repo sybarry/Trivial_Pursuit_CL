@@ -1,32 +1,41 @@
 @startuml
 package "My System" {
-interface "Interface A" as Web1
-interface "Interface B" as Cli1
-interface "Account" as Web2
-interface "Interface D" as Lobby
+interface "Connect" as connect
+interface "Join" as Cli1
+interface "Play" as pl
+interface "Initialise" as init
 
-component "Component A" as GameServer
-component "Component L" as LobbyServer
-component "Component C" as MiddlewareClient1
-component "Game server" as MiddlewareClient2
+interface "AddData" as addData
+interface "GetData" as getData
+interface "UpdateData" as updateData
 
-[Client web 1]
-[Client web 2]
+component "Game Data " as LobbyServer
+component "Game server" as MiddlewareClient1
+
+
+[LobbyServer] -up-() addData
+MiddlewareClient1 --( addData
+
+[LobbyServer] -up-() getData
+MiddlewareClient1 --( getData
+
+[LobbyServer] -up-() updateData
+MiddlewareClient1 --( updateData
+
+
+
+
+[Client Game] --( Cli1
+Cli1 -- [MiddlewareClient1]
+
+[Client Game] --( connect
+[MiddlewareClient1] -up-() connect
+
+[Client Game] --( pl
+pl -- [MiddlewareClient1]
+
+[Client Game] --( init
+init -- [MiddlewareClient1]
+
 }
-
-
-[LobbyServer] -up-() Lobby
-
-[GameServer] --( Lobby
-MiddlewareClient1 --( Lobby
-MiddlewareClient2 --( Lobby
-
-[Client web 1] --() Cli1
-Cli1 )-- [MiddlewareClient1]
-
-[Client web 2] --( Web2
-[MiddlewareClient2] -up-() Web2
-
-[Client web 1] --( Web1
-[MiddlewareClient1] -up-() Web1
 @enduml
