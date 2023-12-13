@@ -20,7 +20,7 @@ include::example$dc-global.puml[]
 
 .Un autre exemple
 
-== Composant : Game server
+== Composant A : Game server
 
 [plantuml]
 ....
@@ -76,8 +76,6 @@ Required  )-- cws
 * Definir le joeur gagnant.
 
 
-
-
 === Interfaces fournies
 
 ==== Interface Account
@@ -99,9 +97,9 @@ Utilisez la notation UML pour spécifier la signature de chaque operation de l'i
 [plantuml]
 ....
 interface Account {
-    Connect(String mail, String mot_de_passe): Boolean
-    CreateAccount(String nom, String prenom, String email, String mot_de_passe) : Url
-    ValideAccount() : Boolean
+    Connect(email: String, password :String): Boolean
+    CreateAccount(String firstname, String lastname, String email, password: String) : String
+    validateAccount() : Boolean
 }
 ....
 
@@ -122,14 +120,13 @@ post:
 [plantuml]
 ....
 interface JoinGame {
-    JoinPartie(String gameId, String playeId) : Boolean
-    GetListPartieDisponible() : List<String>
-    GetNombredeJoueur(String gameId) : Integer
-    GetEtatPartie(String gameId) : String
-    AddJoueurPartie(String gameId, String playeId) : Boolean
-    RetirJoueurPartie(String gameId, String playeId playeId) : Boolean
-    FinPartie(String gameId) : Boolean
-
+    joinGamePart(gamePartId: String, userId: String) : Boolean
+    getAvailableGameParts() : GameParts[]
+    getNumberOfPlayers(gameId: String) : Integer
+    getGamePart(String gamePartId) : String
+    addPlayer(String gamePartId, userId: String) : Boolean
+    removePlayer(gamePartId: String, userId: String) : Boolean
+    endGamePart(gamePartId: String): String
 }
 ....
 
@@ -145,9 +142,13 @@ post:
 [plantuml]
 ....
 interface Play {
-    TourJoueur(String gameId): String
-    LenceDe(String gameId) : Integer
-    RetournValeurDe(String gameId) : Integer
+    getAvailableBoxes(diceValue: Integer, userId: String): Boxes[]
+    isPlayerTurn(gamePartId: String, userId: String): Boolean
+    diceRoll(String userId) : Integer
+    chooseBox(boxName: String, userId: String) : String
+    showQuestion(boxColor: String): String
+    checkAnswer(answer: String): Boolean
+    addTriangle(boxColor: String, userId: String): Boolean
 }
 ....
 
@@ -162,10 +163,11 @@ post:
 
 [plantuml]
 ....
-interface Plateau {
-    RetourneListeCamembert(String gameId, String playeId, Strign camembertType): Boolean
-    CarteDisponible() : List<String>
-    ChooseCarte(String gameId, String carteId) : Boolean
+interface initialiseGame {
+    createGamePart(gamePartName: String, userId: String, numberOfPlayers: Integer): gamePartId: String
+    getCamembertList(gamePartId: String): Camemberts[]
+    getAllCards() : Cards[]
+    ChooseCamembert(camembertColor: String, userId: String) : Boolean
 }
 ....
 
@@ -178,32 +180,7 @@ post:
 -- Pas de postconditions
 ----
 
-== Composant A
-
-[note]
-====
-Description de ses responsabilités et de ses interfaces
-====
-
-=== Interface C
-[plantuml]
-....
-interface GameServer {
-connect(pseudo: String, password: String, ip: String, port: Integer):Boolean
-createGame(numberOfPlayers : Integer): Integer
-join(gameId : Integer): Integer
-notifyPlayersReady(): String
-chooseRole(role: String, playerId: Integer)
-resist(numberOfPawns: Integer)
-playPlaceCard(playerId: Integer, cardName: String)
-playHuntCard(cardName: String)
-letGo()
-putToken(tokenName: String, cardNames: String [0..2])
-}
-....
-
-== Composant : serveur Client
-
+== Composant B: Client(User Interface)
 [plantuml]
 ....
 include::example$sober.config[]
@@ -223,13 +200,54 @@ sws --() Provided
 Required  )-- cws
 @enduml
 ....
+=== Responsabilités du Composant B
+* Interface utilisateur :
+
+.UI de connexion
+* Afficher l'interface de connexion
+* Entrer un pseudo/mail et un mot de passe
+* Afficher l'interface pour la creation de compte
+* Entrer un mail, un nom, un prenom, une date de naissance, un mot de passe
+* Afficher l'interface pour la modification de compte
+* entrer les informations a modifier
+
+.UI du Jeu
+* Selctionner mon niveau(Beginner, intermediate, advanced)
+* Affichier la liste des parties disponibles
+* Selectionner et integrer une partie
+
+.UI du plateau de jeu
+* Selectionner un camenbert
+* Lancer un de
+* Afficher la valeur de de
+* Deplacer un camenbert
+* Afficher une question et les propositions de reponses
+* Repondre a une question
+* Ajouter un triangle dans un camenbert
+* Afficher le tour du prochain joueur
+* Afficher le joueur gagnant
+* Afficher la fin d'une partie
+
 
 === Interfaces fournies
+[plantuml]
+....
+interface GameServer {
+connect(pseudo: String, password: String, ip: String, port: Integer):Boolean
+createGame(numberOfPlayers : Integer): Integer
+join(gameId : Integer): Integer
+notifyPlayersReady(): String
+chooseRole(role: String, playerId: Integer)
+resist(numberOfPawns: Integer)
+playPlaceCard(playerId: Integer, cardName: String)
+playHuntCard(cardName: String)
+letGo()
+putToken(tokenName: String, cardNames: String [0..2])
+}
+....
 
-=== Responsabilités du Composant CLient
 
-
-== Composant : serveur Data
+== Composant : Game Data
 
 [plantuml]
 ....
@@ -251,10 +269,72 @@ Required  )-- cws
 @enduml
 ....
 
+
+=== Responsabilités du Composant  Game data
+* Base de donnees :
+
+.Stockage des donnees
+
+* Stocker les utilisateurs
+* Stocker les parties de jeu
+* Stocker les cartes
+* Stocker les cases
+* Stocker les camenberts
+* Stocker les triangles
+
+
 === Interfaces fournies
 
-=== Responsabilités du Composant Data
-
+[plantuml]
+....
+interface AddData {
+addUser(): String
+addGamePart() : String
+}
+....
+.Contraintes sur les operations
+[source, ocl]
+----
+context B::operationA(a: String, b: Integer): Boolean
+pre: a.size() > 3
+post:
+-- Pas de postconditions
+----
+[plantuml]
+....
+interface GetData {
+getUser(userId: String): User
+getGamePart(): GameParts[]
+getCards(): Cards[]
+getBoxes() : Boxes[]
+getCamemberts(): Camemberts[]
+}
+....
+.Contraintes sur les operations
+[source, ocl]
+----
+context B::operationA(a: String, b: Integer): Boolean
+pre: a.size() > 3
+post:
+-- Pas de postconditions
+----
+[plantuml]
+....
+interface UpdateData {
+updateUser(userId: String, data: String):userId: String
+updateGamePart(gamePartId: String): Boolean
+updateBoxes(boxName: String, userId: String): Boolean
+updateCamembert(camembertColor: String): Boolean
+}
+....
+.Contraintes sur les operations
+[source, ocl]
+----
+context B::operationA(a: String, b: Integer): Boolean
+pre: a.size() > 3
+post:
+-- Pas de postconditions
+----
 == Interactions
 
 [TIP]
