@@ -361,50 +361,34 @@ actor "ClientA:Client" as C1
 actor "ClientB:Client" as C2
 actor "ClientC:Client" as C3
 
-C1 -> Serveur: Connect("Teddy")
+C1 -> Serveur: Connect("EKLO","1234")
 Serveur --> C1 : true
-C1 -> Serveur: allPlayers()
-Serveur --> C1: {}
+C2 -> Serveur: CreateAccount("BARRY", "Saikou yaya", "saikouyaya110@gmail.com", "1234"")
+Serveur --> C2 : validateAccount
 
 
-C2 -> Serveur: Connect("Romain")
+C2 -> Serveur: Connect("BARRY","1234")
 Serveur --> C2 : true
-C2 -> Serveur : allPlayers()
-Serveur --> C2 : {"Teddy": false}
 
-Serveur --> C1 : newPlayer("Romain")
+C2 -> Serveur: Connect("BARRY","5678")
+Serveur --> C2 : false
 
+C2 -> Serveur : Reinitialisemotdepasse("BARRY")
+Serveur --> C2 : true
 
-C3 -> Serveur: Connect("Romain")
-Serveur --> C3 : true
-Serveur --> C3 : changePseudo("Romain0")
-C3 --> Serveur : allPlayers()
-Serveur --> C3 : {"Teddy": false, "Romain": false}
+C2 -> Serveur: Connect("BARRY","1234")
+Serveur --> C2 : true
 
-Serveur --> C1 : newPlayer("Romain0")
-Serveur --> C2 : newPlayer("Romain0")
-
-C1 -> Serveur: ready("Teddy")
-Serveur -> C2 : playerReady("Teddy")
-Serveur -> C3 : playerReady("Teddy")
-
-C2 -> Serveur: ready("Romain")
-Serveur -> C1 : playerReady("Romain")
-Serveur -> C3 : playerReady("Romain")
-
-C3 -> Serveur: ready("Romain0")
-Serveur -> C1 : playerReady("Romain0")
-Serveur -> C2 : playerReady("Romain0")
-
+Serveur --> C1: getGamePart("Partie1")
+Serveur --> C2 : true
+C1 -> Serveur: joinGamePart("Partie1", "BARRY1")
 
 Serveur -> C1 : play()
-Serveur -> C2 : play()
-Serveur -> C3 : play()
 
 @enduml
 ....
 
-.Déroulement de l'initialisation du tour 1
+.Initialisation
 [plantuml]
 ....
 @startuml
@@ -413,52 +397,37 @@ actor "ClientA:Client" as C1
 actor "ClientB:Client" as C2
 actor "ClientC:Client" as C3
 
+C1 -> Serveur: ChooseCamembert("yellow", "BARRY1")
+C2 -> Serveur: ChooseCamembert("yellow", "EKLO1")
+
+C1 -> Serveur: diceRoll("EKLO1")
+Serveur --> C1 : 3
+
+C2 -> Serveur: diceRoll("BARRY1")
+Serveur --> C2 : 5
+
+C2 -> Serveur: TrourJoueur("BARRY1")
+Serveur --> C2 : true
+
+Serveur --> C1 : false
 
 @enduml
 ....
 
-.Déroulement d'un tour (on suppose les clients déjà initialisés et le tour 4)
 
+.Tour de jeu
 [plantuml]
 ....
 @startuml
 
-actor "Rom:Client" as C1
-actor "Ted:Client" as C2
-actor "Isma:Client" as C3
+actor "ClientA:Client" as C1
+actor "ClientB:Client" as C2
+actor "ClientC:Client" as C3
+
+C1 -> Serveur: A completer("A completer")
+Serveur --> C1 : A completer
 
 
 @enduml
 ....
 
-.Rejoindre une partie
-[plantuml]
-....
-participant "__one:Player__" as player1
-participant "__two:Player__" as player2
-participant "__three:Player__" as player3
-participant "__four:Player__" as player4
-participant "__five:Player__" as player5
-participant "__six:Player__" as player6
-participant "__game:GameServer__" as game
-
-player1 -> game : id := createGame(6)
-par
-    player1 ->> game : playerId := join(id, one)
-    player2 ->> game : playerId := join(id, two)
-    player3 ->> game : playerId := join(id, three)
-    player4 ->> game : playerId := join(id, four)
-    player5 ->> game : playerId := join(id, five)
-    player6 ->> game : playerId := join(id, six)
-end
-    game    --> player1: notifyPlayersReady()
-    player1 -> game: role := chooseRole("Creature", two)
-par
-    game    --> player1: gameStart(boardGameState)
-    game    --> player2: gameStart(boardGameState)
-    game    --> player3: gameStart(boardGameState)
-    game    --> player4: gameStart(boardGameState)
-    game    --> player5: gameStart(boardGameState)
-    game    --> player6: gameStart(boardGameState)
-end
-....
