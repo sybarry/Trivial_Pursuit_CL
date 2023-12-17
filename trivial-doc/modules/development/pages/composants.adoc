@@ -28,18 +28,32 @@ include::example$sober.config[]
 @startuml
 left to right direction
 
+
 component A as "Game server" {
     portin "WebSockets" as cws
-    portout "HTTP" as sws
+    portout "WebSockets" as sws
 }
 
-interface Provided
+interface updateData
+interface getData
+interface addData
 
-interface Required
+interface connect
+interface join
+interface play
+interface initialise
 
 
-sws --() Provided
-Required  )-- cws
+sws --( connect
+sws --( join
+sws --( play
+sws --( initialise
+
+updateData  )-- cws
+getData )-- cws
+addData )-- cws
+
+
 @enduml
 ....
 
@@ -188,16 +202,21 @@ include::example$sober.config[]
 left to right direction
 
 component A as "Game Client" {
-    portin "WebSockets" as cws
-    portout "HTTP" as sws
+    portin "HTTP" as cws
+    portout "WebSockets" as sws
 }
 
-interface Provided
+interface connect
+interface join
+interface play
+interface initialise
 
-interface Required
 
-sws --() Provided
-Required  )-- cws
+sws --( connect
+sws --( join
+sws --( play
+sws --( initialise
+
 @enduml
 ....
 === Responsabilités du Composant B
@@ -260,12 +279,15 @@ component A as "Game Data" {
     portout "HTTP" as sws
 }
 
-interface Provided
+interface updateData
+interface getData
+interface addData
 
-interface Required
+updateData  )-- cws
+getData )-- cws
+addData )-- cws
 
-sws --() Provided
-Required  )-- cws
+
 @enduml
 ....
 
@@ -426,7 +448,6 @@ actor "ClientC:Client" as C3
 
 C1 -> Serveur: A completer("A completer")
 Serveur --> C1 : A completer
-
 
 @enduml
 ....
