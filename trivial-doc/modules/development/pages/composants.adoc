@@ -379,9 +379,9 @@ post:
 ....
 @startuml
 
-actor "ClientA:Client" as C1
-actor "ClientB:Client" as C2
-actor "ClientC:Client" as C3
+actor "ClientA:EKLO1" as C1
+actor "ClientB:BARRY1" as C2
+actor "ClientC:YAYA1" as C3
 
 C1 -> Serveur: Connect("EKLO","1234")
 Serveur --> C1 : true
@@ -415,20 +415,20 @@ Serveur -> C1 : play()
 ....
 @startuml
 
-actor "ClientA:Client" as C1
-actor "ClientB:Client" as C2
-actor "ClientC:Client" as C3
+actor "ClientA:BARRY1" as C1
+actor "ClientB:EKLO1" as C2
+actor "ClientC:YAYA1" as C3
 
 C1 -> Serveur: ChooseCamembert("yellow", "BARRY1")
 C2 -> Serveur: ChooseCamembert("yellow", "EKLO1")
 
-C1 -> Serveur: diceRoll("EKLO1")
+C1 -> Serveur: diceRoll("BARRY1")
 Serveur --> C1 : 3
 
-C2 -> Serveur: diceRoll("BARRY1")
+C2 -> Serveur: diceRoll("EKLO1")
 Serveur --> C2 : 5
 
-C2 -> Serveur: TrourJoueur("BARRY1")
+C2 -> Serveur: TrourJoueur("EKLO1")
 Serveur --> C2 : true
 
 Serveur --> C1 : false
@@ -446,8 +446,38 @@ actor "ClientA:Client" as C1
 actor "ClientB:Client" as C2
 actor "ClientC:Client" as C3
 
-C1 -> Serveur: A completer("A completer")
-Serveur --> C1 : A completer
+C2 -> Serveur: diceRoll("EKLO1")
+Serveur --> C2 : 4
+C2 -> Serveur: choosecarte()
+Serveur --> C2 : bleu
+C2 -> Serveur: RepondreQuestion("T")
+Serveur --> C2 : true
+C2 -> Serveur: AjoutTriangle()
+Serveur --> C2 : true
+C2 -> Serveur: TrourJoueur("EKLO1")
+Serveur --> C2 : true
+
+C1-> Serveur: TrourJoueur("BARRY1")
+Serveur --> C1 : false
+
+C3 -> Serveur: TrourJoueur("YAYA1")
+Serveur --> C3 : false
+
+C2 -> Serveur: diceRoll("EKLO1")
+Serveur --> C2 : 2
+C2 -> Serveur: choosecarte()
+Serveur --> C2 : yellow
+C2 -> Serveur: RepondreQuestion("F")
+Serveur --> C2 : false
+
+C2 -> Serveur: TrourJoueur("EKLO1")
+Serveur --> C2 : false
+
+C1-> Serveur: TrourJoueur("BARRY1")
+Serveur --> C1 : false
+
+C3-> Serveur: TrourJoueur("YAYA1")
+Serveur --> C3 : true
 
 @enduml
 ....
