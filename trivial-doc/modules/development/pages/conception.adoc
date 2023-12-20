@@ -11,6 +11,11 @@ Moyens::
 Appliquez les concepts vus en cours: design patterns, principes GRASP, bonnes pratiques, etc.
 
 
+.Diagramme de classes conceptuelles
+[plantuml, cd-plateau-cases]
+....
+include::example$pécification_détaillée_des_composants.plantuml[]
+....
 
 
 == Réponses aux exigences non-fonctionnelles

@@ -1,0 +1,132 @@
+@startuml
+!include https://gitlab.univ-nantes.fr/naomod/defaults/-/raw/main/plantuml/puml-theme-sober.puml
+
+abstract class User <<abstract>>{
+    - id: String
+    - firstname: string
+    - lastname: string
+    - email: string
+    - password: string
+    + connect()
+    + createAccount()
+    + vaidateAccount()
+}
+
+class Administrator {
+     + createGamePart()
+     + deleteGamePart()
+     + deleteAccount()
+}
+
+class Joueur {
+    - pseudo : string
+}
+
+class Partie {
+    - id : string
+    - listejoureur: List<Joueur>
+    - etat : boolean
+}
+
+class Jeu {
+    - listepartie : List<Partie>
+}
+
+class Question {
+    - Intitule : string
+}
+
+
+class Reponse {
+    - reponse : string
+}
+
+class Camembert {
+    - id : string
+    - listetriangle : List<Triangle>
+}
+
+abstract class Case <<abstract>>{
+    - nom : string
+    - couleur : Couleur
+}
+
+class CaseSimple {
+    - numerocase : number
+}
+
+
+class CaseQuartierGeneral {
+    - id : string
+}
+
+class Categorie {
+    - theme : Theme
+}
+
+class Camembert {
+    - pseudo : string
+}
+
+class Triangle {
+    - couleur : Couleur
+}
+
+class CaseDepart {
+    - id : string
+}
+
+class Carte{
+    - numCarte : number
+    - question : Question[]
+    - reponse  : Reponse[]
+}
+
+
+
+enum Theme {
+    Géographie
+    Divertissements
+    Histoire
+    Arts et Littérature
+    Sciences et Nature
+    Sports et Loisirs
+}
+
+enum Couleur {
+    Bleu
+    Rose
+    Jaune
+    Vert
+    Violet
+    Orange
+}
+
+
+User <|-- Joueur
+User <|-- Administrator
+
+Case <|-- CaseDepart
+Case <|-- CaseSimple
+Case <|-- CaseQuartierGeneral
+
+Jeu *-> "[n]" Partie : \t\t
+
+Partie --> "[1]" Plateau
+Plateau -left-> "[400]" Carte
+Plateau *- "cases [72]" Case : \t\t\t\t\t\t
+Plateau --> "début [1]" CaseDepart : \t\t\t\t\t\t
+
+Carte *-left- "[6] questions" Question : \t\t\t\t\t
+Carte *-- "[6] réponses" Reponse
+Question "[1]" -- "[1]" Reponse
+
+Camembert *-> "[0-6]" Triangle : \t\t
+
+CaseSimple --> "catégorie [1]" Categorie
+CaseQuartierGeneral --> "catégorie [1]" Categorie
+
+Joueur --> "[1]" Camembert
+Camembert --> "[1]" Case
+
+@enduml

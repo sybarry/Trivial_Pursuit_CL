@@ -7,3 +7,4 @@
 == Utilitaires
 
 **link:https://e206597m.univ-nantes.io/trivial-poursuit/trivial-doc/dev/index.html[Conception choisie]** +
+
