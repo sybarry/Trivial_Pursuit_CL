@@ -113,6 +113,7 @@ Utilisez la notation UML pour spécifier la signature de chaque operation de l'i
 interface Account {
     Connect(email: String, password :String): Boolean
     CreateAccount(String firstname, String lastname, String email, password: String) : String
+modifyPassword(oldPassword: String, newPassword: String): Boolean
     validateAccount() : Boolean
 }
 ....
@@ -248,22 +249,7 @@ sws --( initialise
 * Afficher la fin d'une partie
 
 
-=== Interfaces fournies
-[plantuml]
-....
-interface GameServer {
-connect(pseudo: String, password: String, ip: String, port: Integer):Boolean
-createGame(numberOfPlayers : Integer): Integer
-join(gameId : Integer): Integer
-notifyPlayersReady(): String
-chooseRole(role: String, playerId: Integer)
-resist(numberOfPawns: Integer)
-playPlaceCard(playerId: Integer, cardName: String)
-playHuntCard(cardName: String)
-letGo()
-putToken(tokenName: String, cardNames: String [0..2])
-}
-....
+
 
 
 == Composant : Game Data
@@ -395,7 +381,7 @@ Serveur --> C2 : true
 C2 -> Serveur: Connect("BARRY","5678")
 Serveur --> C2 : false
 
-C2 -> Serveur : Reinitialisemotdepasse("BARRY")
+C2 -> Serveur : modifyPassword("5678", "1234")
 Serveur --> C2 : true
 
 C2 -> Serveur: Connect("BARRY","1234")
@@ -428,9 +414,10 @@ Serveur --> C1 : 3
 C2 -> Serveur: diceRoll("EKLO1")
 Serveur --> C2 : 5
 
-C2 -> Serveur: TrourJoueur("EKLO1")
+C2 -> Serveur: isPlayerTurn("game1","EKLO1")
 Serveur --> C2 : true
 
+C1 -> Serveur: isPlayerTurn("game1","BARRY1")
 Serveur --> C1 : false
 
 @enduml
@@ -450,33 +437,33 @@ C2 -> Serveur: diceRoll("EKLO1")
 Serveur --> C2 : 4
 C2 -> Serveur: choosecarte()
 Serveur --> C2 : bleu
-C2 -> Serveur: RepondreQuestion("T")
+C2 -> Serveur: checkAnswer("Trois")
 Serveur --> C2 : true
-C2 -> Serveur: AjoutTriangle()
+C2 -> Serveur: addTriangle("rouge", "EKLO1")
 Serveur --> C2 : true
-C2 -> Serveur: TrourJoueur("EKLO1")
+C2 -> Serveur: isPlayerTurn("EKLO1")
 Serveur --> C2 : true
 
-C1-> Serveur: TrourJoueur("BARRY1")
+C1-> Serveur: isPlayerTurn("BARRY1")
 Serveur --> C1 : false
 
-C3 -> Serveur: TrourJoueur("YAYA1")
+C3 -> Serveur: isPlayerTurn("YAYA1")
 Serveur --> C3 : false
 
 C2 -> Serveur: diceRoll("EKLO1")
 Serveur --> C2 : 2
-C2 -> Serveur: choosecarte()
-Serveur --> C2 : yellow
-C2 -> Serveur: RepondreQuestion("F")
+C2 -> Serveur: chooseBox("bleu", "EKLO1")
+Serveur --> C2 : La capitale de France
+C2 -> Serveur: checkAnswer("Tokyo")
 Serveur --> C2 : false
 
-C2 -> Serveur: TrourJoueur("EKLO1")
+C2 -> Serveur: isPlayerTurn("EKLO1")
 Serveur --> C2 : false
 
-C1-> Serveur: TrourJoueur("BARRY1")
+C1-> Serveur: isPlayerTurn("BARRY1")
 Serveur --> C1 : false
 
-C3-> Serveur: TrourJoueur("YAYA1")
+C3-> Serveur: isPlayerTurn("YAYA1")
 Serveur --> C3 : true
 
 @enduml
