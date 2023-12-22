@@ -80,16 +80,17 @@ En adoptant ces pratiques, nous avons renforcer la maintenabilité du Trivial Pu
 
 NOTE: TODO!
 
-    Modularité
-    Documentation Complète
-    Normes de Codage
-    Gestion des Erreurs
-    Tests Automatisés
-    Contrôle de Version
-    Flexibilité Architecturale
-    Gestion des Dépendances
-    Formation et Transition
-    Révision de Code
+En adoptant ces pratiques, vous pouvez renforcer la maintenabilité du Trivial Pursuit, permettant ainsi d'assurer une évolutivité continue et une gestion efficace des modifications et des améliorations tout au long de son cycle de vie :
+Modularité,
+Documentation Complète,
+Normes de Codage,
+Gestion des Erreurs,
+Tests Automatisés,
+Contrôle de Version,
+Flexibilité Architecturale,
+Gestion des Dépendances,
+Formation et Transition,
+Révision de Code.
 
 
 === Interface utilisateur
