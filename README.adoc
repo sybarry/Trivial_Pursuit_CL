@@ -1,8 +1,22 @@
 = Projet Trivial Pursuit
 
-== Member
-- Barry Saikou yaya
-- Eklo Afi Sabine
+== Membre
+|===
+| NOM  | PRENOM
+
+| BARRY | Saikou yaya
+| Eklo | Sabine
+|===
+
+
+== Composants
+
+**link:https://gitlab.univ-nantes.fr/E23C951U/projet-2023/-/blob/main/trivial-doc/modules/development/pages/composants.adoc[Composant]** +
+
+== Conception
+
+**link:https://gitlab.univ-nantes.fr/E23C951U/projet-2023/-/blob/main/trivial-doc/modules/development/pages/conception.adoc[Conception]** +
+
 
 == Utilitaires
 

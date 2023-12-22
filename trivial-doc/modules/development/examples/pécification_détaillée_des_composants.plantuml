@@ -7,15 +7,10 @@ abstract class User <<abstract>>{
     - lastname: string
     - email: string
     - password: string
-    + connect()
-    + createAccount()
-    + vaidateAccount()
 }
 
 class Administrator {
-     + createGamePart()
-     + deleteGamePart()
-     + deleteAccount()
+
 }
 
 class Joueur {

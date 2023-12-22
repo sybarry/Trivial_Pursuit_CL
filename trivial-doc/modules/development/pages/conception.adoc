@@ -29,22 +29,39 @@ Expliquez dans cette section les répondes aux différentes exigences non-foncti
 
 NOTE: TODO!
 
+Nous avons gerés efficacement l'accès concurrent aux ressources partagées telles que la base de données des questions, le plateau de jeu, etc.
+Utilisés des mécanismes de verrouillage ou des transactions pour éviter les conflits lorsque plusieurs joueurs tentent d'accéder ou de modifier les mêmes données simultanément.
+
 === Performance
 
 NOTE: TODO!
 
+Le jeu peut prendre en charge un nombre spécifié de joueurs en même temps sans dégradation significative des performances.
+Optimisez les opérations liées à la concurrence, comme le mouvement des pions et la gestion des tours de jeu, pour minimiser les retards.
+
+
 === Interopérabilité
 
 NOTE: TODO!
+
+Nous avons Assurés que le jeu peut fonctionner de manière transparente sur différentes plateformes et appareils.
+Utilisés des normes ouvertes pour les protocoles de communication afin de favoriser l'interopérabilité entre les clients et les serveurs.
+
+
 
 
 === Portabilité
 
 NOTE: TODO!
 
+En mettant en œuvre ces principes de portabilité, vous pouvez vous assurer que le Trivial Pursuit peut être déployé et utilisé de manière transparente sur différentes plates-formes, offrant ainsi une expérience de jeu accessible à un large public.
+
 === Sécurité
 
 NOTE: TODO!
+
+Nous avons protégés les données des joueurs contre les accès non autorisés, en particulier dans un environnement multijoueur en ligne.
+Utiliseés des protocoles sécurisés pour les communications entre les clients et les serveurs afin d'éviter les tricheries ou les manipulations malveillantes.
 
 ==== Exigence de sécurité
 
@@ -57,17 +74,36 @@ N'ayant pas à nous occuper de l'authentification de l'utilisateur nous admetton
 
 NOTE: TODO!
 
+En adoptant ces pratiques, nous avons renforcer la maintenabilité du Trivial Pursuit, permettant ainsi d'assurer une évolutivité continue et une gestion efficace des modifications et des améliorations tout au long de son cycle de vie.
+
 ==== Maintenabilité
 
 NOTE: TODO!
+
+    Modularité
+    Documentation Complète
+    Normes de Codage
+    Gestion des Erreurs
+    Tests Automatisés
+    Contrôle de Version
+    Flexibilité Architecturale
+    Gestion des Dépendances
+    Formation et Transition
+    Révision de Code
+
 
 === Interface utilisateur
 
 NOTE: TODO!
 
+Pour assurer le succès du Trivial Pursuit, l'interface utilisateur doit être adaptative, intuitive et visuellement cohérente avec la marque. Priorisez une navigation claire, des retours en temps réel et une accessibilité universelle. Appliquez des principes de conception responsive, utilisez une hiérarchie visuelle efficace, assurez-vous d'une lisibilité optimale, et menez des tests utilisateur fréquents pour garantir une expérience de jeu agréable et engageante.
+
 === Interface logicielle
 
 NOTE: TODO!
+
+L'interface logicielle du Trivial Pursuit doit être intuitive, équilibrée et esthétiquement attrayante. Priorisez des contrôles de jeu clairs, une navigation fluide et des indicateurs de statut visuels. Offrez des options de personnalisation, garantissez une réactivité rapide et intégrez des feedbacks visuels et auditifs. Des écrans d'aide peuvent guider les nouveaux joueurs. L'objectif est de fournir une expérience utilisateur immersive et agréable.
+
 
 === Interface ou protocoles de communication
 
